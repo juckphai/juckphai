@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -47,7 +46,7 @@
 </div>
 
 <div style="text-align: center; margin-top: 20px;">
-    <label for="topicSelect" style="font-size: 18px;">เลือกประเภท:</label>
+    <label for="topicSelect" style="font-size: 18px;">เลือกประเภท</label>
       <select id="topicSelect" style="font-size: 18px; padding: 5px;">
         <option value="ลาวประตูชัย เวลา 05.45 น">ลาวประตูชัย เวลา 05.45 น</option>
         <option value="ลาวสันติภาพ เวลา 06.45 น">ลาวสันติภาพ เวลา 06.45 น</option>
@@ -141,59 +140,58 @@
     }
 
     // ฟังก์ชันแปลงตัวเลข
-    function convertNumber() {
-        const num = document.getElementById("numberInput").value;
-        const topicSelect = document.getElementById("topicSelect");
-        const selectedTopic = topicSelect.options[topicSelect.selectedIndex].value;
-        const personSelect = document.getElementById("personSelect");
-        const selectedPerson = personSelect.options[personSelect.selectedIndex].value;
-        let noteInput = document.getElementById("noteInput").value;
+function convertNumber() {
+    const num = document.getElementById("numberInput").value;
+    const topicSelect = document.getElementById("topicSelect");
+    const selectedTopic = topicSelect.options[topicSelect.selectedIndex].value;
+    const personSelect = document.getElementById("personSelect");
+    const selectedPerson = personSelect.options[personSelect.selectedIndex].value;
+    let noteInput = document.getElementById("noteInput").value;
 
-        if (num.length !== 4 || isNaN(num)) {
-            alert("กรุณากรอกตัวเลข 4 หลัก");
-            return;
-        }
-
-        const twoDigitPairs = swapAndSort(num);
-        const threeDigitCombinations = getThreeDigitCombinations(num);
-        const currentDate = new Date().toLocaleString('th-TH');
-
-// สมมุติว่า currentDate เป็นวันที่ปัจจุบัน
-let now = new Date();
-let day = now.getDate();
-let monthNames = [
-    "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
-    "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"
-];
-let month = monthNames[now.getMonth()];
-let year = now.getFullYear() + 543;  // แปลงปีเป็น พ.ศ.
-let hours = now.getHours();
-let minutes = now.getMinutes().toString().padStart(2, '0');  // เพิ่ม 0 ข้างหน้าหากน้อยกว่า 10
-
-let formattedDate = `วันที่ ${day} เดือน ${month} ${year} เวลา ${hours}.${minutes} น.`;
-
-// แทนที่ใน HTML
-let resultHtml = `
-    <div style="text-align: center; font-size: 24px;">
-        <img src="logo.png" alt="Logo" style="display: block; margin: 0 auto; width: 100px;">
-        <h2 class="blue" style="font-size: 24px;">${formattedDate}</h2>
-        <h2 class="blue" style="font-size: 24px;">${selectedTopic}</h2>
-        <p class="blue" style="font-size: 24px;">
-            ตัวเลข 3 ตัว คือ: <span style="color: red;">${num}</span> By : ${selectedPerson}
-        </p>
-        <h3 class="blue" style="font-size: 24px;">จัดชุด 2 ตัว</h3>
-        <p class="blue" style="font-size: 24px;">${twoDigitPairs.join(' - ')}</p>
-        <h3 class="blue" style="font-size: 24px;">จัดชุด 3 ตัว</h3>
-        <p class="blue" style="font-size: 24px;">${threeDigitCombinations.join(' - ')}</p>
-        <h2 class="red" style="font-size: 24px;">แนวทางเท่านั้น!!</h2>
-        <p class="blue" style="font-size: 24px;">หมายเหตุ: ${noteInput}</p>
-    </div>
-`;
-
-document.getElementById("resultContainer").innerHTML = resultHtml;
-document.getElementById("resultContainer").style.display = "block";
-
+    if (num.length !== 4 || isNaN(num)) {
+        alert("กรุณากรอกตัวเลข 4 หลัก");
+        return;
     }
+
+    const twoDigitPairs = swapAndSort(num);
+    const threeDigitCombinations = getThreeDigitCombinations(num);
+    const currentDate = new Date().toLocaleString('th-TH');
+
+    // สมมุติว่า currentDate เป็นวันที่ปัจจุบัน
+    let now = new Date();
+    let day = now.getDate();
+    let monthNames = [
+        "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
+        "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"
+    ];
+    let month = monthNames[now.getMonth()];
+    let year = now.getFullYear() + 543;  // แปลงปีเป็น พ.ศ.
+    let hours = now.getHours();
+    let minutes = now.getMinutes().toString().padStart(2, '0');  // เพิ่ม 0 ข้างหน้าหากน้อยกว่า 10
+
+    let formattedDate = `วันที่ ${day} เดือน ${month} ${year} เวลา ${hours}.${minutes} น.`;
+
+    // แทนที่ใน HTML
+    let resultHtml = `
+        <div style="text-align: center; font-size: 24px;">
+            <img src="logo.png" alt="Logo" style="display: block; margin: 0 auto; width: 100px;">
+            <h2 class="blue" style="font-size: 24px;">${formattedDate}</h2>
+            <h2 class="blue" style="font-size: 24px;">${selectedTopic}</h2>
+            <p class="blue" style="font-size: 24px;">
+                ตัวเลข 3 ตัว คือ: <span style="color: red;">${num}</span> By : ${selectedPerson}
+            </p>
+            <h3 class="blue" style="font-size: 24px;">จัดชุด 2 ตัว</h3>
+            <p class="blue" style="font-size: 24px;">${twoDigitPairs.join(' - ')}</p>
+            <h3 class="blue" style="font-size: 24px;">จัดชุด 3 ตัว</h3>
+            <p class="blue" style="font-size: 24px;">${threeDigitCombinations.join(' - ')}</p>
+            <h2 class="red" style="font-size: 24px;">แนวทางเท่านั้น!!</h2>
+            <p class="orange" style="font-size: 24px;">หมายเหตุ: ${noteInput || 'No comment'}</p>
+        </div>
+    `;
+
+    document.getElementById("resultContainer").innerHTML = resultHtml;
+    document.getElementById("resultContainer").style.display = "block";
+}
 
     document.getElementById("convertButton").addEventListener("click", convertNumber);
 </script>
