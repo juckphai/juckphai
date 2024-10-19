@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -146,7 +147,12 @@ function convertNumber() {
     const selectedTopic = topicSelect.options[topicSelect.selectedIndex].value;
     const personSelect = document.getElementById("personSelect");
     const selectedPerson = personSelect.options[personSelect.selectedIndex].value;
-    let noteInput = document.getElementById("noteInput").value;
+    let noteInput = document.getElementById("noteInput").value;  // ดึงค่าจากช่อง input 
+
+	// ถ้าไม่มีการกรอกข้อความในช่องหมายเหตุ ให้ใส่ "No comments" อัตโนมัติ
+    if (!noteInput.trim()) {
+        noteInput = '<span style="color: orange;">No comments</span>';
+    }
 
     if (num.length !== 4 || isNaN(num)) {
         alert("กรุณากรอกตัวเลข 4 หลัก");
@@ -185,7 +191,7 @@ function convertNumber() {
             <h3 class="blue" style="font-size: 24px;">จัดชุด 3 ตัว</h3>
             <p class="blue" style="font-size: 24px;">${threeDigitCombinations.join(' - ')}</p>
             <h2 class="red" style="font-size: 24px;">แนวทางเท่านั้น!!</h2>
-            <p class="orange" style="font-size: 24px;">หมายเหตุ: ${noteInput || 'No comment'}</p>
+            <p class="blue" style="font-size: 24px;">หมายเหตุ : ${noteInput || 'No comment'}</p>
         </div>
     `;
 
