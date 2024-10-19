@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -45,8 +47,8 @@
 </div>
 
 <div style="text-align: center; margin-top: 20px;">
-    <label for="topicSelect" style="font-size: 18px;">เลือกประเภท</label>
-    <select id="topicSelect" style="font-size: 18px; padding: 5px;">
+    <label for="topicSelect" style="font-size: 18px;">เลือกประเภทหวย:</label>
+      <select id="topicSelect" style="font-size: 18px; padding: 5px;">
         <option value="ลาวประตูชัย เวลา 05.45 น">ลาวประตูชัย เวลา 05.45 น</option>
         <option value="ลาวสันติภาพ เวลา 06.45 น">ลาวสันติภาพ เวลา 06.45 น</option>
         <option value="ประชาชนลาว เวลา 07.45 น">ประชาชนลาว เวลา 07.45 น</option>
@@ -82,50 +84,50 @@
 <div style="text-align: center; margin-top: 20px;">
     <input type="text" id="noteInput" placeholder="กรุณาไส่ข้อความที่ต้องการ" style="font-size: 18px; padding: 5px;">
 </div>
+
 <div id="resultContainer" class="result" style="display: none;"></div>
 
 <script>
-    function sortDigits(digits) {
-        return digits.split('').sort().join('');
+    // ฟังก์ชันสำหรับการเรียงลำดับตัวเลข
+    function sortDigits(str) {
+        return str.split('').sort().join('');
     }
 
-    function getThaiDateTime() {
-        const monthsTh = [
-            "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
-            "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"
-        ];
-
-        const now = new Date();
-        const day = String(now.getDate()).padStart(2, '0');
-        const month = monthsTh[now.getMonth()];
-        const year = now.getFullYear() + 543; // แปลงปี ค.ศ. เป็น พ.ศ.
-        const time = String(now.getHours()).padStart(2, '0') + '.' + String(now.getMinutes()).padStart(2, '0');
-
-        return `วันที่ ${day} เดือน ${month} ${year} เวลา ${time} น.`;
-    }
-
+    // ฟังก์ชันจับคู่เลข 3 ตัวจาก 4 ตัว
     function getThreeDigitCombinations(num) {
         const combinations = [];
-        combinations.push(sortDigits(num[0] + num[1] + num[2]));
-        combinations.push(sortDigits(num[0] + num[1] + num[3]));
-        combinations.push(sortDigits(num[0] + num[2] + num[3]));
-        combinations.push(sortDigits(num[1] + num[2] + num[3]));
 
-        // ตัดค่าที่ซ้ำออก
-        const uniqueCombinations = Array.from(new Set(combinations));
-    
-        // เรียงชุดเด่น 3 ตัวจากน้อยไปหามาก
-        return uniqueCombinations.map(Number).sort((a, b) => a - b).map(String);
+        // แปลงตัวเลขเป็นอาร์เรย์เพื่อให้สามารถเข้าถึงทีละหลักได้
+        const digits = num.split('');
+
+        // จับคู่ชุดตัวเลขสามตัวทั้งหมดจากตัวเลข 4 ตัว
+        combinations.push(digits[0] + digits[1] + digits[2]);
+        combinations.push(digits[0] + digits[1] + digits[3]);
+        combinations.push(digits[0] + digits[2] + digits[3]);
+        combinations.push(digits[1] + digits[2] + digits[3]);
+
+        // เรียงลำดับตัวเลขในแต่ละชุดจากน้อยไปหามาก
+        const sortedCombinations = combinations.map(sortDigits);
+
+        // ตัดชุดตัวเลขที่ซ้ำออก
+        const uniqueCombinations = Array.from(new Set(sortedCombinations));
+
+        // เรียงชุดตัวเลข 3 ตัวจากน้อยไปหามาก
+        return uniqueCombinations.sort();
     }
 
+    // ฟังก์ชันสำหรับสลับและจัดเรียงชุดตัวเลขสองตัวจากตัวเลขสี่ตัว
     function swapAndSort(num) {
         const pairs = [];
-        for (let i = 0; i < num.length; i++) {
-            for (let j = i + 1; j < num.length; j++) {
-                // สลับตัวเลข
-                const tens = num[i];
-                const units = num[j];
-                // ตรวจสอบเงื่อนไข
+        const digits = num.split('');
+
+        for (let i = 0; i < digits.length; i++) {
+            for (let j = i + 1; j < digits.length; j++) {
+                // สลับตำแหน่งตัวเลขสองตัว
+                const tens = digits[i];
+                const units = digits[j];
+
+                // สลับตัวเลขให้หลักหน่วยมากกว่าหลักสิบ
                 if (parseInt(tens) <= parseInt(units)) {
                     pairs.push(tens + units);
                 } else {
@@ -133,50 +135,67 @@
                 }
             }
         }
+
         // ตัดค่าที่ซ้ำออกและเรียงจากน้อยไปหามาก
         return Array.from(new Set(pairs)).sort();
     }
 
+    // ฟังก์ชันแปลงตัวเลข
     function convertNumber() {
-    const num = document.getElementById("numberInput").value;
-    const topicSelect = document.getElementById("topicSelect");
-    const selectedTopic = topicSelect.options[topicSelect.selectedIndex].value;
-    const personSelect = document.getElementById("personSelect");
-    const selectedPerson = personSelect.options[personSelect.selectedIndex].value;
-    let noteInput = document.getElementById("noteInput").value;
+        const num = document.getElementById("numberInput").value;
+        const topicSelect = document.getElementById("topicSelect");
+        const selectedTopic = topicSelect.options[topicSelect.selectedIndex].value;
+        const personSelect = document.getElementById("personSelect");
+        const selectedPerson = personSelect.options[personSelect.selectedIndex].value;
+        let noteInput = document.getElementById("noteInput").value;
 
-    if (num.length !== 4 || isNaN(num)) {
-        alert("กรุณากรอกตัวเลข 4 หลัก");
-        return;
+        if (num.length !== 4 || isNaN(num)) {
+            alert("กรุณากรอกตัวเลข 4 หลัก");
+            return;
+        }
+
+        const twoDigitPairs = swapAndSort(num);
+        const threeDigitCombinations = getThreeDigitCombinations(num);
+        const currentDate = new Date().toLocaleString('th-TH');
+
+// สมมุติว่า currentDate เป็นวันที่ปัจจุบัน
+let now = new Date();
+let day = now.getDate();
+let monthNames = [
+    "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
+    "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"
+];
+let month = monthNames[now.getMonth()];
+let year = now.getFullYear() + 543;  // แปลงปีเป็น พ.ศ.
+let hours = now.getHours();
+let minutes = now.getMinutes().toString().padStart(2, '0');  // เพิ่ม 0 ข้างหน้าหากน้อยกว่า 10
+
+let formattedDate = `วันที่ ${day} เดือน ${month} ${year} เวลา ${hours}.${minutes} น.`;
+
+// แทนที่ใน HTML
+let resultHtml = `
+    <div style="text-align: center; font-size: 24px;">
+        <img src="logo.png" alt="Logo" style="display: block; margin: 0 auto; width: 100px;">
+        <h2 class="blue" style="font-size: 24px;">${formattedDate}</h2>
+        <h2 class="blue" style="font-size: 24px;">${selectedTopic}</h2>
+        <p class="blue" style="font-size: 24px;">
+            ตัวเลข 3 ตัว คือ: <span style="color: red;">${num}</span> By : ${selectedPerson}
+        </p>
+        <h3 class="blue" style="font-size: 24px;">จัดชุด 2 ตัว</h3>
+        <p class="blue" style="font-size: 24px;">${twoDigitPairs.join(' - ')}</p>
+        <h3 class="blue" style="font-size: 24px;">จัดชุด 3 ตัว</h3>
+        <p class="blue" style="font-size: 24px;">${threeDigitCombinations.join(' - ')}</p>
+        <h2 class="red" style="font-size: 24px;">แนวทางเท่านั้น!!</h2>
+        <p class="blue" style="font-size: 24px;">หมายเหตุ: ${noteInput}</p>
+    </div>
+`;
+
+document.getElementById("resultContainer").innerHTML = resultHtml;
+document.getElementById("resultContainer").style.display = "block";
+
     }
 
-    const twoDigitPairs = swapAndSort(num);
-    const threeDigitCombinations = getThreeDigitCombinations(num);
-    const currentDate = getThaiDateTime();
-
-    let resultHtml = `
-        <div style="text-align: center; font-size: 24px;">
-            <img src="logo.png" alt="Logo" style="display: block; margin: 0 auto; width: 100px;">
-            <h2 class="blue" style="font-size: 24px;">${currentDate}</h2>
-            <h2 class="blue" style="font-size: 24px;">${selectedTopic}</h2>
-            <p class="blue" style="font-size: 24px;">
-                ตัวเลข 3 ตัว คือ: <span style="color: red;">${num}</span> By : ${selectedPerson}
-            </p>
-            <h3 class="blue" style="font-size: 24px;">จัดชุด 2 ตัว  </h3>
-            <p class="blue" style="font-size: 24px;">${twoDigitPairs.join(' - ')}</p>
-            <h3 class="blue" style="font-size: 24px;">จัดชุด 3 ตัว  </h3>
-            <p class="blue" style="font-size: 24px;">${threeDigitCombinations.join(' - ')}</p>
-            <h2 class="red" style="font-size: 24px;">แนวทางเท่านั้น!!</h2>
-            <p class="blue">หมายเหตุ : ${noteInput}</p>
-        </div>
-    `;
-
-    document.getElementById("resultContainer").innerHTML = resultHtml;
-    document.getElementById("resultContainer").style.display = "block";
-}
-
-document.getElementById("convertButton").addEventListener("click", convertNumber);
-
+    document.getElementById("convertButton").addEventListener("click", convertNumber);
 </script>
 </body>
 </html>
