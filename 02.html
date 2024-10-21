@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -15,9 +16,9 @@
         }
         .result {
             background-color: lightyellow; /* สีพื้นหลังของผลลัพธ์ */
-            padding: 10px;
-            margin: 5px;
-            border-radius: 5px;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         .blue {
@@ -27,18 +28,10 @@
             color: red; /* ตัวหนังสือสีแดง */
         }
         input, select, button {
-            font-size: 16px; /* ลดขนาดฟอนต์ของ input, select, button ลงเล็กน้อย */
+            font-size: 20px;
             width: 80%;
             margin: 10px auto;
             display: block;
-        }
-        img {
-            width: 75px; /* ลดขนาดโลโก้ลงครึ่งหนึ่ง */
-            display: block;
-            margin: 0 auto;
-        }
-        .blue, .red {
-            font-size: 16px; /* ลดขนาดตัวหนังสือลงครึ่งหนึ่ง */
         }
     </style>
 </head>
@@ -176,16 +169,16 @@
 
         // สร้าง HTML สำหรับผลลัพธ์
         const resultHtml = `
-            <div style="text-align: center; font-size: 12px;">
+            <div style="text-align: center; font-size: 14px;">
             <img src="logo.png" alt="Logo" style="display: block; margin: 0 auto; width: 100px;">
-            <h2 class="blue" style="font-size: 12px;">${getThaiDateTime()}</h2>
-            <h2 class="blue" style="font-size: 12px;">${selectedTopic}</h2>
-            <p class="blue" style="font-size: 12px;">
+            <h2 class="blue" style="font-size: 14px;">${getThaiDateTime()}</h2>
+            <h2 class="blue" style="font-size: 14px;">${selectedTopic}</h2>
+            <p class="blue" style="font-size: 14px;">
     ตัวเลข 2 ตัว <span style="color: red;">${num}</span> By : ${selectedPerson}
 </p>
-            <h2 class="blue" style="font-size: 12px;">จัดชุด 2 ตัวดังนี้</h2>
-            <p class="blue" style="font-size: 12px;">${sortedPairs.join(' - ')}</p>
-            <h2 class="red" style="font-size: 12px;">แนวทางเท่านั้น</h2>
+            <h2 class="blue" style="font-size: 14px;">จัดชุด 2 ตัวดังนี้</h2>
+            <p class="blue" style="font-size: 14px;">${sortedPairs.join(' - ')}</p>
+            <h2 class="red" style="font-size: 14px;">แนวทางเท่านั้น</h2>
             <p class="blue">หมายเหตุ : <span style="color: orange;">${noteInput}</span></p>
 `;
 
