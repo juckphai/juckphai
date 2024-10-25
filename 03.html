@@ -5,30 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ฟอร์มแปลตัวเลข 3 ตัว</title>
     <style>
+#numberInput {
+    width: 50%;
+    margin: 0 auto; /* เพื่อจัดให้อยู่ตรงกลาง */
+}
         body {
             font-family: Arial, sans-serif;
             background-color: #fff3e6; /* สีพื้นหลัง */
-            padding: 20px; /* เพิ่ม padding ให้กับ body */
+            padding: 18px; /* เพิ่ม padding ให้กับ body */
         }
         h1 {
             text-align: center;
             color: #d14d14; /* สีของหัวข้อ */
         }
         .container {
-            max-width: 600px; /* กำหนดความกว้างสูงสุด */
-            margin: auto; /* จัดให้อยู่ตรงกลาง */
-            padding: 20px;
-            background-color: #fff; /* สีพื้นหลังของกล่อง */
-            border-radius: 10px; /* ขอบมน */
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* เงา */
-        }
+    max-width: 90%; /* เพิ่มความกว้างเป็น 90% ของหน้าจอ */
+    width: 90%; /* หรือใช้ 100% เพื่อให้กว้างเต็มที่ */
+    margin: 15px auto;
+    padding: 18px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
         .result {
             background-color: lightyellow; /* สีพื้นหลังของผลลัพธ์ */
-            margin: 10px; /* กำหนด margin */
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border: 5px solid green; /* ขอบสีเขียว */
-            padding: 15px; /* ปรับ padding */
+    margin: 10px; /* กำหนด margin */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 5px solid green; /* ขอบสีเขียว */
+    display: inline-block; /* ให้กรอบปรับขนาดตามเนื้อหา */
+    padding: 10px; /* สามารถปรับได้ตามต้องการ */
             display: none; /* ซ่อนผลลัพธ์เริ่มต้น */
         }
         .blue {
@@ -38,7 +44,7 @@
             color: red; /* ตัวหนังสือสีแดง */
         }
         input, select, button {
-            font-size: 20px;
+            font-size: 18px;
             width: 100%; /* ทำให้กว้าง 100% */
             padding: 10px; /* เพิ่ม padding */
             margin: 10px 0; /* ปรับ margin */
@@ -60,8 +66,6 @@
     <div class="container">
         <!-- ปุ่มกลับสู่หน้าหลัก -->
         <button class="back-button" onclick="window.location.href='https://juckphai.github.io/juckim/01.html'">กลับสู่หน้าหลัก</button>
-
-        <h1>ฟอร์มแปลตัวเลข 3 ตัว</h1>
 
         <div style="text-align: center; margin-top: 20px;">
             <input type="text" id="numberInput" placeholder="กรุณากรอกตัวเลข 3 หลัก">
