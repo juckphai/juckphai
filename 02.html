@@ -7,28 +7,28 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #eef2f3;
+            background-color: #f7f7f7;
             margin: 0;
             padding: 0;
-            color: #34495e;
         }
         h1 {
             text-align: center;
-            font-size: 34px;
-            color: #1abc9c;
+            font-size: 32px;
+            color: #2c3e50;
             margin-top: 20px;
         }
         .container {
-            max-width: 650px;
-            margin: 20px auto;
-            padding: 25px;
-            background-color: #ffffff;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-            border-radius: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            margin-top: 20px;
         }
         input, select, button {
             font-size: 18px;
-            padding: 12px;
+            padding: 10px;
             width: 90%;
             margin: 15px 0;
             border-radius: 6px;
@@ -38,27 +38,22 @@
             margin-right: auto;
         }
         button {
-            background-color: #1abc9c;
+            background-color: #4CAF50;
             color: white;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            border: none;
         }
         button:hover {
-            background-color: #16a085;
+            background-color: #45a049;
         }
         button.back-button {
             margin-top: 10px;
             font-size: 16px;
-            background-color: #e74c3c;
-        }
-        button.back-button:hover {
-            background-color: #c0392b;
         }
         label {
             font-size: 18px;
             margin-left: 5%;
-            color: #34495e;
+            color: #2c3e50;
         }
          .result {
             background-color: lightyellow; /* สีพื้นหลังของผลลัพธ์ */
@@ -140,11 +135,12 @@
         <input type="text" id="noteInput" placeholder="กรุณาใส่ข้อความที่ต้องการ">
     </div>
 
+    <!-- ส่วนแสดงผลลัพธ์ -->
     <div id="resultContainer" class="result" style="display: none;"></div>
 </div>
 
 <footer>
-    &copy; 2024 Juckphai. All Rights Reserved.
+    &copy; 2024 Juckmanphai. All Rights Reserved.
 </footer>
 
 <script>
