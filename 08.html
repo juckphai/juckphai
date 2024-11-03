@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ผลฉลากกินแบ่งรัฐบาล</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fffde7;
+            margin: 0;
+            padding: 0 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #e65100;
+            margin-top: 10px;
+        }
+
+        h2 {
+            margin: 10px 0;
+        }
+
+        h3 {
+            margin: 5px 0;
+        }
+
+        .form-container {
+            background-color: lightyellow;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border: 3px solid green;
+            padding: 10px;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        label {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        input, select {
+            font-size: 18px;
+            padding: 8px;
+            margin: 5px 0;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            width: 100%;
+            max-width: 150px;
+            transition: border-color 0.3s;
+        }
+
+        .input-pair {
+            display: flex;
+            justify-content: center;
+        }
+
+        .result-display {
+            background-color: lightyellow;
+            padding: 10px;
+            border-radius: 10px;
+            border: 2px solid green;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+	.result-section {
+            margin-top: 10px; /* Add spacing between each result section */
+        }
+
+        .header-title {
+            color: blue;
+            font-size: 30px;
+            border-radius: 5px;
+            display: block;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .draw-date {
+            background-color: rgba(0, 100, 255, 0.8);
+            color: white;
+            padding: 5px;
+            font-size: 18px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+        .number-box {
+            display: inline-block;
+            background-color: rgba(233, 30, 99, 0.5);
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 5px;
+            margin: 2px;
+        }
+
+        .three-digit-box {
+            display: inline-block;
+            background-color: #1e88e5;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            width: 40px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        .two-digit-box {
+            display: inline-block;
+            background-color: #ff9800;
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+            width: 90px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+        .result-title {
+            font-weight: bold;
+            color: #e65100;
+            margin-bottom: 5px;
+        }
+
+        .flex-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+	.button-container button {
+        font-size: 22px; /* Increase font size for better visibility */
+        padding: 12px 20px; /* Adjust padding for larger button appearance */
+        border-radius: 8px; /* Optional: increase border radius for a softer look */
+        cursor: pointer;
+        background-color: #4CAF50; /* Button color */
+        color: white;
+    }
+
+        .back-button {
+        font-size: 20px;
+        padding: 12px 20px;
+        border-radius: 8px;
+        background-color: #FF5722; /* Bold orange color for prominence */
+        color: white;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+        transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .back-button:hover {
+        background-color: #E64A19; /* Darker orange on hover */
+        transform: translateY(-2px); /* Slight lift effect on hover */
+    }
+
+    .back-button:active {
+        background-color: #D84315; /* Even darker on active click */
+        transform: translateY(0); /* Remove lift effect */
+    }
+
+        .logo-container {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <button class="back-button" onclick="window.location.href='https://juckphai.github.io/juckim/01.html'">กลับสู่หน้าหลัก</button>
+    <h1>ผลฉลากกินแบ่งรัฐบาล</h1>
+
+    <div class="form-container">
+        <div class="form-group">
+            <label for="draw-date">งวดประจำวันที่ (วัน เดือน พ.ศ.)</label>
+            <input type="text" id="draw-date" placeholder="กรอกวันที่ (ตัวอย่าง: 1 มกราคม 2567)">
+        </div>
+
+        <div class="form-group">
+            <label for="first-prize">รางวัลที่ 1 (6 ตัว)</label>
+            <input type="text" id="first-prize" maxlength="6" placeholder="กรอกเลขรางวัลที่ 1">
+        </div>
+
+        <div class="form-group">
+            <label>เลขหน้า 3 ตัว</label>
+            <div class="input-pair">
+                <input type="text" id="front-three-1" maxlength="3" placeholder="ชุดที่ 1">
+                <input type="text" id="front-three-2" maxlength="3" placeholder="ชุดที่ 2">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>เลขท้าย 3 ตัว</label>
+            <div class="input-pair">
+                <input type="text" id="back-three-1" maxlength="3" placeholder="ชุดที่ 1">
+                <input type="text" id="back-three-2" maxlength="3" placeholder="ชุดที่ 2">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="back-two">เลขท้าย 2 ตัว</label>
+            <input type="text" id="back-two" maxlength="2" placeholder="กรอกเลขท้าย 2 ตัว">
+        </div>
+
+        <div class="button-container">
+            <button onclick="displayResults()">แสดงผล</button>
+        </div>
+    </div>
+
+        <div id="resultContainer" class="result-display" style="display: none;">
+        <div style="position: relative; text-align: center; font-size: 18px; line-height: 0.6;">
+            <img src="logo.png" alt="Logo Left" style="position: absolute; bottom: 0; left: 0; width: 70px; margin: 7px;">
+            <img src="logo.png" alt="Logo Right" style="position: absolute; bottom: 0; right: 0; width: 70px; margin: 7px;">
+
+            <h2 class="header-title">ผลฉลากกินแบ่งรัฐบาล</h2>
+            <div class="draw-date">
+                งวดประจำวันที่ : <span id="display-draw-date"></span>
+            </div>
+
+            <div class="result-section" style="margin-top: 30px;">
+                <h3 class="result-title">รางวัลที่ 1</h3>
+                <div id="first-prize-display"></div>
+            </div>
+
+            <div class="result-section flex-row">
+                <div>
+                    <h3 class="result-title">เลขหน้า 3 ตัว</h3>
+                    <div class="three-digit-box" id="display-front-three-1"></div>
+                    <div class="three-digit-box" id="display-front-three-2"></div>
+                </div>
+                <div style="margin: 0 15px;"></div>
+                <div>
+                    <h3 class="result-title">เลขท้าย 3 ตัว</h3>
+                    <div class="three-digit-box" id="display-back-three-1"></div>
+                    <div class="three-digit-box" id="display-back-three-2"></div>
+                </div>
+            </div>
+
+            <div class="result-section">
+                <h3 class="result-title">เลขท้าย 2 ตัว</h3>
+                <div class="two-digit-box" id="display-back-two"></div>
+            </div>
+        </div>
+    </div>
+<footer>
+        &copy; 2024 Juckphai. All Rights Reserved.
+    </footer>
+
+           <script>
+        function displayResults() {
+            document.getElementById("resultContainer").style.display = "block";
+            document.getElementById("display-draw-date").innerText = document.getElementById("draw-date").value;
+
+            const firstPrize = document.getElementById("first-prize").value;
+            const firstPrizeDisplay = document.getElementById("first-prize-display");
+            firstPrizeDisplay.innerHTML = "";
+            for (let i = 0; i < firstPrize.length; i++) {
+                const box = document.createElement("div");
+                box.className = "number-box";
+                box.innerText = firstPrize[i];
+                firstPrizeDisplay.appendChild(box);
+            }
+
+            document.getElementById("display-front-three-1").innerText = document.getElementById("front-three-1").value;
+            document.getElementById("display-front-three-2").innerText = document.getElementById("front-three-2").value;
+            document.getElementById("display-back-three-1").innerText = document.getElementById("back-three-1").value;
+            document.getElementById("display-back-three-2").innerText = document.getElementById("back-three-2").value;
+            document.getElementById("display-back-two").innerText = document.getElementById("back-two").value;
+        }
+    </script>
+</body>
+</html>
