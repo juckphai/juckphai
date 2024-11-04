@@ -72,25 +72,26 @@
         }
 
 	.result-section {
-            margin-top: 10px; /* Add spacing between each result section */
+            margin-top: 15px; /* Add spacing between each result section */
         }
 
         .header-title {
-            color: blue;
-            font-size: 30px;
-            border-radius: 5px;
-            display: block;
-            padding: 10px;
+	    background-color: rgba(0, 100, 255, 0.8);
+            color: white;
+            font-size: 26px;
+	    font-weight: bold;
+            border-radius: 20px;
+            display: inline-block;
+            padding: 20px;
             margin-top: 10px;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         .draw-date {
-            background-color: rgba(0, 100, 255, 0.8);
-            color: white;
-            padding: 5px;
-            font-size: 18px;
-            border-radius: 8px;
+            color: rgba(0, 100, 255, 0.8);
+            padding: 15px;
+            font-size: 20px;
+            border-radius: 2px;
             display: inline-block;
             margin-top: 5px;
         }
@@ -99,14 +100,15 @@
             display: inline-block;
             background-color: rgba(233, 30, 99, 0.5);
             color: white;
-            font-size: 24px;
+            font-size: 30px;
             font-weight: bold;
-            width: 30px;
-            height: 30px;
-            line-height: 30px;
+            width: 35px;
+            height: 35px;
+            line-height: 35px;
             text-align: center;
-            border-radius: 5px;
-            margin: 2px;
+            border-radius: 30px;
+            margin: 1.5px;
+	    margin-top: 5px;
         }
 
         .three-digit-box {
@@ -117,9 +119,9 @@
             font-weight: bold;
             width: 40px;
             height: 30px;
-            line-height: 30px;
+            line-height: 35px;
             text-align: center;
-            border-radius: 5px;
+            border-radius: 15px;
             margin: 5px;
         }
 
@@ -127,19 +129,19 @@
             display: inline-block;
             background-color: #ff9800;
             color: white;
-            font-size: 30px;
+            font-size: 36px;
             font-weight: bold;
-            width: 90px;
+            width: 130px;
             height: 50px;
             line-height: 50px;
             text-align: center;
-            border-radius: 5px;
+            border-radius: 15px;
             margin-top: 5px;
         }
 
         .result-title {
             font-weight: bold;
-            color: #e65100;
+            color: #FF5722;
             margin-bottom: 5px;
         }
 
@@ -185,10 +187,20 @@
             text-align: center;
             margin-bottom: 10px;
         }
+.result-section {
+        margin-top: 15px; /* ลดระยะห่างระหว่างส่วนต่าง ๆ */
+    }
+.result-section .result-title {
+    margin-bottom: 15px; /* เพิ่มระยะห่างด้านล่างของข้อความ "รางวัลที่ 1" */
+}
+
+#first-prize-display {
+    margin-top: 15px; /* เพิ่มระยะห่างด้านบนของตัวเลข */
+}
     </style>
 </head>
 <body>
-    <button class="back-button" onclick="window.location.href='https://juckphai.github.io/juckim/01.html'">กลับสู่หน้าหลัก</button>
+    <button class="back-button" onclick="window.location.href='https://juckmanphai.github.io/juck/01.html'">กลับสู่หน้าหลัก</button>
     <h1>ผลฉลากกินแบ่งรัฐบาล</h1>
 
     <div class="form-container">
@@ -264,9 +276,8 @@
         </div>
     </div>
 <footer>
-        &copy; 2024 Juckphai. All Rights Reserved.
+        &copy; 2024 Juckhai. All Rights Reserved.
     </footer>
-
            <script>
         function displayResults() {
             document.getElementById("resultContainer").style.display = "block";
