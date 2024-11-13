@@ -106,7 +106,7 @@ function getThaiDate(date = new Date()) {
     const month = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"][date.getMonth()];
     const year = date.getFullYear() + 543;
 
-    return `วันที่ ${day} เดือน ${month} ${year}`;
+    return `วันที่ ${day}  ${month} ${year}`;
 }
 
 
@@ -620,6 +620,7 @@ resultContainer.style.display = 'block';
             <label for="dateInput">เลือกวันที่:</label>
             <input type="date" id="dateInput" />
         </div>
+
         <div id="resultContainer"></div>
         <button class="back-button" onclick="window.location.href='https://juckphai.github.io/juckim/01.html'">กลับสู่หน้าหลัก</button>
     </div>
