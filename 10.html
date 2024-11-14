@@ -9,7 +9,7 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f7fb;
-            margin: 0;
+            margin: auto;
             padding: 0;
         }
         
@@ -25,6 +25,10 @@
         .container {
             max-width: 600px;
             margin: 20px auto;
+	    margin-top: 20px;
+	    margin-bottom: 20px;
+	    margin-left: 10px;
+            margin-right: 10px;
             background-color: #ffffff;
             padding: 30px;
             border-radius: 10px;
@@ -270,7 +274,7 @@ button:active {
     </style>
 </head>
 <body>
-    <button class="back-button" onclick="window.location.href='https://juckphai.github.io/juckim/01.html'">กลับสู่หน้าหลัก</button>
+    <button class="back-button" onclick="window.location.href='https://juckmanphai.github.io/juck/01.html'">กลับสู่หน้าหลัก</button>
     <h2>บัญชีรายรับรายจ่าย - <span id="accountName"></span></h2>
 <input type="file" id="fileInput" onchange="loadFromFile(event)" style="display: none;">
 <button type="button" onclick="document.getElementById('fileInput').click()" class="file-button">โหลดข้อมูลจากไฟล์</button>
@@ -316,7 +320,7 @@ button:active {
 
     <!-- สรุปยอดในวันที่เลือก -->
     <div class="summary-item">
-        <label for="customDayMonth">กรุณากรอกวันที่ (วัน/เดือน):</label>
+        <label for="customDayMonth">กรอกวันที่(วัน/เดือน):</label>
         <input type="text" id="customDayMonth" placeholder="กรอกวัน/เดือน (เช่น 10/11)">
         <button type="button" onclick="summarizeByDayMonth()">สรุปยอดในวันที่เลือก</button>
     </div>
