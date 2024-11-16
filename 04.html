@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ฟอร์มแปลตัวเลข 4 ตัว</title>
+    <title>ฟอร์มแปลตัวเลข 3 ตัว</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -26,6 +26,7 @@
             border-radius: 12px;
             margin-top: 15px;
         }
+
         input, select, button {
             font-size: 18px;
             padding: 10px;
@@ -73,7 +74,7 @@
             color: #95a5a6;
         }
         .form-container {
-            border: 2px solid orange;
+            border: 2px solid red;
             background-color: #ffffff;
             padding: 20px;
             border-radius: 8px;
@@ -85,9 +86,12 @@
             margin-bottom: 20px;
             background-color: #ffffcc;
             border: 2px solid #4CAF50;
-            padding: 15px;
+            padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
+        }
+        #resultContainer p {
+            line-height: 0.2;
         }
     </style>
     <script>
@@ -221,7 +225,7 @@
         margin-top: 10px;
     }
 </style>
-
+<div class="container">
     <h1>ฟอร์มแปลตัวเลข 4 ตัว</h1>
 
     <div class="form-container">
@@ -270,20 +274,16 @@
         </div>
 
         <button id="convertButton">แปลตัวเลข</button>
-    </div>
-
-   </div>
-
+ 
     <!-- Result Container -->
     <div id="resultContainer" style="text-align: center; margin-top: 20px;"></div>
            <label for="lineHeightSlider">ปรับขนาดบรรทัด:</label>
             <input type="range" id="lineHeightSlider" min="0.0" max="2" step="0.1" value="1" onchange="updateLineHeight()">
             <p>ค่าปัจจุบัน: <span id="lineHeightValue">0.5</span></p>
-
-    <div id="resultContainer"></div>
-</div>
 <div class="container">
+    <div id="resultContainer"></div>
      <button class="back-button" onclick="window.location.href='https://juckphai.github.io/juckim/01.html'">กลับสู่หน้าหลัก</button>
+</div>
     <footer>&copy; 2024 Juckphai. All Rights Reserved.</footer>
 </body>
 </html>
