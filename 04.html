@@ -3,96 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ฟอร์มแปลตัวเลข 3 ตัว</title>
+    <title>ฟอร์มแปลตัวเลข 4 ตัว</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #fffde7;
-            margin: 0;
-            padding: 0;
-        }
-        h1 {
-            text-align: center;
-            font-size: 32px;
-            color: #2c3e50;
-            margin-top: 20px;
-        }
-        .container {
-            max-width: auto;
-            margin: 0 auto;
-            padding: 15px;
-            background-color: #fff;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 12px;
-            margin-top: 15px;
-        }
+  body {
+        font-family: Arial, sans-serif;
+        background-color: #fffde7;
+        margin: 0;
+        padding: 0;
+        line-height: 1.4; /* ลดค่า line-height */
+    }
+    h1 {
+        text-align: center;
+        font-size: 32px;
+        color: #2c3e50;
+        margin-top: 20px;
+        line-height: 1.2; /* ปรับให้กระชับขึ้น */
+    }
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 15px;
+        background-color: #fff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        margin-top: 15px;
+        line-height: 1.4; /* ลดช่องว่างใน container */
+    }
+    input, select, button {
+        font-size: 18px;
+        padding: 10px;
+        width: 90%;
+        margin: 10px 0; /* ลดช่องว่างระหว่าง input */
+        border-radius: 6px;
+        border: 1px solid #ddd;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.2; /* ลดช่องว่างใน input */
+    }
+    button {
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        line-height: 1.2;
+    }
+    button:hover {
+        background-color: #45a049;
+    }
+    label {
+        font-size: 18px;
+        margin-left: 5%;
+        color: #2c3e50;
+        line-height: 1.2; /* ลดช่องว่างใน label */
+    }
+    footer {
+        text-align: center;
+        padding: 20px;
+        font-size: 14px;
+        color: #95a5a6;
+        line-height: 1.2; /* ลดช่องว่างใน footer */
+    }
+    .form-container {
+        border: 2px solid orange;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        line-height: 1.4; /* ลดช่องว่างใน form */
+    }
+    #resultContainer {
+        display: none;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        background-color: #ffffcc;
+        border: 2px solid #4CAF50;
+        padding: 20px;
+        margin-left: 20px;
+        margin-right: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
+    }
 
-        input, select, button {
-            font-size: 18px;
-            padding: 10px;
-            width: 90%;
-            margin: 15px 0;
-            border-radius: 6px;
-            border: 1px solid #ddd;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        button.back-button {
-            margin-top: 20px;
-            font-size: 20px;
-            max-width: 600px;
-            width: 100%;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        label {
-            font-size: 18px;
-            margin-left: 5%;
-            color: #2c3e50;
-        }
-        .blue {
-            color: blue;
-        }
-        .red {
-            color: red;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            font-size: 14px;
-            color: #95a5a6;
-        }
-        .form-container {
-            border: 2px solid red;
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        #resultContainer {
-            display: none;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            background-color: #ffffcc;
-            border: 2px solid #4CAF50;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
-        }
-        #resultContainer p {
-            line-height: 0.2;
-        }
+    #lineHeightSlider {
+        width: 100%;
+        margin: 10px 0; /* ลดช่องว่างระหว่าง slider */
+    }
+    #lineHeightValue {
+        font-size: 16px;
+        color: #2c3e50;
+        line-height: 1.2; /* ลดช่องว่างของข้อความใน slider */
+    }
     </style>
     <script>
         // ปิดการคลิกขวา
@@ -181,26 +182,28 @@
 <div id="resultContent" style="position: relative; text-align: center; font-size: 18px;">
                     <img src="logo.png" alt="Logo Left" style="position: absolute; top: 0; left: 0; width: 40px; margin: 7px;">
                     <img src="logo.png" alt="Logo Right" style="position: absolute; top: 0; right: 0; width: 40px; margin: 7px;">
-                    <h2 class="blue" style="font-size: 20px;">${selectedTopic}</h2>
-                    <p class="blue" style="font-size: 15px;">${displayDate}</p>
-                    <h2 class="blue" style="font-size: 20px;">ตัวเลข 4 ตัว  <span style="color: red;">${num}</span> By : ${selectedPerson}</h2>
-                    <h3 class="blue" style="font-size: 20px;">จัดชุด 2 ตัว</h3>
-                    <p class="blue" style="font-size: 20px;">${twoDigitPairs.join(' - ')}</p>
-                    <h3 class="blue" style="font-size: 20px;">จัดชุด 3 ตัว</h3>
-                    <p class="blue" style="font-size: 20px;">${threeDigitCombinations.join(' - ')}</p>
-    <p style="font-size: 10px; color: blue;"><strong>แปล:</strong> ${getThaiDate()} ${getThaiTime()}</p>                    
-<h3 class="red" style="font-size: 18px;">หมายเหตุ: ${noteInput}</h3>
-                </div>
-            `;
+              <h2 style="color: blue; font-size: 20px;">${selectedTopic}</h2>
+                <p style="color: blue; font-size: 15px;">${displayDate}</p>
+                <h2 style="color: blue; font-size: 20px;">ตัวเลข 4 ตัว  <span style="color: red;">${num}</span> By: ${selectedPerson}</h2>
+                <h2 style="color: blue; font-size: 20px;">จัดชุด 2 ตัว</h2>
+                <p style="color: blue; font-size: 20px;">${twoDigitPairs.join(' - ')}</p>
+                <h2 style="color: blue; font-size: 20px;">จัดชุด 3 ตัว</h2>
+                <p style="color: blue; font-size: 20px;">${threeDigitCombinations.join(' - ')}</p>
+                <p style="font-size: 10px; color: blue;"><strong>แปล:</strong> ${getThaiDate()} ${getThaiTime()}</p>
+                <p style="color: blue; font-size: 18px;">หมายเหตุ: ${noteInput}</p>
+            </div>
+        `;
 
-            const resultContainer = document.getElementById("resultContainer");
-            resultContainer.innerHTML = resultHtml;
-            resultContainer.style.display = "block";
-        }
+        // Display the result content inside the container
+        const resultContainer = document.getElementById("resultContainer");
+        resultContainer.innerHTML = resultHtml;
+        resultContainer.style.display = "block";
+    }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById("convertButton").addEventListener("click", convertNumber);
-        });
+    // Add an event listener to the button
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById("convertButton").addEventListener("click", convertNumber);
+    });
     </script>
 </head>
 <body>
@@ -225,10 +228,9 @@
         margin-top: 10px;
     }
 </style>
-<div class="container">
+<div class="form-container">
+     
     <h1>ฟอร์มแปลตัวเลข 4 ตัว</h1>
-
-    <div class="form-container">
         <div class="input-group form-group">
             <input type="text" id="numberInput" placeholder="กรอกตัวเลข 4 หลัก">
             <select id="personSelect">
@@ -274,16 +276,24 @@
         </div>
 
         <button id="convertButton">แปลตัวเลข</button>
- 
-    <!-- Result Container -->
-    <div id="resultContainer" style="text-align: center; margin-top: 20px;"></div>
-           <label for="lineHeightSlider">ปรับขนาดบรรทัด:</label>
-            <input type="range" id="lineHeightSlider" min="0.0" max="2" step="0.1" value="1" onchange="updateLineHeight()">
-            <p>ค่าปัจจุบัน: <span id="lineHeightValue">0.5</span></p>
-<div class="container">
-    <div id="resultContainer"></div>
-     <button class="back-button" onclick="window.location.href='https://juckphai.github.io/juckim/01.html'">กลับสู่หน้าหลัก</button>
-</div>
+    </div>
+
+   </div>
+
+     <!-- Result Container -->
+<div id="resultContainer" style="text-align: center; margin-top: 20px;"></div>
+
+<label for="lineHeightSlider">ปรับขนาดบรรทัด:</label>
+<input type="range" 
+       id="lineHeightSlider" 
+       min="0" 
+       max="2" 
+       step="0.1" 
+       value="1" 
+       onchange="updateLineHeight()">
+<p>ค่าปัจจุบัน: <span id="lineHeightValue">0.3</span></p>
+
+<button class="back-button" onclick="window.location.href='https://juckphai.github.io/juckim/01.html'">กลับสู่หน้าหลัก</button>
     <footer>&copy; 2024 Juckphai. All Rights Reserved.</footer>
 </body>
 </html>
