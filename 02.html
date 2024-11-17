@@ -20,14 +20,18 @@ font-family: Arial, sans-serif;
     }
     .container {
         max-width: 600px;
-        margin: 0 auto;
-        padding: 15px;
-        background-color: #fff;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        border-radius: 12px;
-        margin-top: 15px;
+         margin-top: 20px;
+        margin-bottom: 20px;
+        background-color: #ffffcc;
+        border: 2px solid #4CAF50;
+        padding: 20px;
+        margin-left: 20px;
+        margin-right: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);   
         line-height: 1.4; /* ลดช่องว่างใน container */
     }
+
     input, select, button {
         font-size: 18px;
         padding: 10px;
@@ -66,13 +70,18 @@ font-family: Arial, sans-serif;
     .form-container {
         border: 2px solid orange;
         background-color: #ffffff;
+        margin-top: 20px;
+        margin-bottom: 20px;
         padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-left: 20px;
+        margin-right: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
         line-height: 1.4; /* ลดช่องว่างใน form */
     }
+
     #resultContainer {
-        display: none;
+           display: none;
         margin-top: 20px;
         margin-bottom: 20px;
         background-color: #ffffcc;
@@ -82,7 +91,7 @@ font-family: Arial, sans-serif;
         margin-right: 20px;
         border-radius: 10px;
         box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
-    }
+}
 
     #lineHeightSlider {
         width: 100%;
@@ -204,7 +213,6 @@ font-family: Arial, sans-serif;
     </script>
 </head>
 <body>
-    <div class="container">
         <h1>ฟอร์มแปลตัวเลข 2 ตัว</h1>
         <div class="form-container">
             <label for="numberInput">กรุณากรอกตัวเลข 2 ตัว</label>
@@ -247,12 +255,10 @@ font-family: Arial, sans-serif;
 
             <div style="display: flex; justify-content: space-between;">
                 <div style="flex: 1; margin-right: 10px;">
-                    <label for="noteInput">หมายเหตุ</label>
                     <input type="text" id="noteInput" placeholder="หมายเหตุ (ถ้ามี)" />
                 </div>
             </div>
 
-            <label for="dateInput">กรุณากรอกวันที่</label>
             <input type="date" id="dateInput" />
 
             <button id="convertButton">แปลตัวเลข</button>
@@ -265,10 +271,9 @@ font-family: Arial, sans-serif;
 
         <div id="resultContainer" style="display: none;"></div>
     </div>
-<div class="container">
     <button class="back-button" onclick="window.location.href='https://juckphai.github.io/juckim/01.html'">กลับสู่หน้าหลัก</button>
      <footer>
-<div style="text-align: center; margin-bottom: 10px;">
+<div style="text-align: center; margin-bottom: 20px;">
         &copy; 2024 Juckphai. All Rights Reserved.
     </footer>
 
