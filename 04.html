@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ฟอร์มแปลตัวเลข 4 ตัว</title>
     <style>
-  body {
-        font-family: Arial, sans-serif;
+        body {
+            font-family: Arial, sans-serif;
         background-color: #fffde7;
         margin: 0;
         padding: 0;
@@ -72,18 +72,45 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         line-height: 1.4; /* ลดช่องว่างใน form */
     }
-    #resultContainer {
-        display: none;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        background-color: #ffffcc;
-        border: 2px solid #4CAF50;
-        padding: 20px;
-        margin-left: 20px;
-        margin-right: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
-    }
+ #resultContainer {
+    display: none;
+    margin: 20px;
+    background-color: #ffffcc; /* สีพื้นหลัง */
+    border: 2px solid #4CAF50; /* สีขอบ */
+    padding: 20px;
+    border-radius: 10px; /* มุมโค้ง */
+    box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2); /* เงา */
+    text-align: center; /* จัดตำแหน่งข้อความกลาง */
+}
+
+#resultContainer h2.blue, 
+#resultContainer p.blue, 
+#resultContainer h3.blue {
+    color: #0000ff; /* สีฟ้า */
+}
+
+#resultContainer h3.red {
+    color: red; /* สีแดง */
+}
+
+#resultContainer p.note {
+    font-size: 14px;
+    color: blue;
+}
+
+#resultContainer img {
+    position: absolute;
+    top: 0;
+    width: 40px;
+    margin: 7px;
+}
+#resultContainer img.left {
+    left: 0;
+}
+#resultContainer img.right {
+    right: 0;
+}
+
 
     #lineHeightSlider {
         width: 100%;
@@ -94,6 +121,7 @@
         color: #2c3e50;
         line-height: 1.2; /* ลดช่องว่างของข้อความใน slider */
     }
+
     </style>
     <script>
         // ปิดการคลิกขวา
@@ -178,32 +206,48 @@
             const threeDigitCombinations = getThreeDigitCombinations(num);
             const displayDate = dateInput ? getThaiDate(new Date(dateInput)) : getThaiDate();
 
-            let resultHtml = `
-<div id="resultContent" style="position: relative; text-align: center; font-size: 18px;">
-                    <img src="logo.png" alt="Logo Left" style="position: absolute; top: 0; left: 0; width: 40px; margin: 7px;">
-                    <img src="logo.png" alt="Logo Right" style="position: absolute; top: 0; right: 0; width: 40px; margin: 7px;">
-              <h2 style="color: blue; font-size: 20px;">${selectedTopic}</h2>
-                <p style="color: blue; font-size: 15px;">${displayDate}</p>
-                <h2 style="color: blue; font-size: 20px;">ตัวเลข 4 ตัว  <span style="color: red;">${num}</span> By: ${selectedPerson}</h2>
-                <h2 style="color: blue; font-size: 20px;">จัดชุด 2 ตัว</h2>
-                <p style="color: blue; font-size: 20px;">${twoDigitPairs.join(' - ')}</p>
-                <h2 style="color: blue; font-size: 20px;">จัดชุด 3 ตัว</h2>
-                <p style="color: blue; font-size: 20px;">${threeDigitCombinations.join(' - ')}</p>
-                <p style="font-size: 10px; color: blue;"><strong>แปล:</strong> ${getThaiDate()} ${getThaiTime()}</p>
-                <p style="color: blue; font-size: 18px;">หมายเหตุ: ${noteInput}</p>
-            </div>
-        `;
+// กำหนดตัวแปรขนาดฟอนต์ในที่เดียว
+const fontSizeTopic = "20px";       // ขนาดฟอนต์สำหรับหัวข้อ
+const fontSizeDate = "20px";        // ขนาดฟอนต์สำหรับวันที่
+const fontSizeNumber = "20px";      // ขนาดฟอนต์สำหรับตัวเลข
+const fontSizeTwoDigit = "20px";    // ขนาดฟอนต์สำหรับชุดตัวเลข 2 ตัว
+const fontSizeThreeDigit = "20px";  // ขนาดฟอนต์สำหรับชุดตัวเลข 3 ตัว
+const fontSizeNote = "18px";        // ขนาดฟอนต์สำหรับหมายเหตุ
+const fontSizeGuide = "18px";       // ขนาดฟอนต์สำหรับ "แนวทางเท่านั้น"
+const fontSizeTranslation = "16px"; // ขนาดฟอนต์สำหรับ "แปล" และวันที่/เวลา
 
-        // Display the result content inside the container
-        const resultContainer = document.getElementById("resultContainer");
-        resultContainer.innerHTML = resultHtml;
-        resultContainer.style.display = "block";
-    }
+// HTML ที่ใช้ตัวแปรฟอนต์
+let resultHtml = `
+<div id="resultContent" style="position: relative;">
+    <img src="logo.png" alt="Logo Left" class="left">
+    <img src="logo.png" alt="Logo Right" class="right">
+    <h2 class="blue" style="font-size: ${fontSizeTopic};">${selectedTopic}</h2>
+    <p class="blue" style="font-size: ${fontSizeDate};">${displayDate}</p>
+    <h2 class="blue" style="font-size: ${fontSizeNumber};">
+        ตัวเลข 4 ตัว <span style="color: red;">${num}</span> By : ${selectedPerson}
+    </h2>
+    <h3 class="blue" style="font-size: ${fontSizeTwoDigit};">จัดชุด 2 ตัว</h3>
+    <p class="blue" style="font-size: ${fontSizeTwoDigit};">${twoDigitPairs.join(' - ')}</p>
+    <h3 class="blue" style="font-size: ${fontSizeThreeDigit};">จัดชุด 3 ตัว</h3>
+    <p class="blue" style="font-size: ${fontSizeThreeDigit};">${threeDigitCombinations.join(' - ')}</p>
+    <p class="blue" style="font-size: ${fontSizeNote};">หมายเหตุ: ${noteInput}</p>
+    <p class="blue" style="font-size: ${fontSizeGuide}; color: red;">แนวทางเท่านั้น</p>
+    <p class="note" style="font-size: ${fontSizeTranslation};">
+        <strong>แปล:</strong> ${getThaiDate()} ${getThaiTime()}
+    </p>
+</div>
+`;
 
-    // Add an event listener to the button
-    document.addEventListener('DOMContentLoaded', () => {
-        document.getElementById("convertButton").addEventListener("click", convertNumber);
-    });
+// กำหนดผลลัพธ์ให้ปรากฏ
+const resultContainer = document.getElementById("resultContainer");
+resultContainer.innerHTML = resultHtml;
+resultContainer.style.display = "block";
+
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById("convertButton").addEventListener("click", convertNumber);
+        });
     </script>
 </head>
 <body>
@@ -228,8 +272,7 @@
         margin-top: 10px;
     }
 </style>
-<div class="form-container">
-     
+<div class="form-container">  
     <h1>ฟอร์มแปลตัวเลข 4 ตัว</h1>
         <div class="input-group form-group">
             <input type="text" id="numberInput" placeholder="กรอกตัวเลข 4 หลัก">
@@ -278,21 +321,14 @@
         <button id="convertButton">แปลตัวเลข</button>
     </div>
 
-   </div>
+    <!-- Result Container -->
+    <div id="resultContainer" style="text-align: center; margin-top: 20px;"></div>
+           <label for="lineHeightSlider">ปรับขนาดบรรทัด:</label>
+            <input type="range" id="lineHeightSlider" min="0.0" max="2" step="0.1" value="1" onchange="updateLineHeight()">
+            <p>ค่าปัจจุบัน: <span id="lineHeightValue">0.5</span></p>
 
-     <!-- Result Container -->
-<div id="resultContainer" style="text-align: center; margin-top: 20px;"></div>
-
-<label for="lineHeightSlider">ปรับขนาดบรรทัด:</label>
-<input type="range" 
-       id="lineHeightSlider" 
-       min="0" 
-       max="2" 
-       step="0.1" 
-       value="1" 
-       onchange="updateLineHeight()">
-<p>ค่าปัจจุบัน: <span id="lineHeightValue">0.3</span></p>
-
+    <div id="resultContainer"></div>
+</div>
 <button class="back-button" onclick="window.location.href='https://juckphai.github.io/juckim/01.html'">กลับสู่หน้าหลัก</button>
     <footer>&copy; 2024 Juckphai. All Rights Reserved.</footer>
 </body>
