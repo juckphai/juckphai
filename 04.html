@@ -29,7 +29,8 @@
         margin-left: 20px;
         margin-right: 20px;
         border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);        line-height: 1.4; /* ลดช่องว่างใน container */
+        box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);   
+        line-height: 1.4; /* ลดช่องว่างใน container */
     }
     input, select, button {
         font-size: 18px;
@@ -238,11 +239,11 @@ let resultHtml = `
     <p class="blue" style="font-size: ${fontSizeTwoDigit};">${twoDigitPairs.join(' - ')}</p>
     <h3 class="blue" style="font-size: ${fontSizeThreeDigit};">จัดชุด 3 ตัว</h3>
     <p class="blue" style="font-size: ${fontSizeThreeDigit};">${threeDigitCombinations.join(' - ')}</p>
-    <p class="blue" style="font-size: ${fontSizeNote};">หมายเหตุ: ${noteInput}</p>
     <p class="blue" style="font-size: ${fontSizeGuide}; color: red;">แนวทางเท่านั้น</p>
     <p class="note" style="font-size: ${fontSizeTranslation};">
         <strong>แปล:</strong> ${getThaiDate()} ${getThaiTime()}
     </p>
+    <p class="blue" style="font-size: ${fontSizeNote};">หมายเหตุ: ${noteInput}</p>
 </div>
 `;
 
