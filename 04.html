@@ -20,14 +20,16 @@
         line-height: 1.2; /* ปรับให้กระชับขึ้น */
     }
     .container {
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 15px;
-        background-color: #fff;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        border-radius: 12px;
-        margin-top: 15px;
-        line-height: 1.4; /* ลดช่องว่างใน container */
+       display: none;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        background-color: #ffffcc;
+        border: 2px solid #4CAF50;
+        padding: 20px;
+        margin-left: 20px;
+        margin-right: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);        line-height: 1.4; /* ลดช่องว่างใน container */
     }
     input, select, button {
         font-size: 18px;
@@ -67,20 +69,26 @@
     .form-container {
         border: 2px solid orange;
         background-color: #ffffff;
+        margin-top: 20px;
+        margin-bottom: 20px;
         padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-left: 20px;
+        margin-right: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
         line-height: 1.4; /* ลดช่องว่างใน form */
     }
  #resultContainer {
-    display: none;
-    margin: 20px;
-    background-color: #ffffcc; /* สีพื้นหลัง */
-    border: 2px solid #4CAF50; /* สีขอบ */
-    padding: 20px;
-    border-radius: 10px; /* มุมโค้ง */
-    box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2); /* เงา */
-    text-align: center; /* จัดตำแหน่งข้อความกลาง */
+           display: none;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        background-color: #ffffcc;
+        border: 2px solid #4CAF50;
+        padding: 20px;
+        margin-left: 20px;
+        margin-right: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
 }
 
 #resultContainer h2.blue, 
@@ -207,14 +215,14 @@
             const displayDate = dateInput ? getThaiDate(new Date(dateInput)) : getThaiDate();
 
 // กำหนดตัวแปรขนาดฟอนต์ในที่เดียว
-const fontSizeTopic = "18px";       // ขนาดฟอนต์สำหรับหัวข้อ
-const fontSizeDate = "18px";        // ขนาดฟอนต์สำหรับวันที่
-const fontSizeNumber = "18px";      // ขนาดฟอนต์สำหรับตัวเลข
-const fontSizeTwoDigit = "18px";    // ขนาดฟอนต์สำหรับชุดตัวเลข 2 ตัว
-const fontSizeThreeDigit = "18px";  // ขนาดฟอนต์สำหรับชุดตัวเลข 3 ตัว
-const fontSizeNote = "16px";        // ขนาดฟอนต์สำหรับหมายเหตุ
-const fontSizeGuide = "16px";       // ขนาดฟอนต์สำหรับ "แนวทางเท่านั้น"
-const fontSizeTranslation = "14px"; // ขนาดฟอนต์สำหรับ "แปล" และวันที่/เวลา
+const fontSizeTopic = "20px";       // ขนาดฟอนต์สำหรับหัวข้อ
+const fontSizeDate = "20px";        // ขนาดฟอนต์สำหรับวันที่
+const fontSizeNumber = "20px";      // ขนาดฟอนต์สำหรับตัวเลข
+const fontSizeTwoDigit = "20px";    // ขนาดฟอนต์สำหรับชุดตัวเลข 2 ตัว
+const fontSizeThreeDigit = "20px";  // ขนาดฟอนต์สำหรับชุดตัวเลข 3 ตัว
+const fontSizeNote = "18px";        // ขนาดฟอนต์สำหรับหมายเหตุ
+const fontSizeGuide = "18px";       // ขนาดฟอนต์สำหรับ "แนวทางเท่านั้น"
+const fontSizeTranslation = "16px"; // ขนาดฟอนต์สำหรับ "แปล" และวันที่/เวลา
 
 // HTML ที่ใช้ตัวแปรฟอนต์
 let resultHtml = `
