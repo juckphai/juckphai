@@ -25,8 +25,8 @@ font-family: Arial, sans-serif;
         background-color: #ffffcc;
         border: 2px solid #4CAF50;
         padding: 20px;
-        margin-left: 10px;
-        margin-right: 10px;
+        margin-left: 20px;
+        margin-right: 20px;
         border-radius: 10px;
         box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);   
         line-height: 1.4; /* ลดช่องว่างใน container */
@@ -81,7 +81,7 @@ font-family: Arial, sans-serif;
     }
 
     #resultContainer {
-           display: none;
+          display: none;
         margin-top: 20px;
         margin-bottom: 20px;
         background-color: #ffffcc;
@@ -92,6 +92,9 @@ font-family: Arial, sans-serif;
         border-radius: 10px;
         box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
 }
+        #resultContainer p {
+            line-height: 0.2;
+        }
 
     #lineHeightSlider {
         width: 100%;
@@ -178,18 +181,18 @@ font-family: Arial, sans-serif;
                 <div id="resultContent" style="position: relative; text-align: center; font-size: 18px; line-height: 1.0;">
                     <img src="logo.png" alt="Logo Left" style="position: absolute; top: 0; left: 0; width: 40px; margin: 7px;">
                     <img src="logo.png" alt="Logo Right" style="position: absolute; top: 0; right: 0; width: 40px; margin: 7px;">
-                    <h2 style="font-size: 18px; color: blue;">${selectedTopic}</h2>
-                    <p style="font-size: 16px; color: blue;">${dateDisplay}</p>
-                    <h2 style="font-size: 18px; color: blue;">
+                    <h2 style="font-size: 16px; color: blue;">${selectedTopic}</h2>
+                    <p style="font-size: 15px; color: blue;">${dateDisplay}</p>
+                    <h2 style="font-size: 16px; color: blue;">
                         ตัวเลข 2 ตัว <span style="color: red;">${num}</span> By : ${selectedPerson}
                     </h2>
-                    <h2 style="font-size: 18px; color: blue;">จัดชุด 2 ตัวดังนี้</h2>
-                    <h2 style="font-size: 18px; color: blue;">${sortedPairs.join(' - ')}</h2>
-                    <h2 style="font-size: 16px; color: red;">แนวทางเท่านั้น</h2>
+                    <h2 style="font-size: 16px; color: blue;">จัดชุด 2 ตัวดังนี้</h2>
+                    <h2 style="font-size: 16px; color: blue;">${sortedPairs.join(' - ')}</h2>
+                    <h2 style="font-size: 14px; color: red;">แนวทางเท่านั้น</h2>
                     <p style="font-size: 12px; color: blue;">
                         <strong>แปล:</strong> ${getThaiDate()} ${getThaiTime()}
                     </p>
-                    <p style="font-size: 18px; color: blue;">หมายเหตุ : <span style="color: red;">${noteInput}</span></p>
+                    <p style="font-size: 16px; color: blue;">หมายเหตุ : <span style="color: red;">${noteInput}</span></p>
                 </div>
             `;
 
