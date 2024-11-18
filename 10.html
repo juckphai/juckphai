@@ -660,34 +660,40 @@ function summarize() {
         <p>หมายเหตุ: ${remark}</p>
     `;
 }
-       function summarizeToday() {
+
+function summarizeToday() {
     const today = new Date();
     today.setHours(0, 0, 0, 0); // Start of the day
 
-    let totalIncome = 0;
-    let totalExpense = 0;
+    let totalIncomeToday = 0;
+    let totalExpenseToday = 0;
+    let totalIncomeAll = 0;
+    let totalExpenseAll = 0;
 
     records.forEach(record => {
         const [date, time] = record.dateTime.split(" ");
         const [year, month, day] = date.split("-");
         const recordDate = new Date(year, month - 1, day);
 
-        // Check if the record is from today and matches the current account
-        if (recordDate.getTime() === today.getTime() && record.account === currentAccount) {
-            if (record.type === "รายรับ") totalIncome += record.amount;
-            if (record.type === "รายจ่าย") totalExpense += record.amount;
+        // Calculate today's income and expense for the current account
+        if (record.account === currentAccount) {
+            if (record.type === "รายรับ") {
+                totalIncomeAll += record.amount; // Total income of this account
+                if (recordDate.getTime() === today.getTime()) {
+                    totalIncomeToday += record.amount;
+                }
+            }
+            if (record.type === "รายจ่าย") {
+                totalExpenseAll += record.amount; // Total expense of this account
+                if (recordDate.getTime() === today.getTime()) {
+                    totalExpenseToday += record.amount;
+                }
+            }
         }
     });
 
-    const netTotal = totalIncome - totalExpense;
-    let remark = '';
-    if (netTotal > 0) {
-        remark = `รายได้มากกว่ารายจ่าย ${netTotal.toLocaleString()} บาท`;
-    } else if (netTotal < 0) {
-        remark = `รายจ่ายมากกว่ารายได้ ${Math.abs(netTotal).toLocaleString()} บาท`;
-    } else {
-        remark = 'รายรับและรายจ่ายเท่ากัน';
-    }
+    const netTotalToday = totalIncomeToday - totalExpenseToday;
+    const netBalanceAll = totalIncomeAll - totalExpenseAll; // Total balance of the account
 
     // Get the current date and time for today's summary
     const summaryDateTime = new Date().toLocaleString("th-TH", {
@@ -698,10 +704,9 @@ function summarize() {
     document.getElementById('summaryResult').innerHTML = `
         <p>สรุปยอดวันนี้: ${currentAccount}</p>
         <p>สรุปวันที่: ${summaryDateTime}</p> <!-- Display current date and time -->
-        <p>รายรับ: ${totalIncome.toLocaleString()} บาท</p>
-        <p>รายจ่าย: ${totalExpense.toLocaleString()} บาท</p>
-        <p>สรุปยอดสุทธิ: ${netTotal.toLocaleString()} บาท</p>
-        <p>หมายเหตุ: ${remark}</p>
+        <p>รายรับวันนี้: ${totalIncomeToday.toLocaleString()} บาท</p>
+        <p>รายจ่ายวันนี้: ${totalExpenseToday.toLocaleString()} บาท</p>
+        <p>เงินในบัญชีนี้วันนี้เหลืออยู่: ${netBalanceAll.toLocaleString()} บาท</p>
     `;
 }
 
