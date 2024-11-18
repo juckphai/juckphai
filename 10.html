@@ -29,10 +29,12 @@ body {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+    width: 300%; /* เพิ่มความกว้างให้เป็นสามเท่าของขนาดปัจจุบัน */
 }
 
 .input-group label {
     margin-right: 10px;
+    flex-shrink: 0; /* ป้องกันไม่ให้ label หดตัว */
 }
 
 /* Styling for Date Range form */
@@ -162,8 +164,8 @@ body {
         }
 
 #accountSelect {
-    width: 200px; /* กำหนดความกว้างที่เหมาะสมสำหรับช่องเลือกบัญชี */
-    padding: 5px;
+    width: 400px; /* กำหนดความกว้างที่เหมาะสมสำหรับช่องเลือกบัญชี */
+    padding: 20px;
     font-size: 16px;
 }
 
