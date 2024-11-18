@@ -13,6 +13,59 @@
             padding: 0;
         }
         
+/* General styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+/* Form styling */
+.form-group {
+    margin-bottom: 10px;
+}
+
+/* To arrange the amount and type inputs in one line */
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.input-group label {
+    margin-right: 10px;
+}
+
+/* Styling for Date Range form */
+.date-range-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.date-range-form label {
+    margin-right: 10px;
+}
+
+/* Summary item layout */
+.summary-item {
+    margin-top: 10px;
+}
+
+/* Button Container */
+.button-container {
+    margin-top: 20px;
+}
+
+/* Details Section */
+#detailsSection {
+    margin-top: 20px;
+}
+
+/* Summary Result styling */
+#summaryResult {
+    margin-top: 20px;
+}
+
         /* Header Styles */
         h2 {
             text-align: center;
@@ -293,62 +346,72 @@ button:active {
 <!-- Entry Form -->
 <form id="accountForm">
     <div class="form-group">
-        <label for="amount">จำนวนเงิน:</label>
-        <input type="number" id="amount" required>
+        <div class="input-group">
+            <label for="amount">จำนวนเงิน:</label>
+            <input type="number" id="amount" required>
+        </div>
+        <div class="input-group">
+            <label for="type">ประเภท:</label>
+            <select id="type" required>
+                <option value="รายรับ">รายรับ</option>
+                <option value="รายจ่าย">รายจ่าย</option>
+            </select>
+        </div>
     </div>
 
     <div class="form-group">
-        <label for="type">ประเภท:</label>
-        <select id="type" required>
-            <option value="รายรับ">รายรับ</option>
-            <option value="รายจ่าย">รายจ่าย</option>
-        </select>
+        <label for="description">รายละเอียด:</label>
+        <input type="text" id="description" required>
     </div>
-     <label for="description">รายละเอียด:</label>
-    <input type="text" id="description" required>
 
     <button type="button" onclick="addEntry()">เพิ่มข้อมูล</button>
 </form>
 
-<div class="summary-options">
-    <!-- สรุปผลย้อนหลัง -->
-    <div class="summary-item">
-        <label for="summaryDays">จำนวนวันที่ต้องการสรุป:</label>
-        <input type="number" id="summaryDays" name="summaryDays" min="1" placeholder="กรอกจำนวนวัน">
-        <button onclick="getSummary()">แสดงสรุปผลย้อนหลัง</button>
-    </div>
+<!-- Date Range Form -->
+<form>
+    <div class="date-range-form">
+        <label for="startDate">จากวันที่:</label>
+        <input type="date" id="startDate" />
 
-    <!-- สรุปยอดในวันที่เลือก -->
-    <div class="summary-item">
-        <label for="customDayMonth">กรอกวันที่(วัน/เดือน):</label>
-        <input type="text" id="customDayMonth" placeholder="กรอกวัน/เดือน (เช่น 10/11)">
-        <button type="button" onclick="summarizeByDayMonth()">สรุปยอดในวันที่เลือก</button>
+        <label for="endDate">ถึงวันที่:</label>
+        <input type="date" id="endDate" />
+
+        <button type="button" onclick="summarize()">สรุปวันที่ถึงวันที่</button>
     </div>
+</form>
+
+<!-- Summary by Day/Month -->
+<div class="summary-item">
+    <label for="customDayMonth">กรอกวันที่(วัน/เดือน):</label>
+    <input type="text" id="customDayMonth" placeholder="กรอกวัน/เดือน (เช่น 10/11)">
+    <button type="button" onclick="summarizeByDayMonth()">สรุปวันที่เลือก</button>
 </div>
+
+<!-- Button Container -->
 <div class="button-container">
     <button onclick="summarizeToday()">สรุปยอดวันนี้</button>
     <button onclick="toggleVisibility()">แสดง/ซ่อน รายละเอียด</button>
     <button onclick="saveToFile()">บันทึก</button>
-</div>        
-        <!-- Details Section -->
-        <div id="detailsSection" style="display: none;">
-            <table id="recordTable">
-                <thead>
-                    <tr>
-                        <th>วันที่และเวลา</th>
-                        <th>ประเภท</th>
-                        <th>รายละเอียด</th>
-                        <th>จำนวนเงิน</th>
-                        <th>การจัดการ</th>
-                    </tr>
-                </thead>
-                <tbody id="recordBody"></tbody>
-            </table>
-        </div>
+</div>
 
-        <!-- Summary Result -->
-        <div id="summaryResult" class="summaryResult"></div>
-    </div>
+<!-- Details Section -->
+<div id="detailsSection" style="display: none;">
+    <table id="recordTable">
+        <thead>
+            <tr>
+                <th>วันที่และเวลา</th>
+                <th>ประเภท</th>
+                <th>รายละเอียด</th>
+                <th>จำนวนเงิน</th>
+                <th>การจัดการ</th>
+            </tr>
+        </thead>
+        <tbody id="recordBody"></tbody>
+    </table>
+</div>
+
+<!-- Summary Result -->
+<div id="summaryResult" class="summaryResult"></div>
     <script>
         const accounts = [];
         let currentAccount = null;
@@ -431,6 +494,7 @@ function editAccount() {
                 alert("กรุณาเลือกบัญชีที่ต้องการลบ");
             }
         }
+
 function summarizeByDayMonth() {
     const dayMonth = document.getElementById('customDayMonth').value.trim();
     
@@ -441,33 +505,36 @@ function summarizeByDayMonth() {
     }
 
     const [day, month] = dayMonth.split('/');
-    const targetDate = new Date(new Date().getFullYear(), month - 1, day);  // ตั้งวันที่ให้ตรงกับปีปัจจุบัน
+    const targetDate = new Date(new Date().getFullYear(), month - 1, day); // ตั้งวันที่ให้ตรงกับปีปัจจุบัน
 
-    let totalIncome = 0;
-    let totalExpense = 0;
+    let totalIncomeToday = 0;
+    let totalExpenseToday = 0;
+    let totalIncomeAccumulated = 0;
+    let totalExpenseAccumulated = 0;
 
     // ตรวจสอบบันทึกข้อมูลทั้งหมด
     records.forEach(record => {
         const recordDate = new Date(record.dateTime.split(" ")[0]); // ใช้แค่วันที่จาก dateTime
+
+        // คำนวณรายรับและรายจ่ายเฉพาะวันที่ที่กรอกข้อมูล
         if (recordDate.getDate() === targetDate.getDate() && recordDate.getMonth() === targetDate.getMonth() && record.account === currentAccount) {
-            if (record.type === "รายรับ") totalIncome += record.amount;
-            if (record.type === "รายจ่าย") totalExpense += record.amount;
+            if (record.type === "รายรับ") totalIncomeToday += record.amount;
+            if (record.type === "รายจ่าย") totalExpenseToday += record.amount;
+        }
+
+        // คำนวณรายรับและรายจ่ายสะสมจนถึงวันที่ที่กรอกข้อมูล
+        if (recordDate <= targetDate && record.account === currentAccount) {
+            if (record.type === "รายรับ") totalIncomeAccumulated += record.amount;
+            if (record.type === "รายจ่าย") totalExpenseAccumulated += record.amount;
         }
     });
 
-    const netTotal = totalIncome - totalExpense;
-    let remark = '';
-    if (netTotal > 0) {
-        remark = `รายได้มากกว่ารายจ่าย ${netTotal.toLocaleString()} บาท`;
-    } else if (netTotal < 0) {
-        remark = `รายจ่ายมากกว่ารายได้ ${Math.abs(netTotal).toLocaleString()} บาท`;
-    } else {
-        remark = 'รายรับและรายจ่ายเท่ากัน';
-    }
+    const netTotalToday = totalIncomeToday - totalExpenseToday; // ยอดสุทธิของวันที่กรอกข้อมูล
+    const netBalance = totalIncomeAccumulated - totalExpenseAccumulated; // เงินเหลือในบัญชีจนถึงวันที่กรอกข้อมูล
 
     // สร้างวันที่ในรูปแบบไทย (วัน เดือน ปี พ.ศ.)
     const thaiDate = new Date(targetDate);
-    const thaiYear = thaiDate.getFullYear() + 543;  // แปลงเป็นปีพุทธศักราช
+    const thaiYear = thaiDate.getFullYear() + 543; // แปลงเป็นปีพุทธศักราช
     const thaiMonth = thaiDate.toLocaleString('th-TH', { month: 'long' });
     const thaiDay = thaiDate.getDate();
     
@@ -480,11 +547,11 @@ function summarizeByDayMonth() {
     document.getElementById('summaryResult').innerHTML = `
         <p>สรุปเมื่อ: ${summaryDateTime}</p>
         <p>สรุปยอดของวันที่: ${thaiDay} ${thaiMonth} ${thaiYear}</p>
-        <p>รายรับ: ${totalIncome.toLocaleString()} บาท</p>
-        <p>รายจ่าย: ${totalExpense.toLocaleString()} บาท</p>
-        <p>ยอดสุทธิ: ${netTotal.toLocaleString()} บาท</p>
-        <p>${remark}</p>
-     `;
+        <p>รายรับวันสรุปยอด: ${totalIncomeToday.toLocaleString()} บาท</p>
+        <p>รายจ่ายวันสรุปยอด: ${totalExpenseToday.toLocaleString()} บาท</p>
+        <p>ยอดสุทธิวันสรุปยอด: ${netTotalToday.toLocaleString()} บาท</p>
+        <p>เงินในบัญเหลืออยู่ถึงวันนี้: ${netBalance.toLocaleString()} บาท</p>
+    `;
 }
 
 	function autoFillDateTime() {
@@ -615,9 +682,23 @@ function getSummary() {
 }
 
 function summarize() {
-    const summaryDays = parseInt(document.getElementById('summaryDays').value);
-    const cutoffDate = new Date();
-    cutoffDate.setDate(cutoffDate.getDate() - summaryDays);
+    const startDateInput = document.getElementById('startDate').value;
+    const endDateInput = document.getElementById('endDate').value;
+
+    if (!startDateInput || !endDateInput) {
+        alert("กรุณาเลือกวันที่ให้ครบถ้วน");
+        return;
+    }
+
+    const startDate = new Date(startDateInput);
+    const endDate = new Date(endDateInput);
+
+    if (startDate > endDate) {
+        alert("วันที่เริ่มต้นต้องน้อยกว่าหรือเท่ากับวันที่สิ้นสุด");
+        return;
+    }
+
+    endDate.setHours(23, 59, 59, 999);
 
     let totalIncome = 0;
     let totalExpense = 0;
@@ -625,39 +706,30 @@ function summarize() {
     records.forEach(record => {
         const [date, time] = record.dateTime.split(" ");
         const [year, month, day] = date.split("-");
-        const [hour, minute] = time.split(":");
-        const recordDate = new Date(year, month - 1, day, hour, minute);
+        const recordDate = new Date(year, month - 1, day);
 
-        if (recordDate >= cutoffDate && record.account === currentAccount) {
+        if (recordDate >= startDate && recordDate <= endDate && record.account === currentAccount) {
             if (record.type === "รายรับ") totalIncome += record.amount;
             if (record.type === "รายจ่าย") totalExpense += record.amount;
         }
     });
 
     const netTotal = totalIncome - totalExpense;
-    let remark = '';
-    if (netTotal > 0) {
-        remark = `รายได้มากกว่ารายจ่าย ${netTotal.toLocaleString()} บาท`;
-    } else if (netTotal < 0) {
-        remark = `รายจ่ายมากกว่ารายได้ ${Math.abs(netTotal).toLocaleString()} บาท`;
-    } else {
-        remark = 'รายรับและรายจ่ายเท่ากัน';
-    }
 
-    // Get the current date and time for the summary
-    const summaryDateTime = new Date().toLocaleString("th-TH", {
-        year: 'numeric', month: 'long', day: 'numeric',
-        hour: '2-digit', minute: '2-digit'
+    const startDateFormatted = startDate.toLocaleDateString("th-TH", {
+        year: 'numeric', month: 'long', day: 'numeric'
+    });
+    const endDateFormatted = endDate.toLocaleDateString("th-TH", {
+        year: 'numeric', month: 'long', day: 'numeric'
     });
 
+    // อัปเดตผลลัพธ์ใน <div id="summaryResult">
     document.getElementById('summaryResult').innerHTML = `
         <p>สรุปยอด: ${currentAccount}</p>
-        <p>สรุปวันที่: ${summaryDateTime}</p> <!-- Display current date and time -->
-        <p>ช่วงวันที่: ${summaryDays} วันที่ผ่านมา</p>
+        <p>ช่วงวันที่: ${startDateFormatted} - ${endDateFormatted}</p>
         <p>รายรับ: ${totalIncome.toLocaleString()} บาท</p>
         <p>รายจ่าย: ${totalExpense.toLocaleString()} บาท</p>
         <p>สรุปยอดสุทธิ: ${netTotal.toLocaleString()} บาท</p>
-        <p>หมายเหตุ: ${remark}</p>
     `;
 }
 
@@ -706,7 +778,7 @@ function summarizeToday() {
         <p>สรุปวันที่: ${summaryDateTime}</p> <!-- Display current date and time -->
         <p>รายรับวันนี้: ${totalIncomeToday.toLocaleString()} บาท</p>
         <p>รายจ่ายวันนี้: ${totalExpenseToday.toLocaleString()} บาท</p>
-        <p>เงินในบัญชีนี้วันนี้เหลืออยู่: ${netBalanceAll.toLocaleString()} บาท</p>
+        <p>เงินในบัญชีถึงวันนี้เหลืออยู่: ${netBalanceAll.toLocaleString()} บาท</p>
     `;
 }
 
