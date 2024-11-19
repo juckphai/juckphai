@@ -111,14 +111,12 @@
         <div id="resultNumbers" style="font-size: 16px; color: blue; margin: 10px 0;"></div>
         <!-- หมายเหตุเพิ่มเติม -->
         <div class="note" style="color: #FF0000; font-size: 18px; margin-top: 15px;">แนวทางเท่านั้น</div>
-        
-        <!-- หมายเหตุ -->
-        <div class="comment-box" style="font-size: 18px; color: blue; margin-top: 20px;">หมายเหตุ : 
-            <span id="commentText" style="color: red; font-size: 18px;">No comment</span>
-        </div>
-        
+
        <!-- วันและเวลาปัจจุบัน -->
-<h5 id="currentDateTime" style="color: #3333cc; font-size: 14px; margin-top: 20px; font-weight: normal;">จัดเรียงเมื่อ:</h5>
+<h5 id="currentDateTime" style="color: blue; font-size: 14px; margin-top: 20px; font-weight: normal;">จัดเรียงเมื่อ:</h5>
+</div>
+        <!-- หมายเหตุ -->
+        <div class="comment-box" style="font-size: 18px; color: blue; margin-top: 20px;">หมายเหตุ:<span id="commentText" style="color: red; font-size: 18px;"></div></span>
 </div>
 </div>
 
@@ -165,7 +163,7 @@
 
             // ตรวจสอบหมายเหตุ ถ้าไม่กรอกให้ใส่ No comment
             if (!commentInput) {
-                commentInput = "No comment";
+commentInput = "No comment";
             }
 
             // ตรวจสอบวันที่
