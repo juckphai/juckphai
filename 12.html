@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>เรียงตัวเลข 4 หลัก</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    .input-container {
+      margin-bottom: 20px;
+    }
+    input[type="text"], input[type="date"], select {
+      width: 200px;
+      padding: 5px;
+      font-size: 16px;
+      margin-right: 10px;
+    }
+    button {
+      padding: 8px 16px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .result-container {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #fffbe6; /* สีเหลืองจาง */
+      border: 2px solid #28a745; /* กรอบสีเขียว */
+      border-radius: 10px;
+      display: inline-block;
+      text-align: left;
+      color: blue; /* ตัวหนังสือสีน้ำเงิน */
+    }
+    .row {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+    .number {
+      width: 60px;
+      margin: 0 5px;
+      padding: 10px;
+      background-color: #f0f0f0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+      text-align: center;
+    }
+    .header {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    .sub-header {
+      font-size: 16px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    .timestamp, .comment, .guide-message {
+      font-size: 14px;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+.guide-message {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.blue-text {
+  color: blue; /* ข้อความ "จัดเรียงตัวเลขได้ดังนี้" เป็นสีน้ำเงิน */
+}
+
+.red-text {
+  color: red; /* ข้อความ "แนวทางเท่านั้น" เป็นสีแดง */
+}
+
+.comment-container {
+  text-align: center; /* จัดให้อยู่กึ่งกลาง */
+  margin-top: 20px; /* เพิ่มระยะห่างด้านบน */
+}
+
+.comment-label {
+  color: blue; /* หมายเหตุเป็นสีน้ำเงิน */
+  font-size: 18px;
+  display: inline; /* อยู่ในบรรทัดเดียวกัน */
+}
+
+.comment {
+  color: red; /* "No comment" เป็นสีแดง */
+  font-size: 18px;
+  display: inline; /* อยู่ในบรรทัดเดียวกัน */
+}
+  </style>
+</head>
+<body>
+  <h1>เรียงตัวเลข 4 หลัก</h1>
+  <div class="input-container">
+    <label for="dateInput">วันที่:</label>
+    <input type="date" id="dateInput">
+
+    <label for="categorySelect">ประเภท:</label>
+    <select id="categorySelect">
+                <option value="ลาวพัฒนา เวลา 20.30 น">ลาวพัฒนา เวลา 20.30 น</option>
+                <option value="ลาวสตาร์ เวลา 15.45 น">ลาวสตาร์ เวลา 15.45 น</option>
+                <option value="รัฐบาล เวลา 15.45 น">รัฐบาล เวลา 15.45 น</option>
+                <option value="ฮานอยกาชาด เวลา 16.30 น">ฮานอยกาชาด เวลา 16.30 น</option>
+                <option value="อานอยพิเศษ เวลา 17.30 น">อานอยพิเศษ เวลา 17.30 น</option>
+                <option value="ฮานอย เวลา 18.30 น">ฮานอย เวลา 18.30 น</option>
+                <option value="ฮานอย VIP เวลา 19.30 น">ฮานอย VIP เวลา 19.30 น</option>
+    </select>
+    <br><br>
+    <label for="personSelect">ผู้บอก:</label>
+    <select id="personSelect">
+      <option value="ทีมนาคน้อย">ทีมนาคน้อย</option>
+      <option value="เจ้าที่โรงงาน">เจ้าที่โรงงาน</option>
+      <option value="Team">Team</option>
+      <option value="@">@</option>
+      <option value="Udon Don">Udon Don</option>
+    </select>
+    <br><br>
+    <input type="text" id="numberInput" placeholder="กรอกตัวเลข 4 หลัก">
+    <br><br>
+    <label for="commentInput">หมายเหตุ:</label>
+    <input type="text" id="commentInput" placeholder="กรอกหมายเหตุ">
+    <br><br>
+    <button onclick="generateNumbers()">จัดเรียงตัวเลข</button>
+  </div>
+ <div class="result-container" id="resultContainer">
+<div id="resultContent" style="position: relative; text-align: center; font-size: 18px;">
+  <!-- Header ส่วนที่เกี่ยวข้องกับวันที่และหมวดหมู่ -->
+  <div class="header" id="dateHeader"></div> <!-- วันที่ที่เลือก -->
+  <div class="header" id="categoryHeader"></div> <!-- หมวดหมู่ (ลาวพัฒนา, รัฐบาล, ฮานอย) -->
+
+  <!-- ส่วนข้อมูลเกี่ยวกับตัวเลขและผู้บอก -->
+  <div class="sub-header" id="numberAndPersonHeader"></div> <!-- ตัวเลขและผู้บอก -->
+
+  <!-- ข้อความแนะนำก่อนแสดงหมายเหตุ -->
+  <div class="guide-message">จัดเรียงตัวเลขได้ดังนี้</div>
+
+  <!-- ตัวเลขที่จัดเรียง -->
+  <div id="numberContainer"></div>
+
+  <!-- ข้อความแนะนำเพิ่มเติม -->
+  <div class="guide-message red-text" id="guideMessage"></div> <!-- ข้อความแนะนำก่อนหมายเหตุ -->
+
+  <!-- หมายเหตุ -->
+  <div class="comment-label">หมายเหตุ:</div>
+  <div class="comment" id="commentHeader"></div>
+
+  <!-- เวลาที่จัดเรียง -->
+  <div class="timestamp" id="timestamp"></div> <!-- เวลาในการจัดเรียง -->
+</div>
+</div>
+
+    <!-- Result Container -->
+<div id="resultContainer" style="text-align: center; margin-top: 20px;"></div>
+
+<label for="lineHeightSlider">ปรับขนาดบรรทัด:</label>
+<input type="range" 
+       id="lineHeightSlider" 
+       min="0" 
+       max="2" 
+       step="0.1" 
+       value="1" 
+       onchange="updateLineHeight()">
+<p>ค่าปัจจุบัน: <span id="lineHeightValue">0.3</span></p>
+
+    <!-- Back Button -->
+    <button class="back-button" onclick="window.location.href='https://juckphai.github.io/juckim/01.html'">กลับสู่หน้าหลัก</button>
+</div>
+
+  <script>
+      // Function to update line height based on slider value
+        function updateLineHeight() {
+            const lineHeight = document.getElementById("lineHeightSlider").value;
+            const resultContent = document.getElementById("resultContent");
+            resultContent.style.lineHeight = lineHeight;
+            document.getElementById("lineHeightValue").textContent = `ความสูงของบรรทัด: ${lineHeight}`;
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("convertButton").addEventListener("click", convertNumber);
+            document.getElementById("lineHeightSlider").addEventListener("input", updateLineHeight);
+        });
+
+    function formatThaiDate(date) {
+      const [year, month, day] = date.split("-");
+      const months = [
+        'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน',
+        'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'
+      ];
+      return `วันที่ ${parseInt(day)} ${months[parseInt(month) - 1]} พ.ศ. ${parseInt(year) + 543}`;
+    }
+
+    function formatThaiTime(date) {
+      const hours = date.getHours().toString().padStart(2, '0');
+      const minutes = date.getMinutes().toString().padStart(2, '0');
+      return `${hours}:${minutes} น.`;
+    }
+
+    function generateNumbers() {
+      const input = document.getElementById('numberInput').value.trim();
+      const category = document.getElementById('categorySelect').value;
+      const person = document.getElementById('personSelect').value;
+      const dateInput = document.getElementById('dateInput').value;
+      const commentInput = document.getElementById('commentInput').value.trim();
+      const resultContainer = document.getElementById('resultContainer');
+      const dateHeader = document.getElementById('dateHeader');
+      const categoryHeader = document.getElementById('categoryHeader');
+      const numberAndPersonHeader = document.getElementById('numberAndPersonHeader');
+      const guideMessage = document.getElementById('guideMessage'); // ข้อความแนะนำ
+      const numberContainer = document.getElementById('numberContainer');
+      const commentHeader = document.getElementById('commentHeader');
+      const timestamp = document.getElementById('timestamp');
+
+      // ล้างผลลัพธ์ก่อนหน้า
+      numberContainer.innerHTML = '';
+      dateHeader.textContent = '';
+      categoryHeader.textContent = '';
+      numberAndPersonHeader.textContent = '';
+      guideMessage.textContent = ''; // ล้างข้อความแนะนำก่อนหมายเหตุ
+      commentHeader.innerHTML = ''; // ล้างข้อความหมายเหตุ
+      timestamp.textContent = '';
+
+      // ตรวจสอบวันเดือนปีที่กรอก หากไม่มีให้ใช้วันปัจจุบัน
+      let displayDate;
+      if (dateInput) {
+        displayDate = formatThaiDate(dateInput);
+      } else {
+        const now = new Date();
+        const day = now.getDate().toString().padStart(2, "0");
+        const month = (now.getMonth() + 1).toString().padStart(2, "0");
+        const year = now.getFullYear();
+        displayDate = formatThaiDate(`${year}-${month}-${day}`);
+      }
+
+      // แสดงวันที่
+      dateHeader.textContent = displayDate;
+
+      // แสดงหัวข้อประเภท
+      categoryHeader.textContent = ` ${category}`;
+
+      // แสดงตัวเลขและผู้บอกในบรรทัดเดียวกัน
+      numberAndPersonHeader.textContent = `ตัวเลขที่บอก : ${input}  ผู้บอก : ${person}`;
+
+      // เพิ่มข้อความแนะนำก่อนหมายเหตุ
+      guideMessage.textContent = "แนวทางเท่านั้น";
+
+       // ตรวจสอบความยาวตัวเลข
+      if (input.length !== 4 || isNaN(input)) {
+        alert('กรุณากรอกตัวเลข 4 หลัก');
+        return;
+      }
+
+      // สร้างตัวเลขที่ไม่ซ้ำกัน
+      const digits = input.split('');
+      const permutations = new Set();
+
+      function permute(arr, m = '') {
+        if (arr.length === 0) {
+          permutations.add(m);
+        } else {
+          for (let i = 0; i < arr.length; i++) {
+            const current = arr.slice();
+            const next = current.splice(i, 1);
+            permute(current.slice(), m + next);
+          }
+        }
+      }
+
+      permute(digits);
+
+      // แปลงผลลัพธ์เป็นอาร์เรย์และเรียงจากน้อยไปมาก
+      const sortedNumbers = Array.from(permutations).map(Number).sort((a, b) => a - b);
+
+      // แสดงผลลัพธ์ในรูปแบบ 4 แถว ๆ ละ 6 ชุดตัวเลข
+      let row = document.createElement('div');
+      row.className = 'row';
+
+      sortedNumbers.forEach((number, index) => {
+        const numberBox = document.createElement('div');
+        numberBox.className = 'number';
+        numberBox.textContent = number.toString().padStart(4, '0');
+        row.appendChild(numberBox);
+
+        // หากครบ 6 ชุด ให้ขึ้นแถวใหม่
+        if ((index + 1) % 6 === 0) {
+          numberContainer.appendChild(row);
+          row = document.createElement('div');
+          row.className = 'row';
+        }
+      });
+
+      // เพิ่มแถวสุดท้ายหากมีตัวเลขที่เหลือ
+      if (row.children.length > 0) {
+        numberContainer.appendChild(row);
+      }
+
+      // แสดงหมายเหตุ
+      commentHeader.innerHTML = commentInput ? ` <span class="comment">${commentInput}</span>` : ` <span class="comment">No comment</span>`;
+
+      // แสดงข้อความ "จัดเรียง"
+      const now = new Date();
+      const currentThaiDate = formatThaiDate(now.toISOString().split('T')[0]);
+      const currentThaiTime = formatThaiTime(now);
+      timestamp.textContent = `จัดเรียงเมื่อ${currentThaiDate} เวลา ${currentThaiTime}`;
+    }
+
+  </script>
+</body>
+</html>
