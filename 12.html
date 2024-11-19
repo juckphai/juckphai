@@ -25,15 +25,18 @@
       cursor: pointer;
     }
     .result-container {
-      margin-top: 20px;
-      padding: 20px;
-      background-color: #fffbe6; /* สีเหลืองจาง */
-      border: 2px solid #28a745; /* กรอบสีเขียว */
-      border-radius: 10px;
-      display: inline-block;
-      text-align: left;
-      color: blue; /* ตัวหนังสือสีน้ำเงิน */
-    }
+         margin-top: 20px;
+        color: blue;
+        margin-bottom: 20px;
+        background-color: #ffffcc;
+        border: 2px solid #4CAF50;
+        padding: 20px;
+        margin-left: 20px;
+        margin-right: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
+}
+
     .row {
       display: flex;
       justify-content: center;
@@ -135,6 +138,8 @@
   </div>
  <div class="result-container" id="resultContainer">
 <div id="resultContent" style="position: relative; text-align: center; font-size: 18px;">
+    <img src="logo.png" alt="Logo Left" style="position: absolute; top: 0; left: 0; width: 40px; margin: 7px;">
+    <img src="logo.png" alt="Logo Right" style="position: absolute; top: 0; right: 0; width: 40px; margin: 7px;">
   <!-- Header ส่วนที่เกี่ยวข้องกับวันที่และหมวดหมู่ -->
   <div class="header" id="dateHeader"></div> <!-- วันที่ที่เลือก -->
   <div class="header" id="categoryHeader"></div> <!-- หมวดหมู่ (ลาวพัฒนา, รัฐบาล, ฮานอย) -->
