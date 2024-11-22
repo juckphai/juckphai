@@ -597,9 +597,9 @@ const additionalNumbersForThirdSetText = finalAdditionalNumbers.length > 0
 
 resultContainer.innerHTML = `
 <div id="resultContent" style="position: relative; text-align: center; font-size: 18px;">
-    <img src="logo.png" alt="Logo Left" style="position: absolute; top: 0; left: 0; width: 40px; margin: 7px;">
-    <img src="logo.png" alt="Logo Right" style="position: absolute; top: 0; right: 0; width: 40px; margin: 7px;">
-    <h2 class="blue" style="font-size: 15px;">${selectedTopic}</h2>
+    <img src="logo.png" alt="Logo Left" style="width: 40px; margin-right: 5px; vertical-align: middle;">
+    <h2 class="blue" style="font-size: 15px; display: inline; vertical-align: middle;">${selectedTopic}</h2>
+    <img src="logo.png" alt="Logo Right" style="width: 40px; margin-left: 5px; vertical-align: middle;">
     <p class="blue" style="font-size: 15px;">${dateInputValue ? getThaiDate(dateInput) : getThaiDate(new Date())}</p>
     <h2 class="blue" style="font-size: 15px;">
         ตัวเลข 3 ตัว  <span style="color: red;">${num}</span> By : ${selectedPerson}
@@ -702,12 +702,12 @@ resultContainer.style.display = 'block';
 <p>ค่าปัจจุบัน: <span id="lineHeightValue">0.3</span></p>
 
     <!-- Back Button -->
-<button class="back-button" onclick="window.location.href='https://juckphai.github.io/juckim/01.html'">กลับสู่หน้าหลัก</button>
+    <button class="back-button" onclick="window.location.href='https://juckmanphai.github.io/juck/01.html'">กลับสู่หน้าหลัก</button>
 </div>
 
 
     <footer>
-        &copy; 2024 Juckphai. All Rights Reserved.
+        &copy; 2024 Juckmanphai. All Rights Reserved.
     </footer>
 </body>
 </html>
