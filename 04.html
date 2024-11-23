@@ -229,12 +229,16 @@ const fontSizeTranslation = "14px"; // ขนาดฟอนต์สำหร�
 
 // HTML ที่ใช้ตัวแปรฟอนต์
 let resultHtml = `
-<div id="resultContent" style="position: relative;">
-    <h2 class="blue" style="font-size: ${fontSizeTopic}; display: inline; margin: 0;">${selectedTopic}</h2>
-    <p class="blue" style="font-size: ${fontSizeDate};">
-        <img src="logo.png" alt="Logo Left" class="left" style="vertical-align: middle; margin-right: 5px;">
+<div id="resultContent" style="position: relative; text-align: center;">
+    <!-- ใช้ flexbox เพื่อจัดโลโก้และข้อความให้อยู่ในแนวเดียวกัน -->
+    <div style="display: flex; align-items: center; justify-content: center;">
+        <img src="logo.png" alt="Logo Left" style="width: 40px; margin-right: 5px;">
+        <h2 class="blue" style="font-size: ${fontSizeTopic}; margin: 0;">${selectedTopic}</h2>
+        <img src="logo.png" alt="Logo Right" style="width: 40px; margin-left: 5px;">
+    </div>
+    <!-- แสดงวันที่ในแถวที่สอง -->
+    <p class="blue" style="font-size: ${fontSizeDate}; margin: 5px 0;">
         ${displayDate}
-        <img src="logo.png" alt="Logo Right" class="right" style="vertical-align: middle; margin-left: 5px;">
     </p>
     <h2 class="blue" style="font-size: ${fontSizeNumber};">
         ตัวเลข 4 ตัว <span style="color: red;">${num}</span> By : ${selectedPerson}
