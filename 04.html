@@ -67,30 +67,38 @@
         color: #95a5a6;
         line-height: 1.2; /* ลดช่องว่างใน footer */
     }
-    .form-container {
-        border: 2px solid orange;
-        background-color: #ffffff;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        padding: 20px;
-        margin-left: 20px;
-        margin-right: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
-        line-height: 1.4; /* ลดช่องว่างใน form */
-    }
-#resultContainer {
-    display: none;
-    margin: 10px auto; /* กำหนดให้กึ่งกลางในแนวนอน */
-    background-color: #ffffcc;
-    border: 2px solid #4CAF50;
-    padding: 10px;
-    border-radius: 10px;
-    width: fit-content; /* ปรับขนาดให้พอดีกับเนื้อหา */
-    text-align: center; /* จัดข้อความให้อยู่ตรงกลาง */
-    box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
-}
+        .form-container {
+            border: 2px solid orange;
+            background-color: #ffffff;
+            margin: 10px auto; /* กำหนดให้กึ่งกลางในแนวนอน */
+            margin-top: 20px; /* ลดระยะขอบด้านบน */
+            margin-bottom: 20px; /* ลดระยะขอบด้านล่าง */
+            padding: 10px;
+            border-radius: 10px;
+            width: fit-content; /* ปรับขนาดให้พอดีกับเนื้อหา */
+            text-align: center; /* จัดข้อความให้อยู่ตรงกลาง */
+           box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
+            line-height: 1;
+        }
 
+      #resultContainer {
+         display: none;
+         margin: 20px auto; /* กำหนดให้กึ่งกลางในแนวนอน */
+         max-width: 600px;
+         margin-top: 20px; /* ลดระยะขอบด้านบน */
+         margin-bottom: 20px; /* ลดระยะขอบด้านล่าง */
+         background-color: #ffffcc;
+         border: 2px solid #4CAF50;
+         padding: 10px;
+         border-radius: 10px;
+        width: fit-content; /* ปรับขนาดให้พอดีกับเนื้อหา */
+        text-align: center; /* จัดข้อความให้อยู่ตรงกลาง */
+        box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
+        }
+
+        #resultContainer p {
+            line-height: 0.5;
+        }
 #resultContainer h2.blue, 
 #resultContainer p.blue, 
 #resultContainer h3.blue {
