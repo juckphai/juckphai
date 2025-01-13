@@ -102,34 +102,32 @@
         .form-container {
             border: 2px solid orange;
             background-color: #ffffff;
-    margin: 10px auto; /* กำหนดให้กึ่งกลางในแนวนอน */
-    margin-top: 20px; /* ลดระยะขอบด้านบน */
-    margin-bottom: 20px; /* ลดระยะขอบด้านล่าง */
-    padding: 10px;
-    border-radius: 10px;
-    width: fit-content; /* ปรับขนาดให้พอดีกับเนื้อหา */
-    text-align: center; /* จัดข้อความให้อยู่ตรงกลาง */
-    box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
+            margin-top: 10px; /* ลดระยะขอบด้านบน */
+            margin-bottom: 10px; /* ลดระยะขอบด้านล่าง */
+            padding: 10px; /* ลดระยะห่างภายใน */
+            margin-left: 10px;
+            margin-right: 10px;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
             line-height: 1;
         }
 
-#resultContainer {
-    display: none;
-    margin: 20px auto; /* กำหนดให้กึ่งกลางในแนวนอน */
-    max-width: 600px;
-    margin-top: 20px; /* ลดระยะขอบด้านบน */
-    margin-bottom: 20px; /* ลดระยะขอบด้านล่าง */
-    background-color: #ffffcc;
-    border: 2px solid #4CAF50;
-    padding: 10px;
-    border-radius: 10px;
-    width: fit-content; /* ปรับขนาดให้พอดีกับเนื้อหา */
-    text-align: center; /* จัดข้อความให้อยู่ตรงกลาง */
-    box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
-}
+        #resultContainer {
+            display: none;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            background-color: #ffffcc;
+            border: 2px solid #4CAF50;
+            padding: 20px;
+            margin-left: 20px;
+            margin-right: 20px;
+            border-radius: 20px;
+            line-height: 1.4; /
+            box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
+        }
 
         #resultContainer p {
-            line-height: 0.5;
+            line-height: 0.2;
         }
     </style>
 
@@ -600,7 +598,7 @@ const additionalNumbersForThirdSetText = finalAdditionalNumbers.length > 0
     : 'ไม่มีตัวเลขเพิ่ม';
 
 resultContainer.innerHTML = `
-<div id="resultContent" style="position: relative; text-align: center; font-size: 18px; line-height: 0.5; margin-top: 20px;">
+<div id="resultContent" style="position: relative; text-align: center; font-size: 18px; line-height: 1.2; margin-top: 10px;">
     <!-- โลโก้ย้ายไปแถวแรก และตั้งค่าให้อยู่ในระดับเดียวกับข้อความ -->
     <p style="font-size: 16px; margin: 0; line-height: 1; display: inline-flex; align-items: center;">
         <img src="logo.png" alt="Logo Left" style="width: 40px; margin-right: 2px; vertical-align: middle;">
@@ -709,7 +707,7 @@ resultContainer.style.display = 'block';
        step="0.1" 
        value="1" 
        onchange="updateLineHeight()">
-<p>ค่าปัจจุบัน: <span id="lineHeightValue">0.5</span></p>
+<p>ค่าปัจจุบัน: <span id="lineHeightValue">0.3</span></p>
 
     <!-- Back Button -->
         <button class="back-button" onclick="window.location.href='https://juckphai.github.io/juckim/01.html'">กลับสู่หน้าหลัก</button>
