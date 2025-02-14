@@ -89,6 +89,8 @@ function analyzeNumbers() {
         draws.push(draw);
     }
 
+    let referenceNumber = draws[2]; // ตัวเลขงวดที่ 3 ที่ใช้เป็นข้อมูลอ้างอิง
+
     draws.forEach(num => {
         num.split("").forEach(digit => {
             frequency[parseInt(digit)] += 1;
@@ -142,7 +144,7 @@ function analyzeNumbers() {
             ${leastNumbers.map(n => `<li>ตัวเลข ${n}</li>`).join('')}
         </ul>
 
-        <h3>📌 สรุปตัวเลขสำคัญ: ${mostImportant}, ${secondImportant}, ${leastImportant} จากตัวเลขลำดับที่ 3 อ้างอิงจากที่กรอก</h3>
+        <h3>📌 สรุปตัวเลขสำคัญ: ${mostImportant}, ${secondImportant}, ${leastImportant} จากตัวเลขลำดับที่ 3 (${referenceNumber})</h3>
     `;
 }
     </script>
