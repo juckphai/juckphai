@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>วิเคราะห์ตัวเลขจาก 3 งวด</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 10px;
+            background-color: #f4f4f4;
+        }
+        h2 {
+            text-align: center;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 18px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>กรอกเลข 5 ตัวจาก 3 งวด</h2>
+        <form id="lotteryForm">
+            <div class="input-group">
+                <script>
+                    for (let i = 1; i <= 3; i++) {
+                        document.write(`<label>งวดที่ ${i}:</label>
+                            <input type="text" id="draw${i}" placeholder="กรอกเลข 5 ตัว เช่น 12345" maxlength="5" required><br>`);
+                    }
+                </script>
+            </div>
+            <button type="button" onclick="analyzeNumbers()">วิเคราะห์ตัวเลข</button>
+        </form>
+        
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+function analyzeNumbers() {
+    let frequency = Array(10).fill(0);
+    let draws = [];
+
+    for (let i = 1; i <= 3; i++) {
+        let draw = document.getElementById('draw' + i).value.trim();
+        if (!/^\d{5}$/.test(draw)) {
+            alert("กรุณากรอกตัวเลข 5 หลักให้ถูกต้องทุกงวด!");
+            return;
+        }
+        draws.push(draw);
+    }
+
+    draws.forEach(num => {
+        num.split("").forEach(digit => {
+            frequency[parseInt(digit)] += 1;
+        });
+    });
+
+    let sorted = [...frequency].map((count, num) => ({ num, count }))
+                              .sort((a, b) => b.count - a.count || a.num - b.num);
+
+    let details = '<h3>📊 รายละเอียดความถี่ของตัวเลข:</h3><ul>';
+    sorted.slice().reverse().forEach(({ num, count }) => {
+        details += `<li>ตัวเลข ${num}: ออก ${count} ครั้ง</li>`;
+    });
+    details += '</ul>';
+
+    let uniqueFrequencies = [...new Set(sorted.map(n => n.count))]; 
+    let highestFreq = uniqueFrequencies[0]; 
+    let secondFreq = uniqueFrequencies[1] || highestFreq; 
+    let leastFreq = uniqueFrequencies[uniqueFrequencies.length - 1]; 
+
+    let highestNumbers = sorted.filter(n => n.count === highestFreq).map(n => n.num);
+    let secondNumbers = sorted.filter(n => n.count === secondFreq).map(n => n.num);
+    let leastNumbers = sorted.filter(n => n.count === leastFreq).map(n => n.num);
+
+    function findMiddle(numbers) {
+        if (numbers.length === 1) return numbers[0];
+        let mid = Math.floor(numbers.length / 2);
+        return numbers[mid];
+    }
+
+    let mostImportant = findMiddle(highestNumbers);
+    let secondImportant = findMiddle(secondNumbers);
+    let leastImportant = findMiddle(leastNumbers);
+
+    document.getElementById('result').innerHTML = `
+        <h3>ผลการวิเคราะห์</h3>
+        ${details}
+        
+        <h3>📌 ตัวเลขที่ออกบ่อยที่สุด:</h3>
+        <ul>
+            ${highestNumbers.map(n => `<li>ตัวเลข ${n}</li>`).join('')}
+        </ul>
+
+        <h3>📌 ตัวเลขที่ออกบ่อยลำดับที่สอง:</h3>
+        <ul>
+            ${secondNumbers.map(n => `<li>ตัวเลข ${n}</li>`).join('')}
+        </ul>
+
+        <h3>📌 ตัวเลขที่ออกน้อยที่สุดหรือไม่ออกเลย:</h3>
+        <ul>
+            ${leastNumbers.map(n => `<li>ตัวเลข ${n}</li>`).join('')}
+        </ul>
+
+        <h3>📌 สรุปตัวเลขสำคัญ: ${mostImportant}, ${secondImportant}, ${leastImportant}</h3>
+    `;
+}
+    </script>
+</body>
+</html>
