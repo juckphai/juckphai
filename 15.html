@@ -199,6 +199,20 @@ function convertNumber() {
         return [String(prevDigit), String(numDigit), String(nextDigit)];
     };
 
+    // ฟังก์ชันสำหรับจัดเรียงตัวเลข 2 หลัก (น้อยเป็นหลักสิบ)
+    const sortTwoDigits = (pair) => {
+        const digits = pair.split('');
+        digits.sort((a, b) => a - b); // เรียงจากน้อยไปมาก
+        return digits.join('');
+    };
+
+    // ฟังก์ชันสำหรับจัดเรียงตัวเลข 3 หลัก (น้อยไปมาก)
+    const sortThreeDigits = (triplet) => {
+        const digits = triplet.split('');
+        digits.sort((a, b) => a - b); // เรียงจากน้อยไปมาก
+        return digits.join('');
+    };
+
     const firstDigit = num[0]; // หลักร้อย
     const secondDigit = num[1]; // หลักสิบ
     const thirdDigit = num[2]; // หลักหน่วย
@@ -208,7 +222,7 @@ function convertNumber() {
         firstDigit + secondDigit, // 12
         firstDigit + thirdDigit,  // 13
         secondDigit + thirdDigit  // 23
-    ];
+    ].map(pair => sortTwoDigits(pair)); // จัดเรียงตัวเลข 2 หลัก
     const uniqueDominantTwoDigitPairs = [...new Set(dominantTwoDigitPairs)].sort();
 
     // จัดชุดสองตัวทั้งหมด (ใช้เงื่อนไขบวกลบ 1)
@@ -217,7 +231,7 @@ function convertNumber() {
         ...transformRules(firstDigit).map(d => d + secondDigit), // หลักสิบคงที่
         ...transformRules(thirdDigit).map(d => secondDigit + d), // หลักสิบคงที่
         ...transformRules(secondDigit).map(d => d + thirdDigit)  // หลักหน่วยคงที่
-    ];
+    ].map(pair => sortTwoDigits(pair)); // จัดเรียงตัวเลข 2 หลัก
     const uniqueTwoDigitPairs = [...new Set(twoDigitPairs)].sort();
 
     // ตัดชุดเด่นออกจากชุดสองตัวทั้งหมด
@@ -230,7 +244,7 @@ function convertNumber() {
         ...transformRules(thirdDigit).map(d => firstDigit + secondDigit + d), // หลักร้อยและหลักสิบคงที่
         ...transformRules(firstDigit).map(d => d + secondDigit + thirdDigit), // หลักสิบและหลักหน่วยคงที่
         ...transformRules(secondDigit).map(d => firstDigit + d + thirdDigit) // หลักร้อยและหลักหน่วยคงที่
-    ];
+    ].map(triplet => sortThreeDigits(triplet)); // จัดเรียงตัวเลข 3 หลัก
     const uniqueThreeDigitPairs = [...new Set(threeDigitPairs)].sort();
 
     // แสดงผลลัพธ์
@@ -252,7 +266,7 @@ function convertNumber() {
         </h2>
         <h2 style="font-size: 16px; color: blue; line-height: 1;">จัดชุดเด่น 2 ตัว</h2>
         <h2 style="font-size: 18px; color: blue; font-weight: normal; line-height: 1;">${uniqueDominantTwoDigitPairs.join(' - ')}</h2>
-        <h2 style="font-size: 16px; color: blue; line-height: 1;">จัดชุด 2 ตัว</h2>
+        <h2 style="font-size: 16px; color: blue; line-height: 1;">จัดชุดรอง 2 ตัว</h2>
         <h2 style="font-size: 18px; color: blue; font-weight: normal; line-height: 1;">${filteredTwoDigitPairs.join(' - ')}</h2>
         <h2 style="font-size: 16px; color: blue; line-height: 1;">จัดชุด 3 ตัว</h2>
         <h2 style="font-size: 18px; color: blue; font-weight: normal; line-height: 1;">${uniqueThreeDigitPairs.join(' - ')}</h2>
