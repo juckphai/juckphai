@@ -159,8 +159,18 @@ function convertNumber() {
         });
     });
 
-    // จัดเรียงและกรองชุดตัวเลขที่ไม่ซ้ำกัน
-    const sortedPairs = [...new Set(transformedPairs)].sort();
+    // ฟังก์ชันสำหรับสลับตัวเลข 2 หลัก (ตัวเลขน้อยกว่าอยู่ข้างหน้า)
+    const swapDigits = (pair) => {
+        const firstDigit = pair[0];
+        const secondDigit = pair[1];
+        return firstDigit <= secondDigit ? `${firstDigit}${secondDigit}` : `${secondDigit}${firstDigit}`;
+    };
+
+    // สลับตัวเลขในแต่ละคู่
+    const swappedPairs = transformedPairs.map(pair => swapDigits(pair));
+
+    // กรองชุดตัวเลขที่ไม่ซ้ำกันและจัดเรียงจากน้อยไปหามาก
+    const sortedPairs = [...new Set(swappedPairs)].sort((a, b) => a - b);
 
     // แสดงผลลัพธ์
     const dateInput = document.getElementById("dateInput").value;
@@ -433,7 +443,20 @@ function convertNumber() {
     const fixedOnes = transformRules(firstDigit).map(d => d + secondDigit);
 
     // รวมผลลัพธ์และกรองค่าที่ซ้ำกัน
-    const sortedPairs = [...new Set([...fixedTens, ...fixedOnes])].sort();
+    const allPairs = [...fixedTens, ...fixedOnes];
+
+    // ฟังก์ชันสำหรับสลับตัวเลข 2 หลัก (หลักสิบน้อยกว่าหรือเท่ากับหลักหน่วย)
+    const swapDigits = (pair) => {
+        const digits = pair.split('');
+        digits.sort((a, b) => a - b); // เรียงจากน้อยไปมาก
+        return digits.join('');
+    };
+
+    // สลับตัวเลขในแต่ละคู่
+    const swappedPairs = allPairs.map(pair => swapDigits(pair));
+
+    // กรองชุดตัวเลขที่ไม่ซ้ำกันและจัดเรียงจากน้อยไปหามาก
+    const sortedPairs = [...new Set(swappedPairs)].sort((a, b) => a - b);
 
     // แสดงผลลัพธ์
     const dateInput = document.getElementById("dateInput").value;
