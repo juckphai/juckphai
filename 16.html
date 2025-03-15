@@ -122,7 +122,7 @@ function getThaiDate(date = new Date()) {
             return `เวลา ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')} น.`;
         }
 
- function convertNumber() {
+function convertNumber() {
     const num = document.getElementById("numberInput").value;
     const topicSelect = document.getElementById("topicSelect");
     const selectedTopic = topicSelect.options[topicSelect.selectedIndex].value;
@@ -138,39 +138,6 @@ function getThaiDate(date = new Date()) {
         alert("กรุณาป้อนตัวเลข 2 หลัก");
         return;
     }
-
-    // เงื่อนไขการแปลงตัวเลขใหม่ (หัวข้อการขึ้นลงตัวเลข)
-    const transformRulesUpDown = (digit) => {
-        if (digit === '1') return ['0', '2']; // 1 แปลงเป็น 0 และ 2
-        if (digit === '2') return ['1', '2']; // 2 แปลงเป็น 1 และ 2
-        // ตัวเลขอื่นๆ บวกลบ 1
-        const numDigit = parseInt(digit);
-        return [String(numDigit - 1), String(numDigit + 1)];
-    };
-
-    // สร้างชุดตัวเลขที่แปลงแล้ว (หัวข้อการขึ้นลงตัวเลข)
-    const transformedDigitsUpDown = num.split('').map(digit => transformRulesUpDown(digit));
-    const transformedPairsUpDown = [];
-
-    // สร้างชุดตัวเลข 2 ตัวจากผลลัพธ์ที่แปลงแล้ว (หัวข้อการขึ้นลงตัวเลข)
-    transformedDigitsUpDown[0].forEach(firstDigit => {
-        transformedDigitsUpDown[1].forEach(secondDigit => {
-            transformedPairsUpDown.push(`${firstDigit}${secondDigit}`);
-        });
-    });
-
-    // ฟังก์ชันสำหรับสลับตัวเลข 2 หลัก (หัวข้อการขึ้นลงตัวเลข)
-    const swapDigits = (pair) => {
-        const firstDigit = pair[0];
-        const secondDigit = pair[1];
-        return firstDigit <= secondDigit ? `${firstDigit}${secondDigit}` : `${secondDigit}${firstDigit}`;
-    };
-
-    // สลับตัวเลขในแต่ละคู่ (หัวข้อการขึ้นลงตัวเลข)
-    const swappedPairsUpDown = transformedPairsUpDown.map(pair => swapDigits(pair));
-
-    // กรองชุดตัวเลขที่ไม่ซ้ำกันและจัดเรียงจากน้อยไปหามาก (หัวข้อการขึ้นลงตัวเลข)
-    const sortedPairsUpDown = [...new Set(swappedPairsUpDown)].sort((a, b) => a - b);
 
     // เงื่อนไขการแปลงตัวเลขใหม่ (หัวข้อการแปลงตัวเลข)
     const transformRulesConvert = {
@@ -213,13 +180,52 @@ function getThaiDate(date = new Date()) {
     });
 
     // จัดเรียงชุดตัวเลขจากน้อยไปหามาก (หัวข้อการแปลงตัวเลข)
-    const sortedPairsConvert = [...new Set(uniquePairsConvert)].sort();
+    const sortedPairsConvert = [...new Set(uniquePairsConvert)]
+        .map(pair => pair.padStart(2, '0')) // แก้ไขให้เป็นสองหลัก
+        .sort((a, b) => a - b);
 
-     // รวมตัวเลขจากทั้งสองวิธี
-    const allPairs = [...sortedPairsUpDown, ...sortedPairsConvert];
+    // เงื่อนไขการแปลงตัวเลขใหม่ (หัวข้อการขึ้นลงตัวเลข)
+    const transformRulesUpDown = (digit) => {
+        if (digit === '1') return ['0', '2']; // 1 แปลงเป็น 0 และ 2
+        if (digit === '2') return ['1', '2']; // 2 แปลงเป็น 1 และ 2
+        // ตัวเลขอื่นๆ บวกลบ 1
+        const numDigit = parseInt(digit);
+        return [String(numDigit - 1), String(numDigit + 1)];
+    };
+
+    // สร้างชุดตัวเลขที่แปลงแล้ว (หัวข้อการขึ้นลงตัวเลข)
+    const transformedDigitsUpDown = num.split('').map(digit => transformRulesUpDown(digit));
+    const transformedPairsUpDown = [];
+
+    // สร้างชุดตัวเลข 2 ตัวจากผลลัพธ์ที่แปลงแล้ว (หัวข้อการขึ้นลงตัวเลข)
+    transformedDigitsUpDown[0].forEach(firstDigit => {
+        transformedDigitsUpDown[1].forEach(secondDigit => {
+            transformedPairsUpDown.push(`${firstDigit.padStart(2, '0')}${secondDigit.padStart(2, '0')}`);
+        });
+    });
+
+    // ฟังก์ชันสำหรับสลับตัวเลข 2 หลัก (หัวข้อการขึ้นลงตัวเลข)
+    const swapDigits = (pair) => {
+        const firstDigit = pair[0];
+        const secondDigit = pair[1];
+        return firstDigit <= secondDigit ? `${firstDigit}${secondDigit}` : `${secondDigit}${firstDigit}`;
+    };
+
+    // สลับตัวเลขในแต่ละคู่ (หัวข้อการขึ้นลงตัวเลข)
+    const swappedPairsUpDown = transformedPairsUpDown.map(pair => swapDigits(pair));
+
+    // กรองชุดตัวเลขที่ไม่ซ้ำกันและจัดเรียงจากน้อยไปหามาก (หัวข้อการขึ้นลงตัวเลข)
+    const sortedPairsUpDown = [...new Set(swappedPairsUpDown)]
+        .map(pair => pair.padStart(2, '0')) // แก้ไขให้เป็นสองหลัก
+        .sort((a, b) => a - b);
+
+    // รวมตัวเลขจากทั้งสองวิธี
+    const allPairs = [...sortedPairsConvert, ...sortedPairsUpDown];
 
     // กรองตัวเลขที่ซ้ำกันออก
-    const uniqueAllPairs = [...new Set(allPairs)].sort((a, b) => a - b);
+    const uniqueAllPairs = [...new Set(allPairs)]
+        .map(pair => pair.padStart(2, '0')) // แก้ไขให้เป็นสองหลัก
+        .sort((a, b) => a - b);
 
     // แสดงผลลัพธ์
     const dateInput = document.getElementById("dateInput").value;
@@ -239,10 +245,10 @@ function getThaiDate(date = new Date()) {
         <h2 style="font-size: 16px; color: blue; line-height: 1;">
             ตัวเลข 2 ตัว <span style="color: red;">${num}</span> By : ${selectedPerson}
         </h2>
-        <h2 style="font-size: 16px; color: blue; line-height: 1;">จัดชุด 2 ตัวจากการขึ้นลงตัวเลข</h2>
-        <h2 style="font-size: 18px; color: blue; font-weight: normal; line-height: 1;">${sortedPairsUpDown.join(' - ')}</h2>
         <h2 style="font-size: 16px; color: blue; line-height: 1;">จัดชุด 2 ตัวจากการแปลงตัวเลข</h2>
         <h2 style="font-size: 18px; color: blue; font-weight: normal; line-height: 1;">${sortedPairsConvert.join(' - ')}</h2>
+        <h2 style="font-size: 16px; color: blue; line-height: 1;">จัดชุด 2 ตัวจากการขึ้นลงตัวเลข</h2>
+        <h2 style="font-size: 18px; color: blue; font-weight: normal; line-height: 1;">${sortedPairsUpDown.join(' - ')}</h2>
         <h2 style="font-size: 16px; color: blue; line-height: 1;">สรุปรวมตัวเลขทั้งสองวิธี</h2>
         <h2 style="font-size: 18px; color: blue; font-weight: normal; line-height: 1;">${uniqueAllPairs.join(' - ')}</h2>
         <h2 style="font-size: 14px; color: red; line-height: 1;">แนวทางเท่านั้น</h2>
