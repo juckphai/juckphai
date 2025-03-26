@@ -181,25 +181,25 @@ function getThaiDate(date = new Date()) {
 const resultHtml = `
 <div id="resultContent" style="position: relative; text-align: center; font-size: 16px; line-height: 1.2; margin-top: 10px; background-image: url('BG.png'); background-size: cover; background-position: center; background-repeat: no-repeat; padding: 20px;">
     <!-- ใช้ flexbox เพื่อจัดโลโก้และข้อความให้อยู่ในแนวเดียวกัน -->
-    <h2 style="display: flex; align-items: center; justify-content: center; margin: 2px 0; line-height: 1;">
+    <h2 style="display: flex; align-items: center; justify-content: center; margin: 2px 0; line-height: 1; -webkit-text-stroke: 1px white; text-stroke: 1px white;">
         <img src="logo.png" alt="Logo Left" style="width: 40px; margin-right: 2px;">
-        <span style="color: blue; font-size: 15px; line-height: 1;">${selectedTopic}</span>
+        <span style="color: blue; font-size: 15px; line-height: 1; -webkit-text-stroke: 0.5px white; text-stroke: 0.5px white;">${selectedTopic}</span>
         <img src="logo.png" alt="Logo Right" style="width: 40px; margin-left: 2px;">
     </h2>
-    <h3 class="blue" style="font-size: 15px; display: inline; vertical-align: middle; color: blue; font-weight: normal; line-height: 1;">
+    <h3 class="blue" style="font-size: 15px; display: inline; vertical-align: middle; color: blue; font-weight: normal; line-height: 1; -webkit-text-stroke: 0.5px white; text-stroke: 0.5px white;">
         ${dateDisplay}
     </h3>
-    <p style="font-size: 15px; color: blue; line-height: 1;">
-    <h2 style="font-size: 16px; color: blue; line-height: 1;">
-        ตัวเลข 2 ตัว <span style="color: red;">${num}</span> By : ${selectedPerson}
+    <p style="font-size: 15px; color: blue; line-height: 1; -webkit-text-stroke: 0.5px white; text-stroke: 0.5px white;"></p>
+    <h2 style="font-size: 16px; color: blue; line-height: 1; -webkit-text-stroke: 0.5px white; text-stroke: 0.5px white;">
+        ตัวเลข 2 ตัว <span style="color: red; -webkit-text-stroke: 0.5px white; text-stroke: 0.5px white;">${num}</span> By : ${selectedPerson}
     </h2>
-    <h2 style="font-size: 16px; color: blue; line-height: 1;">จัดชุด 2 ตัวดังนี้</h2>
-    <h2 style="font-size: 18px; color: blue; font-weight: normal; line-height: 1;">${sortedPairs.join(' - ')}</h2>
-    <h2 style="font-size: 14px; color: red; line-height: 1;">แนวทางเท่านั้น</h2>
-    <p style="font-size: 10px; color: blue; line-height: 1;">
+    <h2 style="font-size: 16px; color: blue; line-height: 1; -webkit-text-stroke: 0.5px white; text-stroke: 0.5px white;">จัดชุด 2 ตัวดังนี้</h2>
+    <h2 style="font-size: 18px; color: blue; font-weight: normal; line-height: 1; -webkit-text-stroke: 0.5px white; text-stroke: 0.5px white;">${sortedPairs.join(' - ')}</h2>
+    <h2 style="font-size: 14px; color: red; line-height: 1; -webkit-text-stroke: 0.5px white; text-stroke: 0.5px white;">แนวทางเท่านั้น</h2>
+    <p style="font-size: 10px; color: blue; line-height: 1; -webkit-text-stroke: 0.5px white; text-stroke: 0.5px white;">
         <strong>แปล:</strong> ${getThaiDate()} ${getThaiTime()}
     </p>
-    <p style="font-size: 16px; color: blue; line-height: 1;">หมายเหตุ : <span style="color: red;">${noteInput}</span></p>
+    <p style="font-size: 16px; color: blue; line-height: 1; -webkit-text-stroke: 0.5px white; text-stroke: 0.5px white;">หมายเหตุ : <span style="color: red; -webkit-text-stroke: 0.5px white; text-stroke: 0.5px white;">${noteInput}</span></p>
 </div>
 `;
 
