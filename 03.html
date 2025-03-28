@@ -659,7 +659,7 @@ finalAdditionalNumbers.sort((a, b) => a - b);
 
 const additionalNumbersForThirdSetText = finalAdditionalNumbers.length > 0
     ? finalAdditionalNumbers.join(' - ')
-    : '<span style="color: orange;">ไม่มีชุดตัวเลขเพิ่ม</span>';
+    : '<span style="color: red;">ไม่มีชุดตัวเลขเพิ่ม</span>';
 
     resultContainer.innerHTML = `
     <div id="resultContent" style="position: relative; text-align: center; font-size: 18px; line-height: 1.2; margin-top: 10px; color: blue;">
