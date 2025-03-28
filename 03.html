@@ -3,127 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ฟอร์มแปลตัวเลข 3 ตัว</title>
+    <title>ฟอร์มแปลตัวเลข 2 ตัว</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #fffde7;
             margin: 0;
             padding: 0;
+            line-height: 1.4;
         }
-
         h1 {
             text-align: center;
             font-size: 32px;
             color: #2c3e50;
             margin-top: 20px;
+            line-height: 1.2;
         }
-
+        
+        /* ปรับสไตล์ข้อความในผลลัพธ์ใหม่ */
+        #resultContent h2 {
+            font-size: 15px;
+            margin: 6px 0;
+            line-height: 1.2;
+        }
+        #resultContent h3 {
+            font-size: 14px;
+            margin: 6px 0;
+            line-height: 1.2;
+        }
+        #resultContent .number-pairs {
+            font-size: 15px;
+            margin: 8px 0;
+            font-weight: bold;
+        }
+        #resultContent .note {
+            font-size: 14px;
+            margin: 8px 0;
+        }
+        #resultContent .translation {
+            font-size: 12px;
+            margin: 6px 0;
+        }
+        
         .container {
             max-width: 600px;
-            margin: 0 auto;
-            padding: 15px;
-            background-color: #fff;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 28px;
-            margin-top: 15px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            background-color: #ffffcc;
+            border: 2px solid #4CAF50;
+            padding: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
+            line-height: 1.4;
         }
 
         input, select, button {
-            font-size: 20px;
-            padding: 12px; /* เพิ่มพื้นที่ภายในช่องกรอก */
-            width: 98%; /* เพิ่มความกว้าง */
-            margin: 12px 0; /* ลดระยะห่างระหว่างช่อง */
-            border-radius: 10px; /* มุมโค้งของช่องกรอก */
-            border: 1px solid #ccc;
+            font-size: 18px;
+            padding: 10px;
+            width: 90%;
+            margin: 10px 0;
+            border-radius: 6px;
+            border: 1px solid #ddd;
             display: block;
             margin-left: auto;
             margin-right: auto;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); /* เพิ่มเงา */
-            background-color: #f9f9f9; /* สีพื้นหลังของช่องกรอก */
-            transition: all 0.3s ease; /* เพิ่มเอฟเฟกต์เมื่อ hover */
+            line-height: 1.2;
         }
-
-        input:focus, select:focus {
-            border-color: #4CAF50;
-            font-size: 20px;
-            padding: 12px; /* เพิ่มพื้นที่ภายในช่องกรอก */
-            width: 98%; /* เพิ่มความกว้าง */
-            margin: 12px 0; /* ลดระยะห่างระหว่างช่อง */
-            border-radius: 20px; /* มุมโค้งของช่องกรอก */
-            border: 1px solid #ccc;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
         button {
             background-color: #4CAF50;
             color: white;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            line-height: 1.2;
         }
-
         button:hover {
             background-color: #45a049;
         }
-
-        button.back-button {
-            margin-top: 20px;
-            font-size: 20px;
-            max-width: 600px;
-            width: 100%;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
         label {
             font-size: 18px;
             margin-left: 5%;
             color: #2c3e50;
+            line-height: 1.2;
         }
-
-        .blue {
-            color: blue;
-        }
-
-        .red {
-            color: red;
-        }
-
         footer {
             text-align: center;
             padding: 20px;
             font-size: 14px;
             color: #95a5a6;
+            line-height: 1.2;
         }
-
+        
+        /* ปรับกรอบฟอร์มให้ตรงกับกรอบผลลัพธ์ */
         .form-container {
             border: 2px solid orange;
             background-color: #ffffff;
             margin: 10px auto;
             margin-top: 20px;
             margin-bottom: 20px;
-            padding: 10px;
+            padding: 15px;
             border-radius: 10px;
-            width: fit-content;
+            width: 90%;
+            max-width: 600px;
             text-align: center;
             box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
             line-height: 1;
         }
 
+        /* ปรับกรอบผลลัพธ์ให้มีขนาดเท่ากับกรอบฟอร์ม */
         #resultContainer {
             display: none;
             margin: 10px auto;
-            max-width: 600px;
             margin-top: 20px;
             margin-bottom: 20px;
             background-color: #ffffcc;
             border: 2px solid #4CAF50;
-            padding: 10px;
+            padding: 15px;
             border-radius: 10px;
-            width: fit-content;
+            width: 90%;
+            max-width: 600px;
             text-align: center;
             box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
             position: relative;
@@ -135,7 +134,7 @@
             background-image: url('logo.png');
             background-size: 90% auto;
             background-repeat: no-repeat;
-            background-position: center top 90px; /* Adjusted to align with first line */
+            background-position: center top 15px;
             opacity: 0.4;
             position: absolute;
             top: 0;
@@ -148,6 +147,16 @@
 
         #resultContainer p {
             line-height: 0.2;
+        }
+
+        #lineHeightSlider {
+            width: 100%;
+            margin: 10px 0;
+        }
+        #lineHeightValue {
+            font-size: 16px;
+            color: #2c3e50;
+            line-height: 1.2;
         }
     </style>
 
