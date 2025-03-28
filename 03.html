@@ -274,7 +274,7 @@ const uniquePairs = sortedTransformedPairs.filter(pair =>
 // Check if uniquePairs is empty
 let transformedPairsText = '';
 if (uniquePairs.length === 0) {
-    transformedPairsText = '<span style="color: orange;">ไม่มีชุดตัวเลขเพิ่ม</span>';
+    transformedPairsText = '<span style="color: red;">ไม่มีชุดตัวเลขเพิ่ม</span>';
 } else {
     transformedPairsText = uniquePairs.join(' - ');
 }
