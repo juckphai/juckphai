@@ -96,33 +96,32 @@
         }
         
         /* ปรับกรอบฟอร์มให้ตรงกับกรอบผลลัพธ์ */
-        .form-container {
-            border: 2px solid orange;
-            background-color: #ffffff;
-            margin: 10px auto;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            padding: 15px;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 600px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
-            line-height: 1;
-        }
+     .form-container {
+    border: 2px solid orange;
+    background-color: #ffffff;
+    margin: 10px auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    width: 90%; /* กรอบฟอร์มขนาด 90% */
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
+    line-height: 1;
+}
 
-        /* ปรับกรอบผลลัพธ์ให้มีขนาดเท่ากับกรอบฟอร์ม */
 #resultContainer {
     display: none;
-    margin: 20px auto; /* เพิ่มระยะห่างจากด้านบนและด้านล่าง */
+    margin: 20px auto;
     max-width: 600px;
     background-color: #ffffcc;
     border: 2px solid #4CAF50;
     padding: 10px;
-    padding-left: 40px; /* เพิ่ม padding ด้านซ้าย */
-    padding-right: 40px; /* เพิ่ม padding ด้านขวา */
+    padding-left: 10px; /* เพิ่ม padding ด้านซ้าย */
+    padding-right: 10px; /* เพิ่ม padding ด้านขวา */
     border-radius: 10px;
-    width: auto;
+    width: 70%; /* ลดขนาดให้เล็กลง 20% จากกรอบฟอร์ม */
     text-align: center;
     box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
     position: relative;
