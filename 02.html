@@ -81,27 +81,30 @@ font-family: Arial, sans-serif;
             line-height: 1;
         }
 
-        #resultContainer {
-            display: none;
-            margin: 10px auto;
-            max-width: 600px;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            background-color: #ffffcc;
-            border: 2px solid #4CAF50;
-            padding: 10px;
-            border-radius: 10px;
-            width: fit-content;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
-            position: relative;
-            min-height: 300px;
-        }
+    #resultContainer {
+        display: none;
+        margin: 10px auto;
+        max-width: 600px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        background-color: #ffffcc;
+        border: 2px solid #4CAF50;
+        padding: 10px;
+        border-radius: 10px;
+        /* เปลี่ยนจาก width: fit-content เป็น width: auto */
+        width: auto;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
+        position: relative;
+        min-height: 300px;
+        /* เพิ่ม padding-bottom เพื่อให้มีระยะห่างด้านล่าง */
+        padding-bottom: 20px;
+    }
 
         #resultContainer::before {
             content: "";
             background-image: url('logo.png');
-            background-size: 90% auto;
+            background-size: 50% auto;
             background-repeat: no-repeat;
             background-position: center top 15px; /* Adjusted to align with first line */
             opacity: 0.4;
