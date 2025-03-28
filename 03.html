@@ -112,22 +112,25 @@
         }
 
         /* ปรับกรอบผลลัพธ์ให้มีขนาดเท่ากับกรอบฟอร์ม */
-        #resultContainer {
-            display: none;
-            margin: 10px auto;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            background-color: #ffffcc;
-            border: 2px solid #4CAF50;
-            padding: 15px;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 600px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
-            position: relative;
-            min-height: 300px;
-        }
+   #resultContainer {
+    display: none;
+    margin: 10px auto;
+    max-width: 600px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #ffffcc;
+    border: 2px solid #4CAF50;
+    padding: 10px;
+    padding-left: 10px; /* เพิ่ม padding ด้านซ้าย */
+    padding-right: 10px; /* เพิ่ม padding ด้านขวา */
+    border-radius: 10px;
+    width: auto;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
+    position: relative;
+    min-height: 300px;
+    padding-bottom: 10px;
+}
 
         #resultContainer::before {
             content: "";
