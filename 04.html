@@ -79,23 +79,21 @@
             box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
             line-height: 1.4;
         }
-        #resultContainer {
-            display: none;
-            margin: 20px auto;
-            max-width: 600px;
-            background-color: #FEFEF0;
-            border: 2px solid #4CAF50;
-            padding: 10px;
-            padding-left: 10px;
-            padding-right: 10px;
-            border-radius: 10px;
-            width: 90%;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
-            position: relative;
-            min-height: 300px;
-            padding-bottom: 30px;
-        }
+#resultContainer {
+    display: none;
+    margin: 20px auto; /* จัดกลางและมีระยะห่างด้านบนล่าง */
+    max-width: 600px;
+    background-color: #FEFEF0;
+    border: 2px solid #4CAF50;
+    padding: 15px; /* ระยะห่างภายในทุกด้าน 15px */
+    border-radius: 10px;
+    width: fit-content; /* ปรับความกว้างให้พอดีกับเนื้อหา */
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
+    position: relative;
+    min-height: 300px;
+    box-sizing: border-box;
+}
 
         #resultContainer::before {
             content: "";
