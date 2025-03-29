@@ -156,6 +156,7 @@
             color: #2c3e50;
             line-height: 2;
         }
+
     </style>
 
     <script>
@@ -185,9 +186,9 @@
             document.getElementById("convertButton").addEventListener("click", convertNumber);
             document.getElementById("lineHeightSlider").addEventListener("input", updateLineHeight);
             
-            // ตั้งค่าค่าเริ่มต้น
-            document.getElementById("lineHeightSlider").value = 1.2;
-            document.getElementById("lineHeightValue").textContent = "ความสูงของบรรทัด: 1.2";
+            // ตั้งค่าเริ่มต้นของ slider ที่ 1.00
+            document.getElementById("lineHeightSlider").value = 1.0;
+            document.getElementById("lineHeightValue").textContent = "ความสูงของบรรทัด: 1.0";
         });
 
         function sortPair(pair) {
@@ -195,15 +196,14 @@
             return digits[0] > digits[1] ? digits[1] + digits[0] : pair;
         }
 
-function getThaiDate(date = new Date()) {
-    const daysOfWeek = ["อาทิตย์", "จันทร์", "อังคาร", "พุธ", "พฤหัสบดี", "ศุกร์", "เสาร์"];
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"][date.getMonth()];
-    const year = date.getFullYear() + 543;
-    const dayOfWeek = daysOfWeek[date.getDay()];  // หา วันในสัปดาห์
-    return `วัน${dayOfWeek}ที่ ${day} ${month} พ.ศ. ${year}`;
-}
-
+        function getThaiDate(date = new Date()) {
+            const daysOfWeek = ["อาทิตย์", "จันทร์", "อังคาร", "พุธ", "พฤหัสบดี", "ศุกร์", "เสาร์"];
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"][date.getMonth()];
+            const year = date.getFullYear() + 543;
+            const dayOfWeek = daysOfWeek[date.getDay()];
+            return `วัน${dayOfWeek}ที่ ${day} ${month} พ.ศ. ${year}`;
+        }
 
         function getThaiTime() {
             const now = new Date();
@@ -672,7 +672,7 @@ const additionalNumbersForThirdSetText = finalAdditionalNumbers.length > 0
 
 const resultContainer = document.getElementById("resultContainer");
 resultContainer.innerHTML = `
-<div id="resultContent" style="position: relative; text-align: center; font-size: 18px; line-height: 1.2; margin-top: 10px; color: blue;">
+              <div id="resultContent" style="position: relative; text-align: center; font-size: 18px; line-height: 1.0; margin-top: 10px; color: blue;">
     <!-- หัวข้อ -->
     <p style="font-size: 16px; margin: 0 0 15px 0; font-weight: bold; line-height: 1.2;">
         ${selectedTopic}
@@ -709,14 +709,14 @@ resultContainer.innerHTML = `
 `;
 resultContainer.style.display = 'block';
 
-// เรียกใช้ฟังก์ชันเพื่อตั้งค่าความสูงของบรรทัดเริ่มต้น
-updateLineHeight();
-}
 
-        document.getElementById("convertButton").addEventListener("click", convertNumber);
+            // ตั้งค่าความสูงของบรรทัดเริ่มต้นที่ 1.00
+            document.getElementById("lineHeightSlider").value = 1.0;
+            document.getElementById("lineHeightValue").textContent = "ความสูงของบรรทัด: 1.0";
+            updateLineHeight(); // เรียกใช้ฟังก์ชันเพื่ออัปเดตทันที
+        }
     </script>
 </head>
-<body>
 <div class="form-container">
     <h1>ฟอร์มแปลตัวเลข 3 ตัว</h1>
     <div style="text-align: center; margin-top: 20px;">
