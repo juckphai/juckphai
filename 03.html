@@ -113,20 +113,18 @@
 
 #resultContainer {
     display: none;
-    margin: 20px auto;
+    margin: 20px auto; /* จัดกลางแนวตั้งและแนวนอน */
     max-width: 600px;
     background-color: #FEFEF0;
     border: 2px solid #4CAF50;
-    padding: 10px;
-    padding-left: 10px; /* เพิ่ม padding ด้านซ้าย */
-    padding-right: 10px; /* เพิ่ม padding ด้านขวา */
+    padding: 15px 15px; /* บน-ล่าง 15px, ซ้าย-ขวา 15px */
     border-radius: 10px;
-    width: 90%; /* ลดขนาดให้เล็กลง 20% จากกรอบฟอร์ม */
+    width: fit-content; /* ปรับความกว้างให้พอดีกับเนื้อหา */
     text-align: center;
     box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
     position: relative;
     min-height: 300px;
-    padding-bottom: 30px;
+    box-sizing: border-box; /* รวม padding และ border ในความกว้าง */
 }
 
         #resultContainer::before {
