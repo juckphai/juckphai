@@ -19,6 +19,7 @@
             margin-top: 10px;
         }
         .result {
+            position: relative;
             background-color: #ffffcc;
             margin: 15px auto;
             border-radius: 20px;
@@ -28,8 +29,33 @@
             max-width: 500px;
             text-align: center;
         }
+        .result::before {
+            content: "";
+            background-image: url('logo.png');
+            background-size: 80% auto;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.4;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+        }
+        #resultContainer > div {
+            position: relative;
+            z-index: 1;
+        }
         .blue {
             color: blue;
+            font-size: 20px;
+        }
+        h3.blue {
+            font-size: 28px;
+        }
+        h2.blue {
+            font-size: 28px;
         }
         .circle {
             display: inline-block;
@@ -61,11 +87,11 @@
             display: inline-block;
             background-color: white;
             color: red;
-            font-size: 24px;
+            font-size: 28px;
             font-weight: bold;
-            width: 26px;
-            height: 26px;
-            line-height: 28px;
+            width: 32px;
+            height: 32px;
+            line-height: 34px;
             text-align: center;
             border: 2px solid blue;
             border-radius: 1px;
@@ -134,57 +160,49 @@
     function setDefaultDate() {
         const dateInput = document.getElementById("dateInput");
         if (dateInput) {
-            const today = new Date().toISOString().split('T')[0]; // Format as YYYY-MM-DD
-            dateInput.value = today; // Set the default date
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.value = today;
         }
     }
 
     // Function to convert the entered number and display the result
     function convertNumber() {
         const num = document.getElementById("numberInput").value;
-        const dateInput = document.getElementById("dateInput").value; // Get date input value
+        const dateInput = document.getElementById("dateInput").value;
 
-        // Validate the 6-digit number
         if (num.length !== 6 || isNaN(num)) {
             alert("กรุณากรอกตัวเลข 6 หลัก");
             return;
         }
 
-        // Prepare date for display
-        const date = dateInput ? new Date(dateInput) : new Date(); // Use entered date or current date
+        const date = dateInput ? new Date(dateInput) : new Date();
         const thaiDate = getThaiDate(date);
 
-        // Format each digit in a rounded frame
         let sixDigitHtml = '';
         for (let i = 0; i < num.length; i++) {
             sixDigitHtml += `<span class="six-digit-frame">${num[i]}</span>`;
         }
 
-        // Prepare three and two digits
-        const threeDigits = num.slice(3); // Get last three digits (456)
-        const twoDigits = num.slice(2, 4); // Get middle two digits (34)
+        const threeDigits = num.slice(3);
+        const twoDigits = num.slice(2, 4);
 
-        // Create HTML to display
         const resultHtml = `
-            <div style="position: relative; text-align: center; font-size: 18px; line-height: 0.5;">
-                <h3 class="blue" style="font-size: 24px; display: inline-block; vertical-align: middle; margin: 0;">
-                    <img src="logo.png" alt="Left Logo" style="width: 60px; vertical-align: middle; margin-right: 8px;">
+            <div style="position: relative; text-align: center; line-height: 0.5;">
+                <h3 class="blue" style="display: inline-block; vertical-align: middle; margin: 0;">
                     ผลลาวพัฒนา
-                    <img src="logo.png" alt="Right Logo" style="width: 60px; vertical-align: middle; margin-left: 8px;">
                 </h3>
-                <p class="blue" style="font-size: 18px; line-height: 0.5; margin-top: 20px;">${thaiDate}</p>
-                <h2 class="blue" style="font-size: 24px; line-height: 0.5;">รางวัลเลข 6 ตัว</h2>
+                <p class="blue" style="margin-top: 20px;">${thaiDate}</p>
+                <h2 class="blue">รางวัลเลข 6 ตัว</h2>
                 <div style="text-align: center; margin-top: 10px;">
                     ${sixDigitHtml}
                 </div>
-                <p class="blue" style="font-size: 24px; letter-spacing: 2px; line-height: 0.5;">
+                <p class="blue" style="letter-spacing: 2px;">
                     บน <span style="color: green;" id="threeDigits">${threeDigits}</span> 
                     ล่าง <span style="color: blue;" id="twoDigits">${twoDigits}</span>
                 </p>
             </div>
         `;
 
-        // Display the result
         const resultContainer = document.getElementById("resultContainer");
         resultContainer.innerHTML = resultHtml;
         resultContainer.style.display = "block";
@@ -218,8 +236,8 @@
     function createCircleTop() {
         const threeDigits = document.getElementById("resultContainer").querySelector("#threeDigits");
         if (threeDigits) {
-            const digits = threeDigits.textContent.slice(-2); // Get last two digits
-            const hundredsDigit = threeDigits.textContent.slice(0, 1); // Get the hundreds digit
+            const digits = threeDigits.textContent.slice(-2);
+            const hundredsDigit = threeDigits.textContent.slice(0, 1);
             threeDigits.innerHTML = `${hundredsDigit}<span class="circle">${digits}</span>`;
         } else {
             alert("กรุณากรอกตัวเลข 6 หลักก่อน");
@@ -230,7 +248,7 @@
     function createSquare() {
         const threeDigits = document.getElementById("resultContainer").querySelector("#threeDigits");
         if (threeDigits) {
-            const digits = threeDigits.textContent; // Get all three digits
+            const digits = threeDigits.textContent;
             threeDigits.innerHTML = `<span class="square">${digits}</span>`;
         } else {
             alert("กรุณากรอกตัวเลข 6 หลักก่อน");
@@ -239,18 +257,16 @@
 
     // Initialize event listeners on page load
     document.addEventListener("DOMContentLoaded", function () {
-        setDefaultDate(); // Set default date on page load
+        setDefaultDate();
         document.getElementById("convertButton").addEventListener("click", convertNumber);
         document.getElementById("circleButton").addEventListener("click", createCircle);
         document.getElementById("circleTopButton").addEventListener("click", createCircleTop);
         document.getElementById("squareButton").addEventListener("click", createSquare);
     });
 </script>
-
-
 </head>
 <body>
-        <button class="back-button" onclick="window.location.href='https://juckmanphai.github.io/juck/01.html'">กลับสู่หน้าหลัก</button>
+    <button class="back-button" onclick="window.location.href='https://juckmanphai.github.io/juck/01.html'">กลับสู่หน้าหลัก</button>
     <h1>ผลลาวพัฒนา</h1>
 
     <div style="text-align: center; margin-top: 20px;">
