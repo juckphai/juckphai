@@ -22,7 +22,7 @@
         #resultContent h2 {
             font-size: 22px;
             margin: 8px 0;
-            line-height: inherit; /* เปลี่ยนเป็น inherit */
+            line-height: inherit;
         }
         #resultContent h3 {
             font-size: 20px;
@@ -105,21 +105,21 @@
             box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
             line-height: 0.5;
         }
-  #resultContainer {
-    display: none;
-    margin: 20px auto; /* จัดกลางและมีระยะห่างด้านบน-ล่าง */
-    max-width: 600px;
-    background-color: #FEFEF0;
-    border: 2px solid #4CAF50;
-    padding: 10px; /* ระยะห่างภายในกรอบทุกด้าน 10px */
-    border-radius: 10px;
-    width: fit-content; /* ปรับความกว้างอัตโนมัติตามเนื้อหา */
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
-    position: relative;
-    min-height: 300px;
-    box-sizing: border-box; /* คำนวณความกว้างรวม padding และ border */
-}
+        #resultContainer {
+            display: none;
+            margin: 20px auto;
+            max-width: 600px;
+            background-color: #FEFEF0;
+            border: 2px solid #4CAF50;
+            padding: 10px;
+            border-radius: 10px;
+            width: fit-content;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
+            position: relative;
+            min-height: 300px;
+            box-sizing: border-box;
+        }
         #resultContainer::before {
             content: "";
             background-image: url('logo.png');
@@ -220,7 +220,7 @@
             const dateDisplay = dateInput ? getThaiDate(new Date(dateInput)) : getThaiDate();
 
             const resultHtml = `
-            <div id="resultContent" style="position: relative; text-align: center; line-height: 1.5;">
+            <div id="resultContent" style="position: relative; text-align: center; line-height: 1.0;">
                 <h2 style="color: blue; margin-bottom: 5px;">${selectedTopic}</h2>
                 <h3 style="color: blue; font-weight: normal; margin-bottom: 10px;">${dateDisplay}</h3>
                 
@@ -250,25 +250,22 @@
             resultContainer.innerHTML = resultHtml;
             resultContainer.style.display = "block";
             
-            // เรียกใช้ฟังก์ชันตั้งค่าความสูงของบรรทัดเริ่มต้น
+            // ตั้งค่า lineHeight เริ่มต้นเป็น 1.0
+            document.getElementById("lineHeightSlider").value = 1.0;
             updateLineHeight();
         }
 
-        // Function to update line height based on slider value
         function updateLineHeight() {
             const lineHeight = document.getElementById("lineHeightSlider").value;
             const resultContent = document.getElementById("resultContent");
             
             if (resultContent) {
-                // ตั้งค่าความสูงของบรรทัดให้กับทุกองค์ประกอบใน resultContent
                 const elements = resultContent.querySelectorAll('*');
                 elements.forEach(element => {
                     element.style.lineHeight = lineHeight;
                 });
                 
-                // ตั้งค่าความสูงของบรรทัดให้กับ resultContent เอง
                 resultContent.style.lineHeight = lineHeight;
-                
                 document.getElementById("lineHeightValue").textContent = `ความสูงของบรรทัด: ${lineHeight}`;
             }
         }
@@ -277,9 +274,9 @@
             document.getElementById("convertButton").addEventListener("click", convertNumber);
             document.getElementById("lineHeightSlider").addEventListener("input", updateLineHeight);
             
-            // ตั้งค่าเริ่มต้นของ slider
-            document.getElementById("lineHeightSlider").value = 1.5;
-            document.getElementById("lineHeightValue").textContent = "ความสูงของบรรทัด: 1.5";
+            // ตั้งค่าเริ่มต้นของ slider เป็น 1.0
+            document.getElementById("lineHeightSlider").value = 1.0;
+            document.getElementById("lineHeightValue").textContent = "ความสูงของบรรทัด: 1.0";
         });
     </script>
 </head>
@@ -334,11 +331,11 @@
     </div>
     <div id="resultContainer" style="display: none;"></div>
     
-    <!-- New slider to adjust line height -->
+    <!-- Slider ปรับความสูงของบรรทัด -->
     <div style="text-align: center; margin: 10px auto; max-width: 600px;">
         <label for="lineHeightSlider">ปรับความสูงของบรรทัด:</label>
-        <input type="range" id="lineHeightSlider" min="0.5" max="2.5" step="0.1" value="1.5" />
-        <p id="lineHeightValue">ความสูงของบรรทัด: 1.5</p>
+        <input type="range" id="lineHeightSlider" min="0.5" max="2.5" step="0.1" value="1.0" />
+        <p id="lineHeightValue">ความสูงของบรรทัด: 1.0</p>
     </div>
 
     <button class="back-button" onclick="window.location.href='https://juckphai.github.io/juckim/01.html'">กลับสู่หน้าหลัก</button>
