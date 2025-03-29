@@ -105,23 +105,21 @@
             box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
             line-height: 0.5;
         }
-        #resultContainer {
-            display: none;
-            margin: 10px auto;
-            max-width: 600px;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            background-color: #FEFEF0;
-            border: 2px solid #4CAF50;
-            padding: 10px;
-            border-radius: 10px;
-            width: auto;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
-            position: relative;
-            min-height: 300px;
-            padding-bottom: 10px;
-        }
+  #resultContainer {
+    display: none;
+    margin: 20px auto; /* จัดกลางและมีระยะห่างด้านบน-ล่าง */
+    max-width: 600px;
+    background-color: #FEFEF0;
+    border: 2px solid #4CAF50;
+    padding: 15px; /* ระยะห่างภายในกรอบทุกด้าน 15px */
+    border-radius: 10px;
+    width: fit-content; /* ปรับความกว้างอัตโนมัติตามเนื้อหา */
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
+    position: relative;
+    min-height: 300px;
+    box-sizing: border-box; /* คำนวณความกว้างรวม padding และ border */
+}
         #resultContainer::before {
             content: "";
             background-image: url('logo.png');
