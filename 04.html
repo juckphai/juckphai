@@ -194,9 +194,9 @@
             document.getElementById("convertButton").addEventListener("click", convertNumber);
             document.getElementById("lineHeightSlider").addEventListener("input", updateLineHeight);
             
-            // ตั้งค่าเริ่มต้นของ slider เป็น 1.0
-            document.getElementById("lineHeightSlider").value = 1.0;
-            document.getElementById("lineHeightValue").textContent = "ความสูงของบรรทัด: 1.0";
+            // ตั้งค่าเริ่มต้นของ slider เป็น 1.2
+            document.getElementById("lineHeightSlider").value = 1.2;
+            document.getElementById("lineHeightValue").textContent = "ความสูงของบรรทัด: 1.2";
         });
 
         function sortDigits(str) {
@@ -276,7 +276,7 @@
             const fontSizeTranslation = "14px";
 
             let resultHtml = `
-            <div id="resultContent" style="position: relative; text-align: center; line-height: 1.0;">
+            <div id="resultContent" style="position: relative; text-align: center; line-height: 1.2;">
                 <h2 class="blue" style="font-size: ${fontSizeTopic}; margin: 0;">${selectedTopic}</h2>
                 <p class="blue" style="font-size: ${fontSizeDate}; margin: 5px 0;">${displayDate}</p>
                 <h2 class="blue" style="font-size: ${fontSizeNumber};">
@@ -298,8 +298,8 @@
             resultContainer.innerHTML = resultHtml;
             resultContainer.style.display = "block";
             
-            // ตั้งค่า lineHeight เริ่มต้นเป็น 1.0
-            document.getElementById("lineHeightSlider").value = 1.0;
+            // ตั้งค่า lineHeight เริ่มต้นเป็น 1.2
+            document.getElementById("lineHeightSlider").value = 1.2;
             updateLineHeight();
         }
     </script>
@@ -360,7 +360,7 @@
     <div style="text-align: center; margin: 10px auto; max-width: 600px;">
         <label for="lineHeightSlider">ปรับขนาดบรรทัด:</label>
         <input type="range" id="lineHeightSlider" min="0.5" max="2.5" step="0.1" value="1.0">
-        <p id="lineHeightValue">ความสูงของบรรทัด: 1.0</p>
+        <p id="lineHeightValue">ความสูงของบรรทัด: 1.2</p>
     </div>
 
     <button class="back-button" onclick="window.location.href='https://juckphai.github.io/juckim/01.html'">กลับสู่หน้าหลัก</button>
