@@ -81,13 +81,13 @@
         }
 #resultContainer {
     display: none;
-    margin: 20px auto; /* จัดกลางและมีระยะห่างด้านบนล่าง */
+    margin: 20px auto;
     max-width: 600px;
     background-color: #FEFEF0;
     border: 2px solid #4CAF50;
-    padding: 10px; /* ระยะห่างภายในทุกด้าน 10px */
+    padding: 10px;
     border-radius: 10px;
-    width: fit-content; /* ปรับความกว้างให้พอดีกับเนื้อหา */
+    width: fit-content;
     text-align: center;
     box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
     position: relative;
@@ -194,9 +194,9 @@
             document.getElementById("convertButton").addEventListener("click", convertNumber);
             document.getElementById("lineHeightSlider").addEventListener("input", updateLineHeight);
             
-            // ตั้งค่าเริ่มต้นของ slider
-            document.getElementById("lineHeightSlider").value = 1.2;
-            document.getElementById("lineHeightValue").textContent = "ความสูงของบรรทัด: 1.2";
+            // ตั้งค่าเริ่มต้นของ slider เป็น 1.0
+            document.getElementById("lineHeightSlider").value = 1.0;
+            document.getElementById("lineHeightValue").textContent = "ความสูงของบรรทัด: 1.0";
         });
 
         function sortDigits(str) {
@@ -276,7 +276,7 @@
             const fontSizeTranslation = "14px";
 
             let resultHtml = `
-            <div id="resultContent" style="position: relative; text-align: center; line-height: 1.2;">
+            <div id="resultContent" style="position: relative; text-align: center; line-height: 1.0;">
                 <h2 class="blue" style="font-size: ${fontSizeTopic}; margin: 0;">${selectedTopic}</h2>
                 <p class="blue" style="font-size: ${fontSizeDate}; margin: 5px 0;">${displayDate}</p>
                 <h2 class="blue" style="font-size: ${fontSizeNumber};">
@@ -298,7 +298,8 @@
             resultContainer.innerHTML = resultHtml;
             resultContainer.style.display = "block";
             
-            // เรียกใช้ฟังก์ชันตั้งค่าความสูงของบรรทัดเริ่มต้น
+            // ตั้งค่า lineHeight เริ่มต้นเป็น 1.0
+            document.getElementById("lineHeightSlider").value = 1.0;
             updateLineHeight();
         }
     </script>
@@ -358,8 +359,8 @@
     
     <div style="text-align: center; margin: 10px auto; max-width: 600px;">
         <label for="lineHeightSlider">ปรับขนาดบรรทัด:</label>
-        <input type="range" id="lineHeightSlider" min="0.5" max="2.5" step="0.1" value="1.2">
-        <p id="lineHeightValue">ความสูงของบรรทัด: 1.2</p>
+        <input type="range" id="lineHeightSlider" min="0.5" max="2.5" step="0.1" value="1.0">
+        <p id="lineHeightValue">ความสูงของบรรทัด: 1.0</p>
     </div>
 
     <button class="back-button" onclick="window.location.href='https://juckphai.github.io/juckim/01.html'">กลับสู่หน้าหลัก</button>
