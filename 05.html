@@ -57,32 +57,45 @@
         h2.blue {
             font-size: 28px;
         }
-        .circle {
-            display: inline-block;
-            border: 3px solid orange;
-            border-radius: 50%;
-            font-size: 20px;
-            width: 40px;
-            height: 40px;
-            text-align: center;
-            line-height: 42px;
-            margin: 0 5px;
-            position: relative;
-            z-index: 1;
-        }
-        .square {
-            display: inline-block;
-            border: 3px solid red;
-            font-size: 20px;
-            width: 60px;
-            height: 40px;
-            text-align: center;
-            line-height: 42px;
-            margin: 0 5px;
-            box-sizing: border-box;
-            position: relative;
-            z-index: 1;
-        }
+    .circle {
+        display: inline-block;
+        border: 3px solid red;
+        border-radius: 50%;
+        font-size: 32px; /* ปรับจาก 20px เป็น 32px */
+        width: 60px;    /* ปรับจาก 40px เป็น 60px */
+        height: 60px;   /* ปรับจาก 40px เป็น 60px */
+        text-align: center;
+        line-height: 60px; /* ปรับจาก 42px เป็น 60px */
+        margin: 0 5px;
+        position: relative;
+        z-index: 1;
+    }
+    .square {
+        display: inline-block;
+        border: 3px solid red;
+        font-size: 32px; /* ปรับจาก 20px เป็น 32px */
+        width: 90px;    /* ปรับจาก 60px เป็น 90px */
+        height: 60px;   /* ปรับจาก 40px เป็น 60px */
+        text-align: center;
+        line-height: 60px; /* ปรับจาก 42px เป็น 60px */
+        margin: 0 5px;
+        box-sizing: border-box;
+        position: relative;
+        z-index: 1;
+    }
+    .square-two {
+        display: inline-block;
+        border: 3px solid red;
+        font-size: 32px;
+        width: 60px;    /* ความกว้างสำหรับสองตัว */
+        height: 60px;
+        text-align: center;
+        line-height: 60px;
+        margin: 0 5px;
+        box-sizing: border-box;
+        position: relative;
+        z-index: 1;
+    }
         .six-digit-frame {
             display: inline-block;
             background-color: white;
@@ -94,7 +107,7 @@
             line-height: 34px;
             text-align: center;
             border: 2px solid blue;
-            border-radius: 1px;
+            border-radius: 30px;
             margin: 0.5px;
         }
         input[type="text"] {
@@ -196,7 +209,7 @@
                 <div style="text-align: center; margin-top: 10px;">
                     ${sixDigitHtml}
                 </div>
-                <p class="blue" style="letter-spacing: 2px;">
+                <p class="blue" style="letter-spacing: 2px; font-size: 32px;"> <!-- เพิ่ม font-size: 32px; -->
                     บน <span style="color: green;" id="threeDigits">${threeDigits}</span> 
                     ล่าง <span style="color: blue;" id="twoDigits">${twoDigits}</span>
                 </p>
@@ -232,13 +245,12 @@
         }
     }
 
-    // Function to create a circle around two top digits (last two digits of three digits)
-    function createCircleTop() {
+    function createSquareTop() {
         const threeDigits = document.getElementById("resultContainer").querySelector("#threeDigits");
         if (threeDigits) {
-            const digits = threeDigits.textContent.slice(-2);
-            const hundredsDigit = threeDigits.textContent.slice(0, 1);
-            threeDigits.innerHTML = `${hundredsDigit}<span class="circle">${digits}</span>`;
+            const digits = threeDigits.textContent.slice(-2); // เลขสองตัวหลัง
+            const hundredsDigit = threeDigits.textContent.slice(0, 1); // เลขตัวแรก
+            threeDigits.innerHTML = `${hundredsDigit}<span class="square-two">${digits}</span>`;
         } else {
             alert("กรุณากรอกตัวเลข 6 หลักก่อน");
         }
@@ -260,7 +272,7 @@
         setDefaultDate();
         document.getElementById("convertButton").addEventListener("click", convertNumber);
         document.getElementById("circleButton").addEventListener("click", createCircle);
-        document.getElementById("circleTopButton").addEventListener("click", createCircleTop);
+        document.getElementById("circleTopButton").addEventListener("click", createSquareTop); // เปลี่ยนจาก createCircleTop
         document.getElementById("squareButton").addEventListener("click", createSquare);
     });
 </script>
