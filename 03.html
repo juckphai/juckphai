@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ฟอร์มแปลตัวเลข 2 ตัว</title>
+    <title>ฟอร์มแปลตัวเลข 3 ตัว</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -150,8 +150,8 @@
         }
 
         #lineHeightSlider {
-            width: 100%;
-            margin: 10px 0;
+            width: 80%;
+            margin: 10px auto;
         }
         #lineHeightValue {
             font-size: 16px;
@@ -165,17 +165,31 @@
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
         });
+        
         // Function to update line height based on slider value
         function updateLineHeight() {
             const lineHeight = document.getElementById("lineHeightSlider").value;
             const resultContent = document.getElementById("resultContent");
+            
+            // ตั้งค่าความสูงของบรรทัดให้กับทุกองค์ประกอบใน resultContent
+            const elements = resultContent.querySelectorAll('*');
+            elements.forEach(element => {
+                element.style.lineHeight = lineHeight;
+            });
+            
+            // ตั้งค่าความสูงของบรรทัดให้กับ resultContent เอง
             resultContent.style.lineHeight = lineHeight;
+            
             document.getElementById("lineHeightValue").textContent = `ความสูงของบรรทัด: ${lineHeight}`;
         }
 
         document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("convertButton").addEventListener("click", convertNumber);
             document.getElementById("lineHeightSlider").addEventListener("input", updateLineHeight);
+            
+            // ตั้งค่าค่าเริ่มต้น
+            document.getElementById("lineHeightSlider").value = 1.2;
+            document.getElementById("lineHeightValue").textContent = "ความสูงของบรรทัด: 1.2";
         });
 
         function sortPair(pair) {
@@ -658,6 +672,7 @@ const additionalNumbersForThirdSetText = finalAdditionalNumbers.length > 0
     ? finalAdditionalNumbers.join(' - ')
     : '<span style="color: red;">ไม่มีชุดตัวเลขเพิ่ม</span>';
 
+const resultContainer = document.getElementById("resultContainer");
 resultContainer.innerHTML = `
 <div id="resultContent" style="position: relative; text-align: center; font-size: 18px; line-height: 1.2; margin-top: 10px; color: blue;">
     <!-- หัวข้อ -->
@@ -696,6 +711,8 @@ resultContainer.innerHTML = `
 `;
 resultContainer.style.display = 'block';
 
+// เรียกใช้ฟังก์ชันเพื่อตั้งค่าความสูงของบรรทัดเริ่มต้น
+updateLineHeight();
 }
 
         document.getElementById("convertButton").addEventListener("click", convertNumber);
@@ -750,7 +767,7 @@ resultContainer.style.display = 'block';
         </div>
         <!-- Convert Button -->
         <div style="text-align: center; margin-top: 10px;">
-            <button onclick="convertNumber()" style="font-size: 18px; padding: 10px;">แปลตัวเลข</button>
+            <button id="convertButton" style="font-size: 18px; padding: 10px;">แปลตัวเลข</button>
         </div>
 
         <!-- Note Input -->
@@ -771,12 +788,11 @@ resultContainer.style.display = 'block';
 <label for="lineHeightSlider">ปรับขนาดบรรทัด:</label>
 <input type="range" 
        id="lineHeightSlider" 
-       min="0" 
+       min="0.5" 
        max="2" 
        step="0.1" 
-       value="1" 
-       onchange="updateLineHeight()">
-<p>ค่าปัจจุบัน: <span id="lineHeightValue">0.3</span></p>
+       value="1.2">
+<p id="lineHeightValue">ความสูงของบรรทัด: 1.2</p>
 
     <!-- Back Button -->
         <button class="back-button" onclick="window.location.href='https://juckphai.github.io/juckim/01.html'">กลับสู่หน้าหลัก</button>
