@@ -185,14 +185,14 @@
             document.getElementById("lineHeightValue").textContent = `ความสูงของบรรทัด: ${lineHeight}`;
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
-            document.getElementById("convertButton").addEventListener("click", convertNumber);
-            document.getElementById("lineHeightSlider").addEventListener("input", updateLineHeight);
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("convertButton").addEventListener("click", convertNumber);
+        document.getElementById("lineHeightSlider").addEventListener("input", updateLineHeight);
             
-            // ตั้งค่าเริ่มต้นของ slider ที่ 1.00
-            document.getElementById("lineHeightSlider").value = 1.0;
-            document.getElementById("lineHeightValue").textContent = "ความสูงของบรรทัด: 1.0";
-        });
+            // ตั้งค่าเริ่มต้นของ slider ที่ 1.2
+        document.getElementById("lineHeightSlider").value = 1.2;
+        document.getElementById("lineHeightValue").textContent = "ความสูงของบรรทัด: 1.2";
+    });
 
         function sortPair(pair) {
             const digits = pair.split('');
@@ -714,10 +714,10 @@ resultContainer.style.display = 'block';
 
 
             // ตั้งค่าความสูงของบรรทัดเริ่มต้นที่ 1.00
-            document.getElementById("lineHeightSlider").value = 1.0;
-            document.getElementById("lineHeightValue").textContent = "ความสูงของบรรทัด: 1.0";
-            updateLineHeight(); // เรียกใช้ฟังก์ชันเพื่ออัปเดตทันที
-        }
+        document.getElementById("lineHeightSlider").value = 1.2;
+        document.getElementById("lineHeightValue").textContent = "ความสูงของบรรทัด: 1.2";
+        updateLineHeight(); // เรียกใช้ฟังก์ชันเพื่ออัปเดตทันที
+    }
     </script>
 </head>
 <div class="form-container">
