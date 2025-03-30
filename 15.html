@@ -69,6 +69,7 @@
             font-size: 16px;
             color: #2c3e50;
             line-height: 2;
+            text-align: center;
         }
 
         /* Container Styles */
@@ -101,21 +102,21 @@
             min-height: 300px;
             box-sizing: border-box;
         }
-    #resultContainer::before {
-        content: "";
-        background-image: url('logo.png');
-        background-size: 90% auto;
-        background-repeat: no-repeat;
-        background-position: center top 15px;
-        opacity: 0.3;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 0;
-        margin: auto;
-    }
+        #resultContainer::before {
+            content: "";
+            background-image: url('logo.png');
+            background-size: 90% auto;
+            background-repeat: no-repeat;
+            background-position: center top 15px;
+            opacity: 0.3;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+            margin: auto;
+        }
         /* Result Content Styles */
         #resultContent {
             position: relative;
@@ -125,13 +126,13 @@
         #resultContent h2 {
             font-size: 22px;
             margin: 6px 0;
-            line-height: 2;
+            line-height: inherit;
         }
         
         #resultContent h3 {
             font-size: 20px;
             margin: 6px 0;
-            line-height: 2;
+            line-height: inherit;
         }
         
         #resultContent .number-pairs {
@@ -159,160 +160,6 @@
             }
         }
     </style>
-
-    <script>
-        // ปิดการคลิกขวา
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-        });
-        // Function to update line height based on slider value
-        function updateLineHeight() {
-            const lineHeight = document.getElementById("lineHeightSlider").value;
-            const resultContent = document.getElementById("resultContent");
-            resultContent.style.lineHeight = lineHeight;
-            document.getElementById("lineHeightValue").textContent = `ความสูงของบรรทัด: ${lineHeight}`;
-        }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            document.getElementById("convertButton").addEventListener("click", convertNumber);
-            document.getElementById("lineHeightSlider").addEventListener("input", updateLineHeight);
-        });
-
-        function sortPair(pair) {
-            const digits = pair.split('');
-            return digits[0] > digits[1] ? digits[1] + digits[0] : pair;
-        }
-
-function getThaiDate(date = new Date()) {
-    const daysOfWeek = ["อาทิตย์", "จันทร์", "อังคาร", "พุธ", "พฤหัสบดี", "ศุกร์", "เสาร์"];
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"][date.getMonth()];
-    const year = date.getFullYear() + 543;
-    const dayOfWeek = daysOfWeek[date.getDay()];  // หา วันในสัปดาห์
-    return `วัน${dayOfWeek}ที่ ${day} ${month} พ.ศ. ${year}`;
-}
-
-
-        function getThaiTime() {
-            const now = new Date();
-            const time = String(now.getHours()).padStart(2, '0') + '.' + String(now.getMinutes()).padStart(2, '0');
-            return `เวลา ${time} น.`;
-        }
-
-function convertNumber() {
-    const num = document.getElementById("numberInput").value;
-    const topicSelect = document.getElementById("topicSelect");
-    const selectedTopic = topicSelect.value;
-    const personSelect = document.getElementById("personSelect");
-    const selectedPerson = personSelect.value;
-    let noteInput = document.getElementById("noteInput").value;
-    const dateInputValue = document.getElementById("dateInput").value;
-    const dateInput = dateInputValue ? new Date(dateInputValue) : new Date();
-
-    if (!noteInput.trim()) {
-        noteInput = '<span style="color: red;">No remarks</span>';
-    }
-
-    if (num.length !== 3 || isNaN(num)) {
-        alert("กรุณาป้อนตัวเลข 3 หลัก");
-        return;
-    }
-
-    // ฟังก์ชันสำหรับแปลงตัวเลข (บวกลบ 1 และตัวมันเอง)
-    const transformRules = (digit) => {
-        const numDigit = parseInt(digit);
-        // ถ้า digit เป็น 0 ให้แปลงเป็น 9 เมื่อลบ 1
-        const prevDigit = numDigit === 0 ? 9 : numDigit - 1;
-        // ถ้า digit เป็น 9 ให้แปลงเป็น 0 เมื่อบวก 1
-        const nextDigit = numDigit === 9 ? 0 : numDigit + 1;
-        return [String(prevDigit), String(numDigit), String(nextDigit)];
-    };
-
-    // ฟังก์ชันสำหรับจัดเรียงตัวเลข 2 หลัก (น้อยเป็นหลักสิบ)
-    const sortTwoDigits = (pair) => {
-        const digits = pair.split('');
-        digits.sort((a, b) => a - b); // เรียงจากน้อยไปมาก
-        return digits.join('');
-    };
-
-    // ฟังก์ชันสำหรับจัดเรียงตัวเลข 3 หลัก (น้อยไปมาก)
-    const sortThreeDigits = (triplet) => {
-        const digits = triplet.split('');
-        digits.sort((a, b) => a - b); // เรียงจากน้อยไปมาก
-        return digits.join('');
-    };
-
-    const firstDigit = num[0]; // หลักร้อย
-    const secondDigit = num[1]; // หลักสิบ
-    const thirdDigit = num[2]; // หลักหน่วย
-
-    // จัดชุดเด่นสองตัว (จับคู่ตัวเลข 3 หลักโดยไม่บวกลบ)
-    const dominantTwoDigitPairs = [
-        firstDigit + secondDigit, // 12
-        firstDigit + thirdDigit,  // 13
-        secondDigit + thirdDigit  // 23
-    ].map(pair => sortTwoDigits(pair)); // จัดเรียงตัวเลข 2 หลัก
-    const uniqueDominantTwoDigitPairs = [...new Set(dominantTwoDigitPairs)].sort();
-
-    // จัดชุดสองตัวทั้งหมด (ใช้เงื่อนไขบวกลบ 1)
-    const twoDigitPairs = [
-        ...transformRules(secondDigit).map(d => firstDigit + d), // หลักร้อยคงที่
-        ...transformRules(firstDigit).map(d => d + secondDigit), // หลักสิบคงที่
-        ...transformRules(thirdDigit).map(d => secondDigit + d), // หลักสิบคงที่
-        ...transformRules(secondDigit).map(d => d + thirdDigit)  // หลักหน่วยคงที่
-    ].map(pair => sortTwoDigits(pair)); // จัดเรียงตัวเลข 2 หลัก
-    const uniqueTwoDigitPairs = [...new Set(twoDigitPairs)].sort();
-
-    // ตัดชุดเด่นออกจากชุดสองตัวทั้งหมด
-    const filteredTwoDigitPairs = uniqueTwoDigitPairs.filter(pair => 
-        !uniqueDominantTwoDigitPairs.includes(pair)
-    );
-
-    // จัดชุดสามตัว
-    const threeDigitPairs = [
-        ...transformRules(thirdDigit).map(d => firstDigit + secondDigit + d), // หลักร้อยและหลักสิบคงที่
-        ...transformRules(firstDigit).map(d => d + secondDigit + thirdDigit), // หลักสิบและหลักหน่วยคงที่
-        ...transformRules(secondDigit).map(d => firstDigit + d + thirdDigit) // หลักร้อยและหลักหน่วยคงที่
-    ].map(triplet => sortThreeDigits(triplet)); // จัดเรียงตัวเลข 3 หลัก
-    const uniqueThreeDigitPairs = [...new Set(threeDigitPairs)].sort();
-
-    // แสดงผลลัพธ์
-    const dateDisplay = dateInputValue ? getThaiDate(dateInput) : getThaiDate();
-
-    const resultHtml = `
-              <div id="resultContent" style="position: relative; text-align: center; font-size: 20px; line-height: 1.0; margin-top: 10px; color: blue;">
-    <!-- หัวข้อ -->
-    <p style="font-size: 18px; margin: 0 0 15px 0; font-weight: bold; line-height: 1;">
-        ${selectedTopic}
-    </p>
-    <!-- วันที่ -->
-    <p style="font-size: 18px; margin: 0 0 15px 0; line-height: 1;">
-        ${dateInputValue ? getThaiDate(dateInput) : getThaiDate(new Date())}
-    </p>
-    <!-- ตัวเลข 3 ตัว -->
-    <h2 style="font-size: 20px; margin: 0 0 20px 0; line-height: 1;">
-        ตัวเลข 3 ตัว <span style="color: red;">${num}</span> By : ${selectedPerson}
-    </h2>
-        <h2 style="font-size: 18px; color: blue; line-height: 1;">จัดชุดเด่น 2 ตัว</h2>
-        <h2 style="font-size: 18px; color: blue; font-weight: normal; line-height: 1;">${uniqueDominantTwoDigitPairs.join(' - ')}</h2>
-        <h2 style="font-size: 18px; color: blue; line-height: 1;">จัดชุดรอง 2 ตัว</h2>
-        <h2 style="font-size: 18px; color: blue; font-weight: normal; line-height: 1;">${filteredTwoDigitPairs.join(' - ')}</h2>
-        <h2 style="font-size: 18px; color: blue; line-height: 1;">จัดชุด 3 ตัว</h2>
-        <h2 style="font-size: 16px; color: blue; font-weight: normal; line-height: 1;">${uniqueThreeDigitPairs.join(' - ')}</h2>
-        <h2 style="font-size: 20px; color: red; line-height: 1;">แนวทางเท่านั้น</h2>
-        <p style="font-size: 14px; color: blue; line-height: 1;">
-            <strong>แปล:</strong> ${getThaiDate()} ${getThaiTime()}
-        </p>
-        <p style="font-size: 18px; color: blue; line-height: 1;">หมายเหตุ : <span style="color: red;">${noteInput}</span></p>
-    </div>
-    `;
-
-    const resultContainer = document.getElementById("resultContainer");
-    resultContainer.innerHTML = resultHtml;
-    resultContainer.style.display = "block";
-}
-        document.getElementById("convertButton").addEventListener("click", convertNumber);
-    </script>
 </head>
 <body>
 <div class="form-container">
@@ -353,8 +200,8 @@ function convertNumber() {
             <!-- Person Selection on the Right -->
             <div style="display: inline-block;">
                 <select id="personSelect" style="font-size: 18px; padding: 15px;">
-<option value="พ อ จ">พ อ จ</option>
-		    <option value="@">@</option>
+                    <option value="พ อ จ">พ อ จ</option>
+                    <option value="@">@</option>
                     <option value="Team">Team</option>
                     <option value="โรงงาน">โรงงาน</option>
                     <option value="Udon Don">Udon Don</option>
@@ -364,7 +211,7 @@ function convertNumber() {
         </div>
         <!-- Convert Button -->
         <div style="text-align: center; margin-top: 10px;">
-            <button onclick="convertNumber()" style="font-size: 18px; padding: 10px;">แปลตัวเลข</button>
+            <button id="convertButton" style="font-size: 18px; padding: 10px;">แปลตัวเลข</button>
         </div>
 
         <!-- Note Input -->
@@ -380,25 +227,187 @@ function convertNumber() {
     </div>
 
     <!-- Result Container -->
-<div id="resultContainer" style="text-align: center; margin-top: 20px;"></div>
+    <div id="resultContainer" style="text-align: center; margin-top: 20px;"></div>
 
-<label for="lineHeightSlider">ปรับขนาดบรรทัด:</label>
-<input type="range" 
-       id="lineHeightSlider" 
-       min="0" 
-       max="2" 
-       step="0.1" 
-       value="1" 
-       onchange="updateLineHeight()">
-<p>ค่าปัจจุบัน: <span id="lineHeightValue">0.3</span></p>
+    <label for="lineHeightSlider">ปรับขนาดบรรทัด:</label>
+    <input type="range" 
+           id="lineHeightSlider" 
+           min="0.8" 
+           max="2" 
+           step="0.1" 
+           value="1.5" 
+           oninput="updateLineHeight()">
+    <p id="lineHeightValue">ค่าปัจจุบัน: 1.5</p>
 
     <!-- Back Button -->
-        <button class="back-button" onclick="window.location.href='https://juckphai.github.io/juckim/01.html'">กลับสู่หน้าหลัก</button>
+    <button class="back-button" onclick="window.location.href='https://juckphai.github.io/juckim/01.html'">กลับสู่หน้าหลัก</button>
 </div>
-
 
     <footer>
         &copy; 2024 Juckphai. All Rights Reserved.
     </footer>
+
+    <script>
+        // ปิดการคลิกขวา
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        // Function to update line height based on slider value
+        function updateLineHeight() {
+            const lineHeight = document.getElementById("lineHeightSlider").value;
+            const resultContent = document.getElementById("resultContent");
+            if (resultContent) {
+                resultContent.style.lineHeight = lineHeight;
+            }
+            document.getElementById("lineHeightValue").textContent = `ค่าปัจจุบัน: ${lineHeight}`;
+        }
+
+        function sortPair(pair) {
+            const digits = pair.split('');
+            return digits[0] > digits[1] ? digits[1] + digits[0] : pair;
+        }
+
+        function getThaiDate(date = new Date()) {
+            const daysOfWeek = ["อาทิตย์", "จันทร์", "อังคาร", "พุธ", "พฤหัสบดี", "ศุกร์", "เสาร์"];
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"][date.getMonth()];
+            const year = date.getFullYear() + 543;
+            const dayOfWeek = daysOfWeek[date.getDay()];  // หา วันในสัปดาห์
+            return `วัน${dayOfWeek}ที่ ${day} ${month} พ.ศ. ${year}`;
+        }
+
+        function getThaiTime() {
+            const now = new Date();
+            const time = String(now.getHours()).padStart(2, '0') + '.' + String(now.getMinutes()).padStart(2, '0');
+            return `เวลา ${time} น.`;
+        }
+
+        function convertNumber() {
+            const num = document.getElementById("numberInput").value;
+            const topicSelect = document.getElementById("topicSelect");
+            const selectedTopic = topicSelect.value;
+            const personSelect = document.getElementById("personSelect");
+            const selectedPerson = personSelect.value;
+            let noteInput = document.getElementById("noteInput").value;
+            const dateInputValue = document.getElementById("dateInput").value;
+            const dateInput = dateInputValue ? new Date(dateInputValue) : new Date();
+
+            if (!noteInput.trim()) {
+                noteInput = '<span style="color: red;">No remarks</span>';
+            }
+
+            if (num.length !== 3 || isNaN(num)) {
+                alert("กรุณาป้อนตัวเลข 3 หลัก");
+                return;
+            }
+
+            // ฟังก์ชันสำหรับแปลงตัวเลข (บวกลบ 1 และตัวมันเอง)
+            const transformRules = (digit) => {
+                const numDigit = parseInt(digit);
+                // ถ้า digit เป็น 0 ให้แปลงเป็น 9 เมื่อลบ 1
+                const prevDigit = numDigit === 0 ? 9 : numDigit - 1;
+                // ถ้า digit เป็น 9 ให้แปลงเป็น 0 เมื่อบวก 1
+                const nextDigit = numDigit === 9 ? 0 : numDigit + 1;
+                return [String(prevDigit), String(numDigit), String(nextDigit)];
+            };
+
+            // ฟังก์ชันสำหรับจัดเรียงตัวเลข 2 หลัก (น้อยเป็นหลักสิบ)
+            const sortTwoDigits = (pair) => {
+                const digits = pair.split('');
+                digits.sort((a, b) => a - b); // เรียงจากน้อยไปมาก
+                return digits.join('');
+            };
+
+            // ฟังก์ชันสำหรับจัดเรียงตัวเลข 3 หลัก (น้อยไปมาก)
+            const sortThreeDigits = (triplet) => {
+                const digits = triplet.split('');
+                digits.sort((a, b) => a - b); // เรียงจากน้อยไปมาก
+                return digits.join('');
+            };
+
+            const firstDigit = num[0]; // หลักร้อย
+            const secondDigit = num[1]; // หลักสิบ
+            const thirdDigit = num[2]; // หลักหน่วย
+
+            // จัดชุดเด่นสองตัว (จับคู่ตัวเลข 3 หลักโดยไม่บวกลบ)
+            const dominantTwoDigitPairs = [
+                firstDigit + secondDigit, // 12
+                firstDigit + thirdDigit,  // 13
+                secondDigit + thirdDigit  // 23
+            ].map(pair => sortTwoDigits(pair)); // จัดเรียงตัวเลข 2 หลัก
+            const uniqueDominantTwoDigitPairs = [...new Set(dominantTwoDigitPairs)].sort();
+
+            // จัดชุดสองตัวทั้งหมด (ใช้เงื่อนไขบวกลบ 1)
+            const twoDigitPairs = [
+                ...transformRules(secondDigit).map(d => firstDigit + d), // หลักร้อยคงที่
+                ...transformRules(firstDigit).map(d => d + secondDigit), // หลักสิบคงที่
+                ...transformRules(thirdDigit).map(d => secondDigit + d), // หลักสิบคงที่
+                ...transformRules(secondDigit).map(d => d + thirdDigit)  // หลักหน่วยคงที่
+            ].map(pair => sortTwoDigits(pair)); // จัดเรียงตัวเลข 2 หลัก
+            const uniqueTwoDigitPairs = [...new Set(twoDigitPairs)].sort();
+
+            // ตัดชุดเด่นออกจากชุดสองตัวทั้งหมด
+            const filteredTwoDigitPairs = uniqueTwoDigitPairs.filter(pair => 
+                !uniqueDominantTwoDigitPairs.includes(pair)
+            );
+
+            // จัดชุดสามตัว
+            const threeDigitPairs = [
+                ...transformRules(thirdDigit).map(d => firstDigit + secondDigit + d), // หลักร้อยและหลักสิบคงที่
+                ...transformRules(firstDigit).map(d => d + secondDigit + thirdDigit), // หลักสิบและหลักหน่วยคงที่
+                ...transformRules(secondDigit).map(d => firstDigit + d + thirdDigit) // หลักร้อยและหลักหน่วยคงที่
+            ].map(triplet => sortThreeDigits(triplet)); // จัดเรียงตัวเลข 3 หลัก
+            const uniqueThreeDigitPairs = [...new Set(threeDigitPairs)].sort();
+
+            // แสดงผลลัพธ์
+            const dateDisplay = dateInputValue ? getThaiDate(dateInput) : getThaiDate();
+            
+            // รับค่าความสูงบรรทัดปัจจุบันจาก slider
+            const currentLineHeight = document.getElementById("lineHeightSlider").value;
+
+            const resultHtml = `
+                <div id="resultContent" style="position: relative; text-align: center; font-size: 20px; line-height: ${currentLineHeight}; margin-top: 10px; color: blue;">
+                    <!-- หัวข้อ -->
+                    <p style="font-size: 20px; margin: 0 0 15px 0; font-weight: bold;">
+                        ${selectedTopic}
+                    </p>
+                    <!-- วันที่ -->
+                    <p style="font-size: 18px; margin: 0 0 15px 0;">
+                        ${dateInputValue ? getThaiDate(dateInput) : getThaiDate(new Date())}
+                    </p>
+                    <!-- ตัวเลข 3 ตัว -->
+                    <h2 style="font-size: 20px; margin: 0 0 20px 0;">
+                        ตัวเลข 3 ตัว <span style="color: red;">${num}</span> By : ${selectedPerson}
+                    </h2>
+                    <h2 style="font-size: 18px; color: blue;">จัดชุดเด่น 2 ตัว</h2>
+                    <h2 style="font-size: 18px; color: blue; font-weight: normal;">${uniqueDominantTwoDigitPairs.join(' - ')}</h2>
+                    <h2 style="font-size: 18px; color: blue;">จัดชุดรอง 2 ตัว</h2>
+                    <h2 style="font-size: 18px; color: blue; font-weight: normal;">${filteredTwoDigitPairs.join(' - ')}</h2>
+                    <h2 style="font-size: 18px; color: blue;">จัดชุด 3 ตัว</h2>
+                    <h2 style="font-size: 16px; color: blue; font-weight: normal;">${uniqueThreeDigitPairs.join(' - ')}</h2>
+                    <h2 style="font-size: 20px; color: red;">แนวทางเท่านั้น</h2>
+                    <p style="font-size: 14px; color: blue;">
+                        <strong>แปล:</strong> ${getThaiDate()} ${getThaiTime()}
+                    </p>
+                    <p style="font-size: 18px; color: blue;">หมายเหตุ : <span style="color: red;">${noteInput}</span></p>
+                </div>
+            `;
+
+            const resultContainer = document.getElementById("resultContainer");
+            resultContainer.innerHTML = resultHtml;
+            resultContainer.style.display = "block";
+        }
+
+        // ตั้งค่าเริ่มต้นเมื่อโหลดหน้าเว็บ
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("convertButton").addEventListener("click", convertNumber);
+            document.getElementById("lineHeightSlider").addEventListener("input", updateLineHeight);
+            
+            // ตั้งค่าเริ่มต้นของ slider ที่ 1.5
+            document.getElementById("lineHeightSlider").value = "1.5";
+            document.getElementById("lineHeightValue").textContent = "ค่าปัจจุบัน: 1.5";
+        });
+    </script>
 </body>
 </html>
