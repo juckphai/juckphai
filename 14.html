@@ -44,11 +44,11 @@
             margin: 8px 0;
             line-height: inherit;
         }
-#resultContent .date-time {
-    font-size: 14px; /* ลดจาก 16px */
-    margin: 6px 0;
-    line-height: inherit;
-}
+        #resultContent .date-time {
+            font-size: 14px;
+            margin: 6px 0;
+            line-height: inherit;
+        }
         .container {
             max-width: 600px;
             margin-top: 20px;
@@ -97,49 +97,49 @@
             color: #95a5a6;
             line-height: 1.2;
         }
-     .form-container {
-        border: 2px solid orange;
-        background-color: #ffffff;
-        margin: 20px auto;
-        padding: 15px;
-        border-radius: 10px;
-        width: 90%;
-        max-width: 600px;
-        text-align: center;
-        box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
-        position: relative;
-        box-sizing: border-box;
-    }
+        .form-container {
+            border: 2px solid orange;
+            background-color: #ffffff;
+            margin: 20px auto;
+            padding: 15px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
+            position: relative;
+            box-sizing: border-box;
+        }
 
-    #resultContainer {
-        display: none;
-        margin: 20px auto;
-        max-width: 600px;
-        background-color: #FEFEF0;
-        border: 2px solid #4CAF50;
-        padding: 15px;
-        border-radius: 10px;
-        width: 90%;
-        text-align: center;
-        box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
-        position: relative;
-        min-height: 300px;
-        box-sizing: border-box;
-    }
-
-    /* ปรับสำหรับหน้าจอโทรศัพท์ */
-    @media only screen and (max-width: 600px) {
-        .form-container, 
         #resultContainer {
-            width: calc(100% - 20px); /* ห่างจากขอบด้านละ 10px */
-            margin-left: 10px;
-            margin-right: 10px;
+            display: none;
+            margin: 20px auto;
+            max-width: 600px;
+            background-color: #FEFEF0;
+            border: 2px solid #4CAF50;
+            padding: 15px;
+            border-radius: 10px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
+            position: relative;
+            min-height: 300px;
+            box-sizing: border-box;
         }
-        
-        input, select, button {
-            width: calc(100% - 20px);
+
+        /* ปรับสำหรับหน้าจอโทรศัพท์ */
+        @media only screen and (max-width: 600px) {
+            .form-container, 
+            #resultContainer {
+                width: calc(100% - 20px);
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+            
+            input, select, button {
+                width: calc(100% - 20px);
+            }
         }
-    }
         #resultContainer::before {
             content: "";
             background-image: url('logo.png');
@@ -159,13 +159,14 @@
             line-height: inherit;
         }
         #lineHeightSlider {
-            width: 100%;
-            margin: 10px 0;
+            width: 90%;
+            margin: 10px auto;
         }
         #lineHeightValue {
             font-size: 16px;
             color: #2c3e50;
             line-height: 1.2;
+            text-align: center;
         }
     </style>
 </head>
@@ -221,8 +222,8 @@
     </div>
     <div id="resultContainer" style="display: none;"></div>
     <label for="lineHeightSlider">ปรับความสูงของบรรทัด:</label>
-    <input type="range" id="lineHeightSlider" min="0" max="2" step="0.1" value="1" />
-    <p id="lineHeightValue">ความสูงของบรรทัด: 1</p>
+    <input type="range" id="lineHeightSlider" min="0.8" max="2" step="0.1" value="1.2" />
+    <p id="lineHeightValue">ความสูงของบรรทัด: 1.2</p>
 
     <button class="back-button" onclick="window.location.href='https://juckphai.github.io/juckim/01.html'">กลับสู่หน้าหลัก</button>
     <footer>
@@ -301,9 +302,12 @@
             // แสดงผลลัพธ์
             const dateInput = document.getElementById("dateInput").value;
             const dateDisplay = dateInput ? getThaiDate(new Date(dateInput)) : getThaiDate();
+            
+            // รับค่าความสูงบรรทัดปัจจุบันจาก slider
+            const currentLineHeight = document.getElementById("lineHeightSlider").value;
 
             const resultHtml = `
-<div id="resultContent" style="position: relative; text-align: center; line-height: 2.0;">
+<div id="resultContent" style="position: relative; text-align: center; line-height: ${currentLineHeight};">
     <h2 style="color: blue; margin-bottom: 5px;">${selectedTopic}</h2>
     <h3 style="color: blue; font-weight: normal; margin-bottom: 10px;">${dateDisplay}</h3>
     
@@ -346,6 +350,10 @@
         document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("convertButton").addEventListener("click", convertNumber);
             document.getElementById("lineHeightSlider").addEventListener("input", updateLineHeight);
+            
+            // ตั้งค่าเริ่มต้นของ slider ที่ 1.2
+            document.getElementById("lineHeightSlider").value = "1.2";
+            document.getElementById("lineHeightValue").textContent = "ความสูงของบรรทัด: 1.2";
         });
     </script>
 </body>
