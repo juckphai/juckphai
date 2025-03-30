@@ -5,82 +5,137 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ฟอร์มแปลตัวเลข 4 ตัว</title>
     <style>
+        /* Reset และปรับพื้นฐานให้คมชัด */
+        * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+        
         body {
-            font-family: Arial, sans-serif;
-            background-color: #fffde7;
+            font-family: 'Arial', sans-serif;
+            background-color: #fff9e6; /* ปรับพื้นหลังให้อ่อนลงเล็กน้อย */
             margin: 0;
             padding: 0;
-            line-height: 1.4;
+            line-height: 1.5;
+            color: #333; /* สีหลักเข้มขึ้น */
         }
+        
+        /* ปรับสีให้คมชัดมากขึ้น */
+        .blue {
+            color: #004080; /* น้ำเงินเข้ม */
+            font-weight: 600;
+        }
+        
+        #resultContent h2, 
+        #resultContent h3,
+        #resultContent p {
+            color: #003366; /* น้ำเงินเข้มมาก */
+            font-weight: 600;
+            text-shadow: none; /* ลบเงาที่อาจทำให้มัว */
+        }
+        
         h1 {
             text-align: center;
             font-size: 32px;
-            color: #2c3e50;
+            color: #000033; /* ใกล้สีดำ */
             margin-top: 20px;
-            line-height: 1.5;
+            line-height: 2;
+            font-weight: 700; /* หนาเต็มพิกัด */
+            letter-spacing: 0.5px; /* ระยะห่างตัวอักษร */
         }
-        input, select, button {
-            font-size: 18px;
-            padding: 10px;
-            width: 90%;
-            margin: 10px 0;
-            border-radius: 6px;
-            border: 1px solid #ddd;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.5;
-        }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            line-height: 1.5;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
+        
         label {
             font-size: 18px;
             margin-left: 5%;
-            color: #2c3e50;
-            line-height: 1.5;
+            color: #000033; /* ใกล้สีดำ */
+            line-height: 2;
+            font-weight: 600;
         }
+        
         footer {
             text-align: center;
             padding: 20px;
             font-size: 14px;
-            color: #95a5a6;
-            line-height: 1.5;
+            color: #666666; /* เทาเข้ม */
+            line-height: 2;
+            font-weight: 500;
         }
-    .form-container, 
-    #resultContainer {
-        border: 2px solid orange;
-        background-color: #ffffff;
-        margin: 20px auto;
-        padding: 20px;
-        border-radius: 10px;
-        width: 100%;
-        max-width: 600px;
-        text-align: center;
-        box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
-        line-height: 1.4;
-    }
+        
+        /* ปรับ Form Elements ให้คมชัด */
+        input, select, button {
+            font-size: 18px;
+            padding: 12px; /* เพิ่ม padding */
+            width: 90%;
+            margin: 10px auto;
+            border-radius: 6px;
+            border: 1px solid #999; /* เส้นขอบเข้มขึ้น */
+            display: block;
+            line-height: 1.5;
+            font-weight: 500;
+            background-color: #fff; /* พื้นหลังขาว */
+        }
+        
+        button {
+            background-color: #2a6f2f; /* เขียวเข้ม */
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: 600;
+            border: none;
+        }
+        
+        button:hover {
+            background-color: #1e5a23; /* เขียวเข้มกว่า */
+        }
+        
+        #lineHeightSlider {
+            width: 80%;
+            margin: 10px auto;
+        }
+        
+        #lineHeightValue {
+            font-size: 16px;
+            color: #000033; /* ใกล้สีดำ */
+            line-height: 2;
+            font-weight: 600;
+        }
+
+        /* ปรับ Container Styles */
+        .form-container {
+            border: 2px solid orange;
+            background-color: #ffffff;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
+            position: relative;
+            box-sizing: border-box;
+        }
+
         #resultContainer {
             display: none;
+            border: 2px solid #2a6f2f; /* เขียวเข้ม */
             background-color: #FEFEF0;
-            border: 2px solid #4CAF50;
-            width: 100%;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
             max-width: 600px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 80, 0, 0.15); /* เงาเข้มขึ้น */
             position: relative;
             min-height: 300px;
             box-sizing: border-box;
         }
+        
         #resultContainer::before {
             content: "";
             background-image: url('logo.png');
-            background-size: 100% auto;
+            background-size: 90% auto;
             background-repeat: no-repeat;
             background-position: center top 15px;
             opacity: 0.3;
@@ -140,19 +195,19 @@
             margin-top: 10px;
         }
         
-    @media only screen and (max-width: 600px) {
-        .form-container, 
-        #resultContainer {
-            width: calc(90% - 20px); /* ทำให้ความกว้างเท่ากัน */
-            margin: 10px; /* กำหนด margin ทั้งสี่ด้านให้เท่ากัน */
-            padding: 15px;
-            box-sizing: border-box; /* เพิ่มเพื่อให้ padding ไม่เพิ่มความกว้างรวม */
-        }
-        
-        input, select, button {
-            width: calc(100% - 20px);
-        }
+@media only screen and (max-width: 600px) {
+    .form-container, 
+    #resultContainer {
+        width: calc(100% - 20px); /* ทำให้ความกว้างเท่ากัน */
+        margin: 10px; /* กำหนด margin ทั้งสี่ด้านให้เท่ากัน */
+        padding: 15px;
+        box-sizing: border-box; /* เพิ่มเพื่อให้ padding ไม่เพิ่มความกว้างรวม */
     }
+    
+    input, select, button {
+        width: calc(100% - 20px);
+    }
+}
     </style>
     <script>
         document.addEventListener('contextmenu', function(e) {
@@ -294,8 +349,8 @@
         <div class="input-group form-group">
             <input type="text" id="numberInput" placeholder="กรอกตัวเลข 4 หลัก">
             <select id="personSelect">
-                <option value="@">@</option>
-                <option value="Team">Team</option>
+                <option value="@">@</option>              
+               <option value="Team">Team</option>
                 <option value="โรงงาน">โรงงาน</option>
                 <option value="Udon Don">Udon Don</option>
                 <option value="เจ้าที่">เจ้าที่</option>
@@ -347,7 +402,7 @@
         <p id="lineHeightValue">ความสูงของบรรทัด: 1.5</p>
     </div>
 
-       <button class="back-button" onclick="window.location.href='https://juckmanphai.github.io/juck/01.html'">กลับสู่หน้าหลัก</button>
-    <footer>&copy; 2024 Juckmanphai. All Rights Reserved.</footer>
+       <button class="back-button" onclick="window.location.href='https://juckphai.github.io/juckim/01.html'">กลับสู่หน้าหลัก</button>
+    <footer>&copy; 2024 Juckphai. All Rights Reserved.</footer>
 </body>
 </html>
