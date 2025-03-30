@@ -5,129 +5,158 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ฟอร์มแปลตัวเลข 3 ตัว</title>
     <style>
+        /* Base Styles */
         body {
             font-family: Arial, sans-serif;
             background-color: #fffde7;
             margin: 0;
             padding: 0;
+            line-height: 1.4;
         }
-
+        
         h1 {
             text-align: center;
             font-size: 32px;
             color: #2c3e50;
             margin-top: 20px;
+            line-height: 2;
         }
-
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 15px;
-            background-color: #fff;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 28px;
-            margin-top: 15px;
+        
+        label {
+            font-size: 18px;
+            margin-left: 5%;
+            color: #2c3e50;
+            line-height: 2;
         }
-
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            color: #95a5a6;
+            line-height: 2;
+        }
+        
+        /* Form Elements */
         input, select, button {
-            font-size: 20px;
-            padding: 12px; /* เพิ่มพื้นที่ภายในช่องกรอก */
-            width: 98%; /* เพิ่มความกว้าง */
-            margin: 12px 0; /* ลดระยะห่างระหว่างช่อง */
-            border-radius: 10px; /* มุมโค้งของช่องกรอก */
-            border: 1px solid #ccc;
+            font-size: 18px;
+            padding: 10px;
+            width: 90%;
+            margin: 10px auto;
+            border-radius: 6px;
+            border: 1px solid #ddd;
             display: block;
-            margin-left: auto;
-            margin-right: auto;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); /* เพิ่มเงา */
-            background-color: #f9f9f9; /* สีพื้นหลังของช่องกรอก */
-            transition: all 0.3s ease; /* เพิ่มเอฟเฟกต์เมื่อ hover */
+            line-height: 2;
         }
-
-        input:focus, select:focus {
-            border-color: #4CAF50;
-            font-size: 20px;
-            padding: 12px; /* เพิ่มพื้นที่ภายในช่องกรอก */
-            width: 98%; /* เพิ่มความกว้าง */
-            margin: 12px 0; /* ลดระยะห่างระหว่างช่อง */
-            border-radius: 20px; /* มุมโค้งของช่องกรอก */
-            border: 1px solid #ccc;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
+        
         button {
             background-color: #4CAF50;
             color: white;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-
+        
         button:hover {
             background-color: #45a049;
         }
-
-        button.back-button {
-            margin-top: 20px;
-            font-size: 20px;
-            max-width: 600px;
-            width: 100%;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
+        
+        #lineHeightSlider {
+            width: 80%;
+            margin: 10px auto;
         }
-
-        label {
-            font-size: 18px;
-            margin-left: 5%;
+        
+        #lineHeightValue {
+            font-size: 16px;
             color: #2c3e50;
+            line-height: 2;
         }
 
-        .blue {
-            color: blue;
-        }
-
-        .red {
-            color: red;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            font-size: 14px;
-            color: #95a5a6;
-        }
-
+        /* Container Styles */
         .form-container {
-            border: 2px solid orange;
-            background-color: #ffffff;
-            margin-top: 10px; /* ลดระยะขอบด้านบน */
-            margin-bottom: 10px; /* ลดระยะขอบด้านล่าง */
-            padding: 10px; /* ลดระยะห่างภายใน */
-            margin-left: 10px;
-            margin-right: 10px;
-            border-radius: 20px;
+            border: 2px solid #4CAF50;
+            background-color: #FEFEF0;
+            margin: 20px auto;
+            padding: 15px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
             box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
-            line-height: 1;
+            position: relative;
+            box-sizing: border-box;
         }
 
         #resultContainer {
             display: none;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            background-color: #ffffcc;
             border: 2px solid #4CAF50;
-            padding: 20px;
-            margin-left: 20px;
-            margin-right: 20px;
-            border-radius: 20px;
-            line-height: 1.4; /
+            background-color: #FEFEF0;
+            margin: 20px auto;
+            padding: 15px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
             box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
+            position: relative;
+            min-height: 300px;
+            box-sizing: border-box;
+        }
+    #resultContainer::before {
+        content: "";
+        background-image: url('logo.png');
+        background-size: 90% auto;
+        background-repeat: no-repeat;
+        background-position: center top 15px;
+        opacity: 0.3;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 0;
+        margin: auto;
+    }
+        /* Result Content Styles */
+        #resultContent {
+            position: relative;
+            z-index: 1;
+        }
+        
+        #resultContent h2 {
+            font-size: 22px;
+            margin: 6px 0;
+            line-height: 2;
+        }
+        
+        #resultContent h3 {
+            font-size: 20px;
+            margin: 6px 0;
+            line-height: 2;
+        }
+        
+        #resultContent .number-pairs {
+            font-size: 20px;
+            margin: 8px 0;
+            font-weight: bold;
+        }
+        
+        #resultContent .note {
+            font-size: 20px;
+            margin: 8px 0;
+        }
+        
+        #resultContent .translation {
+            font-size: 16px;
+            margin: 6px 0;
         }
 
-        #resultContainer p {
-            line-height: 0.2;
+        /* Responsive Styles - สำหรับมือถือเท่านั้น */
+        @media only screen and (max-width: 600px) {
+            .form-container, #resultContainer {
+                width: calc(100% - 20px); /* ห่างจากขอบด้านละ 10px */
+                margin-left: 10px;
+                margin-right: 10px;
+            }
         }
     </style>
 
@@ -251,30 +280,30 @@ function convertNumber() {
     const dateDisplay = dateInputValue ? getThaiDate(dateInput) : getThaiDate();
 
     const resultHtml = `
-    <div id="resultContent" style="position: relative; text-align: center; font-size: 16px; line-height: 1.2; margin-top: 10px;">
-        <h2 style="display: flex; align-items: center; justify-content: center; margin: 2px 0; line-height: 1;">
-            <img src="logo.png" alt="Logo Left" style="width: 40px; margin-right: 2px;">
-            <span style="color: blue; font-size: 15px; line-height: 1;">${selectedTopic}</span>
-            <img src="logo.png" alt="Logo Right" style="width: 40px; margin-left: 2px;">
-        </h2>
-        <h3 class="blue" style="font-size: 15px; display: inline; vertical-align: middle; color: blue; font-weight: normal; line-height: 1;">
-            ${dateDisplay}
-        </h3>
-        <p style="font-size: 15px; color: blue; line-height: 1;">
-        <h2 style="font-size: 16px; color: blue; line-height: 1;">
-            ตัวเลข 3 ตัว <span style="color: red;">${num}</span> By : ${selectedPerson}
-        </h2>
-        <h2 style="font-size: 16px; color: blue; line-height: 1;">จัดชุดเด่น 2 ตัว</h2>
+              <div id="resultContent" style="position: relative; text-align: center; font-size: 20px; line-height: 1.0; margin-top: 10px; color: blue;">
+    <!-- หัวข้อ -->
+    <p style="font-size: 18px; margin: 0 0 15px 0; font-weight: bold; line-height: 1;">
+        ${selectedTopic}
+    </p>
+    <!-- วันที่ -->
+    <p style="font-size: 18px; margin: 0 0 15px 0; line-height: 1;">
+        ${dateInputValue ? getThaiDate(dateInput) : getThaiDate(new Date())}
+    </p>
+    <!-- ตัวเลข 3 ตัว -->
+    <h2 style="font-size: 20px; margin: 0 0 20px 0; line-height: 1;">
+        ตัวเลข 3 ตัว <span style="color: red;">${num}</span> By : ${selectedPerson}
+    </h2>
+        <h2 style="font-size: 18px; color: blue; line-height: 1;">จัดชุดเด่น 2 ตัว</h2>
         <h2 style="font-size: 18px; color: blue; font-weight: normal; line-height: 1;">${uniqueDominantTwoDigitPairs.join(' - ')}</h2>
-        <h2 style="font-size: 16px; color: blue; line-height: 1;">จัดชุดรอง 2 ตัว</h2>
+        <h2 style="font-size: 18px; color: blue; line-height: 1;">จัดชุดรอง 2 ตัว</h2>
         <h2 style="font-size: 18px; color: blue; font-weight: normal; line-height: 1;">${filteredTwoDigitPairs.join(' - ')}</h2>
-        <h2 style="font-size: 16px; color: blue; line-height: 1;">จัดชุด 3 ตัว</h2>
-        <h2 style="font-size: 18px; color: blue; font-weight: normal; line-height: 1;">${uniqueThreeDigitPairs.join(' - ')}</h2>
-        <h2 style="font-size: 14px; color: red; line-height: 1;">แนวทางเท่านั้น</h2>
-        <p style="font-size: 10px; color: blue; line-height: 1;">
+        <h2 style="font-size: 18px; color: blue; line-height: 1;">จัดชุด 3 ตัว</h2>
+        <h2 style="font-size: 16px; color: blue; font-weight: normal; line-height: 1;">${uniqueThreeDigitPairs.join(' - ')}</h2>
+        <h2 style="font-size: 20px; color: red; line-height: 1;">แนวทางเท่านั้น</h2>
+        <p style="font-size: 14px; color: blue; line-height: 1;">
             <strong>แปล:</strong> ${getThaiDate()} ${getThaiTime()}
         </p>
-        <p style="font-size: 16px; color: blue; line-height: 1;">หมายเหตุ : <span style="color: red;">${noteInput}</span></p>
+        <p style="font-size: 18px; color: blue; line-height: 1;">หมายเหตุ : <span style="color: red;">${noteInput}</span></p>
     </div>
     `;
 
