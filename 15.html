@@ -11,22 +11,22 @@
             background-color: #fffde7;
             margin: 0;
             padding: 0;
-            line-height: 1.4;
+            line-height: 1;
         }
         
         h1 {
             text-align: center;
-            font-size: 32px;
+            font-size: 22px;
             color: #2c3e50;
-            margin-top: 20px;
-            line-height: 2;
+            margin-top: 10px;
+            line-height: 1;
         }
         
         label {
             font-size: 18px;
             margin-left: 5%;
             color: #2c3e50;
-            line-height: 2;
+            line-height: 1;
         }
         
         footer {
@@ -34,7 +34,7 @@
             padding: 20px;
             font-size: 14px;
             color: #95a5a6;
-            line-height: 2;
+            line-height: 1;
         }
         
         /* Form Elements */
@@ -46,7 +46,7 @@
             border-radius: 6px;
             border: 1px solid #ddd;
             display: block;
-            line-height: 2;
+            line-height: 1;
         }
         
         button {
@@ -68,7 +68,7 @@
         #lineHeightValue {
             font-size: 16px;
             color: #2c3e50;
-            line-height: 2;
+            line-height: 1;
             text-align: center;
         }
 
@@ -232,8 +232,8 @@
     <label for="lineHeightSlider">ปรับขนาดบรรทัด:</label>
     <input type="range" 
            id="lineHeightSlider" 
-           min="0.8" 
-           max="2" 
+           min="0.5" 
+           max="2.5" 
            step="0.1" 
            value="1.5" 
            oninput="updateLineHeight()">
@@ -387,7 +387,7 @@
                     <h2 style="font-size: 18px; color: blue;">จัดชุด 3 ตัว</h2>
                     <h2 style="font-size: 16px; color: blue; font-weight: normal;">${uniqueThreeDigitPairs.join(' - ')}</h2>
                     <h2 style="font-size: 20px; color: red;">แนวทางเท่านั้น</h2>
-                    <p style="font-size: 14px; color: blue;">
+                    <p style="font-size: 13px; color: blue;">
                         <strong>แปล:</strong> ${getThaiDate()} ${getThaiTime()}
                     </p>
                     <p style="font-size: 18px; color: blue;">หมายเหตุ : <span style="color: red;">${noteInput}</span></p>
