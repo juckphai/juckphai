@@ -4,28 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ฟอร์มแปลตัวเลข 2 ตัว</title>
-    <style>
+ <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #fffde7;
             margin: 0;
             padding: 0;
-            line-height: 1.4;
+            line-height: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
         }
         h1 {
             text-align: center;
             font-size: 22px;
             color: #2c3e50;
             margin-top: 20px;
-            line-height: 2;
+            line-height: 1;
+            width: 100%;
         }
         #resultContent h2 {
-            font-size: 22px;
+            font-size: 24px;
             margin: 8px 0;
             line-height: inherit;
         }
         #resultContent h3 {
-            font-size: 24px;
+            font-size: 22px;
             margin: 8px 0;
             line-height: inherit;
         }
@@ -51,50 +56,69 @@
         }
         .container {
             max-width: 600px;
-            margin-top: 20px;
-            margin-bottom: 20px;
+            margin: 20px auto;
             background-color: #ffffcc;
             border: 2px solid #4CAF50;
             padding: 20px;
-            margin-left: 20px;
-            margin-right: 20px;
             border-radius: 20px;
             box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);   
-            line-height: 1.4;
+            line-height: 1;
+            width: 90%;
+        }
+        /* ปรับส่วนฟอร์มให้มีขนาดเท่ากันและข้อความกึ่งกลาง */
+        .form-row {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 10px;
+            text-align: center; /* เพิ่มเพื่อจัดข้อความกึ่งกลาง */
         }
         input, select, button {
             font-size: 18px;
             padding: 10px;
             width: 90%;
-            margin: 10px 0;
+            max-width: 500px;
+            margin: 5px auto;
             border-radius: 6px;
             border: 1px solid #ddd;
             display: block;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 2;
+            line-height: 1;
+            box-sizing: border-box;
+            text-align: center; /* เพิ่มเพื่อจัดข้อความใน input กึ่งกลาง */
+        }
+        select {
+            text-align-last: center; /* สำหรับจัดข้อความใน select กึ่งกลาง */
         }
         button {
             background-color: #4CAF50;
             color: white;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            line-height: 1;
+            width: 90%;
+            max-width: 500px;
         }
         button:hover {
             background-color: #45a049;
         }
         label {
             font-size: 18px;
-            margin-left: 5%;
+            display: block;
+            text-align: center;
             color: #2c3e50;
-            line-height: 2;
+            line-height: 1;
+            margin: 10px 0 5px 0;
+            width: 90%;
+            max-width: 500px;
         }
         footer {
             text-align: center;
             padding: 20px;
             font-size: 14px;
             color: #95a5a6;
-            line-height: 2;
+            line-height: 1;
+            width: 100%;
         }
         .form-container {
             border: 2px solid orange;
@@ -108,34 +132,38 @@
             box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
             position: relative;
             box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-    #resultContainer {
-        display: none;
-        margin: 20px auto;
-        background-color: #FAFAD2;
-        border: 2px solid #4CAF50;
-        padding: 15px;
-        border-radius: 10px;
-        width: fit-content; /* กำหนดความกว้างให้พอดีกับเนื้อหา */
-        max-width: 100%; /* เพื่อป้องกันล้นหน้าจอ */
-        text-align: center;
-        box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
-        position: relative;
-        min-height: 300px;
-        box-sizing: border-box;
-    }
+        #resultContainer {
+            display: none;
+            margin: 20px auto;
+            background-color: #FAFAD2;
+            border: 2px solid #4CAF50;
+            padding: 15px;
+            border-radius: 10px;
+            width: fit-content;
+            max-width: 100%;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
+            position: relative;
+            min-height: 300px;
+            box-sizing: border-box;
+        }
 
+        /* ปรับสำหรับหน้าจอโทรศัพท์ */
         @media only screen and (max-width: 600px) {
             .form-container, 
             #resultContainer {
-                width: calc(100% - 20px);
-                margin-left: 10px;
-                margin-right: 10px;
+                width: calc(100% - 40px);
+                margin: 20px auto;
             }
             
-            input, select, button {
+            input, select, button, label {
                 width: calc(100% - 20px);
+                max-width: none;
             }
         }
         #resultContainer::before {
@@ -153,25 +181,29 @@
             z-index: 0;
             margin: auto;
         }
+        #resultContainer p {
+            line-height: inherit;
+        }
         #lineHeightSlider {
-            width: 90%;
-            margin: 10px auto;
+            width: 100%;
+            margin: 10px 0;
         }
         #lineHeightValue {
             font-size: 16px;
             color: #2c3e50;
-            line-height: 2;
-            text-align: center;
+            line-height: 1;
         }
     </style>
 </head>
 <body>
     <h1>ฟอร์มแปลตัวเลข 2 ตัว</h1>
-    <div class="form-container">
-        <label for="numberInput">กรุณากรอกตัวเลข 2 ตัว</label>
-        <input type="number" id="numberInput" placeholder="ตัวเลข 2 ตัว" />
-        <div style="display: flex; justify-content: space-between;">
-            <div style="flex: 1; margin-right: 10px;">
+     <div class="form-container">
+        <!-- แถวที่ 1: ช่องกรอกตัวเลขกับตัวเลือกชนิดของตัวเลข -->
+        <div class="form-row">
+            <div class="form-col" style="width: 100%;">
+                <input type="number" id="numberInput" placeholder="ตัวเลข 2 ตัว" />
+            </div>
+            <div class="form-col" style="width: 100%;">
                 <select id="topicSelect">
                     <option value="ลาวประตูชัย เวลา 05.45 น">ลาวประตูชัย เวลา 05.45 น</option>
                     <option value="ลาวสันติภาพ เวลา 06.45 น">ลาวสันติภาพ เวลา 06.45 น</option>
@@ -195,9 +227,12 @@
                     <option value="All laos ไม่ระบุ">All laos ไม่ระบุ</option>
                 </select>
             </div>
-            <div style="flex: 1; margin-left: 10px;">
+        </div>
+
+        <!-- แถวที่ 2: ช่องเลือกผู้บอกกับวันเดือนปี -->
+        <div class="form-row">
+            <div class="form-col" style="width: 100%;">
                 <select id="personSelect">
-                    <option value="พ อ จ">พ อ จ</option>
                     <option value="@">@</option>
                     <option value="Team">Team</option>
                     <option value="โรงงาน">โรงงาน</option>
@@ -205,16 +240,22 @@
                     <option value="เจ้าที่">เจ้าที่</option>
                 </select>
             </div>
+            <div class="form-col" style="width: 100%;">
+                <input type="date" id="dateInput" />
+            </div>
         </div>
 
-        <div style="display: flex; justify-content: space-between;">
-            <div style="flex: 1; margin-right: 10px;">
+        <!-- แถวที่ 3: หมายเหตุ -->
+        <div class="form-row">
+            <div class="form-col" style="width: 100%;">
                 <input type="text" id="noteInput" placeholder="หมายเหตุ (ถ้ามี)" />
             </div>
         </div>
-        <input type="date" id="dateInput" />
+
+        <!-- ปุ่มแปลตัวเลข -->
         <button id="convertButton">แปลตัวเลข</button>
     </div>
+    
     <div id="resultContainer" style="display: none;"></div>
     <label for="lineHeightSlider">ปรับความสูงของบรรทัด:</label>
     <input type="range" id="lineHeightSlider" min="0.5" max="2.5" step="0.1" value="2" />
