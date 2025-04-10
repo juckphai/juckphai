@@ -44,11 +44,11 @@
             margin: 8px 0;
             line-height: inherit;
         }
-        #resultContent .date-time {
-            font-size: 14px; /* ลดจาก 16px */
-            margin: 6px 0;
-            line-height: inherit;
-        }
+#resultContent .date-time {
+    font-size: 14px; /* ลดจาก 16px */
+    margin: 6px 0;
+    line-height: inherit;
+}
         .container {
             max-width: 600px;
             margin-top: 20px;
@@ -97,59 +97,49 @@
             color: #95a5a6;
             line-height: 1;
         }
-        .form-container {
-            border: 2px solid orange;
-            background-color: #ffffff;
-            margin: 20px auto;
-            padding: 15px;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 600px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
-            position: relative;
-            box-sizing: border-box;
-        }
+     .form-container {
+        border: 2px solid orange;
+        background-color: #ffffff;
+        margin: 20px auto;
+        padding: 15px;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 600px;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
+        position: relative;
+        box-sizing: border-box;
+    }
 
+    #resultContainer {
+        display: none;
+        margin: 20px auto;
+        background-color: #FAFAD2;
+        border: 2px solid #4CAF50;
+        padding: 15px;
+        border-radius: 10px;
+        width: fit-content; /* กำหนดความกว้างให้พอดีกับเนื้อหา */
+        max-width: 100%; /* เพื่อป้องกันล้นหน้าจอ */
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
+        position: relative;
+        min-height: 300px;
+        box-sizing: border-box;
+    }
+
+    /* ปรับสำหรับหน้าจอโทรศัพท์ */
+    @media only screen and (max-width: 600px) {
+        .form-container, 
         #resultContainer {
-            display: none;
-            margin: 20px auto;
-            background-color: #FAFAD2;
-            border: 2px solid #4CAF50;
-            padding: 15px;
-            border-radius: 10px;
-            width: fit-content; /* กำหนดความกว้างให้พอดีกับเนื้อหา */
-            max-width: 100%; /* เพื่อป้องกันล้นหน้าจอ */
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
-            position: relative;
-            min-height: 300px;
-            box-sizing: border-box;
+            width: calc(100% - 20px); /* ห่างจากขอบด้านละ 10px */
+            margin-left: 10px;
+            margin-right: 10px;
         }
-
-        /* ปรับสำหรับหน้าจอโทรศัพท์ */
-        @media only screen and (max-width: 600px) {
-            .form-container, 
-            #resultContainer {
-                width: calc(100% - 20px); /* ห่างจากขอบด้านละ 10px */
-                margin-left: 10px;
-                margin-right: 10px;
-            }
-            
-            input, select, button {
-                width: calc(100% - 20px);
-            }
-            
-            .form-row {
-                flex-direction: column;
-            }
-            
-            .form-col {
-                width: 100% !important;
-                margin-right: 0 !important;
-                margin-left: 0 !important;
-            }
+        
+        input, select, button {
+            width: calc(100% - 20px);
         }
+    }
         #resultContainer::before {
             content: "";
             background-image: url('logo.png');
@@ -176,30 +166,6 @@
             font-size: 16px;
             color: #2c3e50;
             line-height: 1;
-        }
-        
-        /* เพิ่มสไตล์สำหรับการจัดเรียงแบบแถวและคอลัมน์ */
-        .form-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-        
-        .form-col {
-            flex: 1;
-            padding: 0 5px;
-        }
-        
-        .form-col label {
-            display: block;
-            text-align: center;
-            margin-bottom: 5px;
-        }
-        
-        .form-col input, 
-        .form-col select {
-            width: 100%;
-            margin: 0 auto;
         }
     </style>
     <script>
@@ -273,7 +239,7 @@
             const dateInput = document.getElementById("dateInput").value;
             const dateDisplay = dateInput ? getThaiDate(new Date(dateInput)) : getThaiDate();
 
-            const resultHtml = `
+ const resultHtml = `
 <div id="resultContent" style="position: relative; text-align: center; line-height: 2.0;">
     <h2 style="color: blue; margin-bottom: 5px;">${selectedTopic}</h2>
     <h3 style="color: blue; font-weight: normal; margin-bottom: 10px;">${dateDisplay}</h3>
@@ -339,11 +305,11 @@
     <div class="form-container">
         <!-- แถวที่ 1: ช่องกรอกตัวเลขกับตัวเลือกชนิดของตัวเลข -->
         <div class="form-row">
-            <div class="form-col" style="width: 50%;">
+            <div class="form-col" style="width: 100%;">
                 <label for="numberInput">ตัวเลข 2 ตัว</label>
                 <input type="number" id="numberInput" placeholder="ตัวเลข 2 ตัว" />
             </div>
-            <div class="form-col" style="width: 50%;">
+            <div class="form-col" style="width: 100%;">
                 <label for="topicSelect">ชนิดของตัวเลข</label>
                 <select id="topicSelect">
                     <option value="ลาวประตูชัย เวลา 05.45 น">ลาวประตูชัย เวลา 05.45 น</option>
@@ -372,7 +338,7 @@
 
         <!-- แถวที่ 2: ช่องเลือกผู้บอกกับวันเดือนปี -->
         <div class="form-row">
-            <div class="form-col" style="width: 50%;">
+            <div class="form-col" style="width: 100%;">
                 <label for="personSelect">ผู้บอก</label>
                 <select id="personSelect">
                     <option value="@">@</option>
@@ -382,7 +348,7 @@
                     <option value="เจ้าที่">เจ้าที่</option>
                 </select>
             </div>
-            <div class="form-col" style="width: 50%;">
+            <div class="form-col" style="width: 100%;">
                 <label for="dateInput">วันที่</label>
                 <input type="date" id="dateInput" />
             </div>
@@ -414,6 +380,7 @@
         <div style="text-align: center; margin-bottom: 20px;">
             &copy; 2024 Juckphai. All Rights Reserved.
         </div>
+
     </footer>
 </body>
 </html>
