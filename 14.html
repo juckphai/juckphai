@@ -4,108 +4,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ฟอร์มแปลตัวเลข 2 ตัว</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #fffde7;
-            margin: 0;
-            padding: 0;
-            line-height: 1;
-        }
-        h1 {
-            text-align: center;
-            font-size: 22px;
-            color: #2c3e50;
-            margin-top: 20px;
-            line-height: 1;
-        }
-        #resultContent h2 {
-            font-size: 24px;
-            margin: 8px 0;
-            line-height: inherit;
-        }
-        #resultContent h3 {
-            font-size: 22px;
-            margin: 8px 0;
-            line-height: inherit;
-        }
-        #resultContent .number-pairs {
-            font-size: 24px;
-            margin: 12px 0;
-            line-height: inherit;
-        }
-        #resultContent .note {
-            font-size: 20px;
-            margin: 10px 0;
-            line-height: inherit;
-        }
-        #resultContent .translation {
-            font-size: 16px;
-            margin: 8px 0;
-            line-height: inherit;
-        }
-#resultContent .date-time {
-    font-size: 14px; /* ลดจาก 16px */
-    margin: 6px 0;
-    line-height: inherit;
-}
-        .container {
-            max-width: 600px;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            background-color: #ffffcc;
-            border: 2px solid #4CAF50;
-            padding: 20px;
-            margin-left: 20px;
-            margin-right: 20px;
-            border-radius: 20px;
-            box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);   
-            line-height: 1;
-        }
-        input, select, button {
-            font-size: 18px;
-            padding: 10px;
-            width: 90%;
-            margin: 10px 0;
-            border-radius: 6px;
-            border: 1px solid #ddd;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1;
-        }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            line-height: 1;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        label {
-            font-size: 18px;
-            margin-left: 5%;
-            color: #2c3e50;
-            line-height: 1;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            font-size: 14px;
-            color: #95a5a6;
-            line-height: 1;
-        }
-     .form-container {
+<style>
+    /* ===== Base Styles ===== */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #fffde7;
+        margin: 0;
+        padding: 0;
+        line-height: 1;
+    }
+    
+    h1 {
+        text-align: center;
+        font-size: 22px;
+        color: #2c3e50;
+        margin: 10px 0;
+    }
+    
+    label {
+        font-size: 18px;
+        color: #2c3e50;
+        display: block;
+        text-align: center;
+        margin-left: 5%;
+    }
+    
+    footer {
+        text-align: center;
+        padding: 20px;
+        font-size: 14px;
+        color: #95a5a6;
+    }
+
+    /* ===== Form Elements ===== */
+    input, select, button {
+        font-size: 18px;
+        padding: 10px;
+        width: 80%;
+        margin: 10px auto;
+        border-radius: 6px;
+        border: 1px solid #ddd;
+        display: block;
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+    input[type="date"] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
+    
+    input[type="date"]::-webkit-datetime-edit {
+        text-align: center;
+        width: 100%;
+    }
+    
+    button {
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    button:hover {
+        background-color: #45a049;
+    }
+    
+    #lineHeightSlider {
+        width: 80%;
+        margin: 10px auto;
+    }
+    
+    #lineHeightValue {
+        font-size: 16px;
+        color: #2c3e50;
+        text-align: center;
+        display: block;
+    }
+
+    /* ===== Container Styles ===== */
+    .form-container {
         border: 2px solid orange;
-        background-color: #ffffff;
+        background-color: #FEFEF0;
         margin: 20px auto;
         padding: 15px;
         border-radius: 10px;
         width: 90%;
         max-width: 600px;
-        text-align: center;
         box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
         position: relative;
         box-sizing: border-box;
@@ -113,61 +99,79 @@
 
     #resultContainer {
         display: none;
-        margin: 20px auto;
-        background-color: #FAFAD2;
         border: 2px solid #4CAF50;
+        background-color: #FAFAD2;
+        margin: 20px auto;
         padding: 15px;
         border-radius: 10px;
-        width: fit-content; /* กำหนดความกว้างให้พอดีกับเนื้อหา */
-        max-width: 100%; /* เพื่อป้องกันล้นหน้าจอ */
-        text-align: center;
+        width: fit-content;
+        max-width: 100%;
+        min-height: 300px;
         box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
         position: relative;
-        min-height: 300px;
         box-sizing: border-box;
     }
+    
+    #resultContainer::before {
+        content: "";
+        background-image: url('logo.png');
+        background-size: 90% auto;
+        background-repeat: no-repeat;
+        background-position: center top 15px;
+        opacity: 0.3;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 0;
+        margin: auto;
+    }
+    
+    /* ===== Result Content Styles ===== */
+    #resultContent {
+        position: relative;
+        z-index: 1;
+    }
+    
+    #resultContent h2 {
+        font-size: 22px;
+        margin: 6px 0;
+    }
+    
+    #resultContent h3 {
+        font-size: 20px;
+        margin: 6px 0;
+    }
+    
+    #resultContent .number-pairs {
+        font-size: 20px;
+        margin: 8px 0;
+        font-weight: bold;
+    }
+    
+    #resultContent .note {
+        font-size: 20px;
+        margin: 8px 0;
+    }
+    
+    #resultContent .translation {
+        font-size: 16px;
+        margin: 6px 0;
+    }
 
-    /* ปรับสำหรับหน้าจอโทรศัพท์ */
+    /* ===== Responsive Styles ===== */
     @media only screen and (max-width: 600px) {
-        .form-container, 
-        #resultContainer {
-            width: calc(100% - 20px); /* ห่างจากขอบด้านละ 10px */
-            margin-left: 10px;
-            margin-right: 10px;
+        .form-container, #resultContainer {
+            width: calc(100% - 20px);
+            margin: 10px;
         }
         
         input, select, button {
-            width: calc(100% - 20px);
+            width: 90%;
         }
     }
-        #resultContainer::before {
-            content: "";
-            background-image: url('logo.png');
-            background-size: 90% auto;
-            background-repeat: no-repeat;
-            background-position: center top 15px;
-            opacity: 0.3;
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 0;
-            margin: auto;
-        }
-        #resultContainer p {
-            line-height: inherit;
-        }
-        #lineHeightSlider {
-            width: 100%;
-            margin: 10px 0;
-        }
-        #lineHeightValue {
-            font-size: 16px;
-            color: #2c3e50;
-            line-height: 1;
-        }
-    </style>
+</style>
 </head>
 <body>
     <h1>ฟอร์มแปลตัวเลข 2 ตัว</h1>
