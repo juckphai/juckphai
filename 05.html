@@ -286,22 +286,22 @@
         const threeDigits = num.slice(3);
         const twoDigits = num.slice(2, 4);
 
-        const resultHtml = `
-            <div style="position: relative; text-align: center; line-height: 1;">
-                <h3 class="blue" style="display: inline-block; vertical-align: middle; margin: 0;">
-                    ผลลาวพัฒนา
-                </h3>
-                <p class="blue" style="margin-top: 20px;">${thaiDate}</p>
-                <h2 class="blue">รางวัลเลข 6 ตัว</h2>
-                <div style="text-align: center; margin-top: 10px; margin-bottom: 10px;">
-                    ${sixDigitHtml}
-                </div>
-                <p class="blue" style="letter-spacing: 2px; font-size: 32px; margin-top: 20px;">
-                    บน <span style="color: green;" id="threeDigits">${threeDigits}</span> 
-                    ล่าง <span style="color: blue;" id="twoDigits">${twoDigits}</span>
-                </p>
-            </div>
-        `;
+const resultHtml = `
+    <div style="position: relative; text-align: center; line-height: 1;">
+        <h3 class="blue" style="display: inline-block; vertical-align: middle; margin: 0; font-size: 30px;">
+            ผลลาวพัฒนา
+        </h3>
+        <p class="blue" style="margin-top: 20px;">${thaiDate}</p>
+        <h2 class="blue" style="display: inline-block; vertical-align: middle; margin: 0; font-size: 28px;">รางวัลเลข 6 ตัว</h2>
+        <div style="text-align: center; margin: 10px 0;">
+            ${sixDigitHtml}
+        </div>
+        <p class="blue" style="letter-spacing: 2px; font-size: 32px; margin-top: 20px;">
+            บน <span style="color: green;" id="threeDigits">${threeDigits}</span> 
+            ล่าง <span style="color: blue;" id="twoDigits">${twoDigits}</span>
+        </p>
+    </div>
+`;
 
         const resultContainer = document.getElementById("resultContainer");
         resultContainer.innerHTML = resultHtml;
