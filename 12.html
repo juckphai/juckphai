@@ -3,183 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ฟอร์มแปลตัวเลข 4 ตัว</title>
-<style>
-    /* Base Styles */
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #fffde7;
-        margin: 0;
-        padding: 0;
-        line-height: 1;
-    }
-    
-    h1 {
-        text-align: center;
-        font-size: 22px;
-        color: #2c3e50;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        line-height: 1;
-    }
-    
-    label {
-        font-size: 18px;
-        margin-left: 5%;
-        color: #2c3e50;
-        line-height: 1;
-        display: block;
-        text-align: center;
-    }
-    
-    footer {
-        text-align: center;
-        padding: 20px;
-        font-size: 14px;
-        color: #95a5a6;
-        line-height: 1;
-    }
-    
-    /* Form Elements */
-    input, select, button {
-        font-size: 18px;
-        padding: 10px;
-        width: 80%;
-        margin: 10px auto;
-        border-radius: 6px;
-        border: 1px solid #ddd;
-        display: block;
-        line-height: 1;
-        text-align: center;
-    }
-    
-button {
-    background-color: #4CAF50;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-/* ปุ่มกลับสู่หน้าหลักเฉพาะ */
-#homeButton {
-    background-color: orange !important;
-}
-
-#homeButton:hover {
-    background-color: darkorange !important;
-}
-    
-    #lineHeightSlider {
-        width: 80%;
-        margin: 10px auto;
-    }
-    
-    #lineHeightValue {
-        font-size: 16px;
-        color: #2c3e50;
-        line-height: 1;
-        text-align: center;
-        display: block;
-    }
-
-    /* Container Styles */
-    .form-container {
-        border: 2px solid orange;
-        background-color: #FEFEF0;
-        margin: 20px auto;
-        padding: 15px;
-        border-radius: 10px;
-        width: 90%;
-        max-width: 600px;
-        text-align: center;
-        box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
-        position: relative;
-        box-sizing: border-box;
-    }
-
-    #resultContainer {
-        display: none;
-        border: 2px solid #4CAF50;
-        background-color: #FAFAD2;
-        margin: 20px auto;
-        padding: 15px;
-        border-radius: 10px;
-        width: fit-content;
-        max-width: 100%;
-        text-align: center;
-        box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
-        position: relative;
-        min-height: 300px;
-        box-sizing: border-box;
-    }
-    
-    #resultContainer::before {
-        content: "";
-        background-image: url('logo.png');
-        background-size: 90% auto;
-        background-repeat: no-repeat;
-        background-position: center top 15px;
-        opacity: 0.3;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 0;
-        margin: auto;
-    }
-    
-    /* Result Content Styles */
-    #resultContent {
-        position: relative;
-        z-index: 1;
-    }
-    
-    #resultContent h2 {
-        font-size: 22px;
-        margin: 6px 0;
-        line-height: 1;
-    }
-    
-    #resultContent h3 {
-        font-size: 20px;
-        margin: 6px 0;
-        line-height: 1;
-    }
-    
-    #resultContent .number-pairs {
-        font-size: 20px;
-        margin: 8px 0;
-        font-weight: bold;
-    }
-    
-    #resultContent .note {
-        font-size: 20px;
-        margin: 8px 0;
-    }
-    
-    #resultContent .translation {
-        font-size: 16px;
-        margin: 6px 0;
-    }
-
-    /* Responsive Styles */
-    @media only screen and (max-width: 600px) {
-        .form-container, #resultContainer {
-            width: calc(100% - 20px);
-            margin-left: 10px;
-            margin-right: 10px;
+    <title>จัดเรียงตัวเลข 4 หลัก</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #fffbe6; /* พื้นหลังสีเหลืองอ่อน */
+            margin: 0;
+            padding: 0;
         }
-        
-        input, select, button {
-            width: 90%;
+
+        h1, h2, h3, h4, h5 {
+            color: #3333cc; /* สีน้ำเงินเข้ม */
+            margin: 10px 0;
         }
-    }
-</style>
+
+        span {
+            margin: 0 10px;
+            color: #3333cc;
+        }
+
+        .note {
+            color: red; /* หมายเหตุสีแดง */
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        .comment-box {
+            font-size: 18px;
+            margin: 20px auto;
+            padding: 10px 15px;
+            color: #3333cc; /* ตัวหนังสือ "หมายเหตุ" สีน้ำเงิน */
+            background-color: #f2f2ff; /* พื้นหลังสีม่วงจาง */
+            border: 1px solid #ccccff; /* ขอบสีม่วงอ่อน */
+            border-radius: 5px; /* มุมโค้ง */
+            max-width: 600px; /* จำกัดความกว้างของกล่อง */
+            text-align: left;
+        }
+
+        .comment-box span {
+            color: red; /* ข้อความใน "หมายเหตุ" สีแดง */
+            font-weight: bold;
+        }
+
+        #resultNumbers {
+            display: flex;
+            flex-wrap: wrap; /* จัดเรียงตัวเลขแบบห่อเมื่อหน้าจอแคบ */
+            justify-content: center; /* จัดตัวเลขให้อยู่ตรงกลาง */
+            gap: 10px; /* ระยะห่างระหว่างตัวเลข */
+            margin: 20px 0;
+        }
+
+        #resultNumbers span {
+            display: inline-block;
+            padding: 6px 12px;
+            background-color: #e6f7ff; /* พื้นหลังสีฟ้าอ่อน */
+            color: #3333cc; /* สีน้ำเงินเข้ม */
+            font-size: 14px;
+            font-weight: bold;
+            border: 1px solid #99ccff; /* ขอบสีฟ้า */
+            border-radius: 15px; /* มุมโค้ง */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* เงาจาง */
+        }
+
+        #resultContainer {
+            display: none;
+            margin: 20px auto;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            margin-left: 20px;
+            margin-right: 20px;
+            padding: 20px;
+            background-color: #ffffcc; /* พื้นหลังสีเหลืองจาง */
+            border: 2px solid #4CAF50; /* กรอบสีเขียว */
+            border-radius: 10px; /* มุมโค้ง */
+            box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2); /* เงาสีเขียวจาง */
+            text-align: center;
+            max-width: 600px; /* จำกัดความกว้าง */
+        }
+
+        /* เพิ่มการปรับขนาดปุ่ม */
+        button {
+            font-size: 20px; /* ขนาดตัวอักษรใหญ่ขึ้น */
+            padding: 12px 20px; /* เพิ่มระยะห่างด้านในปุ่ม */
+            background-color: #4CAF50; /* สีพื้นหลังปุ่ม */
+            color: white; /* สีตัวอักษร */
+            border: none;
+            border-radius: 8px; /* มุมโค้งของปุ่ม */
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* เพิ่มเงาให้ปุ่ม */
+        }
+
+        button:hover {
+            background-color: #45a049; /* สีปุ่มเมื่อชี้เมาส์ */
+        }
+
+        /* เพิ่มการปรับขนาดช่องกรอก */
+        input[type="text"], input[type="number"], textarea, input[type="date"] {
+            font-size: 18px; /* ขนาดตัวอักษรใหญ่ขึ้น */
+            padding: 10px; /* เพิ่มระยะห่างด้านใน */
+            width: 90%; /* ขยายความกว้าง */
+            max-width: 500px; /* จำกัดความกว้างสูงสุด */
+            border: 2px solid #99ccff; /* สีขอบ */
+            border-radius: 8px; /* มุมโค้งของช่องกรอก */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* เพิ่มเงา */
+        }
+
+        input[type="text"]:focus, input[type="number"]:focus, textarea:focus, input[type="date"]:focus {
+            outline: none;
+            border-color: #4CAF50; /* เปลี่ยนสีขอบเมื่อคลิก */
+            box-shadow: 0 0 8px rgba(76, 175, 80, 0.5); /* เงาเมื่อโฟกัส */
+        }
+
+        /* เพิ่มการปรับขนาดช่องเลือก */
+        select {
+            font-size: 18px; /* ขนาดตัวอักษรใหญ่ขึ้น */
+            padding: 10px; /* เพิ่มระยะห่างด้านใน */
+            width: 90%; /* ขยายความกว้าง */
+            max-width: 500px; /* จำกัดความกว้างสูงสุด */
+            border: 2px solid #99ccff; /* สีขอบ */
+            border-radius: 8px; /* มุมโค้งของช่องเลือก */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* เพิ่มเงา */
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #4CAF50; /* เปลี่ยนสีขอบเมื่อคลิก */
+            box-shadow: 0 0 8px rgba(76, 175, 80, 0.5); /* เงาเมื่อโฟกัส */
+        }
+    </style>
 </head>
 <body>
     <h1>จัดเรียงตัวเลข 4 หลัก</h1>
