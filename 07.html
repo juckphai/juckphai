@@ -52,7 +52,7 @@
         .red { color: red; }
         .circle, .circle-green {
             display: inline-block;
-            border: 3px solid red;
+            border: 3px solid orange;
             border-radius: 50%;
             font-size: 32px;
             font-weight: bold;
@@ -286,10 +286,11 @@
                     <div style="margin: 12px 0;">
                         ${fiveDigits.split('').map(digit => `<span class="square-orange">${digit}</span>`).join('')}
                     </div>
-                    <p class="blue" style="font-size: 32px; font-weight: bold; letter-spacing: 2px; margin: 12px 0;">
-                        บน <span id="threeDigitsDisplay" style="color: blue;">${threeDigits}</span> 
-                        ล่าง <span id="twoDigitsDisplay" style="color: green;">${twoDigits}</span>
-                    </p>
+<p class="blue" style="font-size: 32px; font-weight: bold; letter-spacing: 2px; margin: 12px 0;">
+    บน <span id="threeDigitsDisplay" style="font-size: 32px; font-weight: bold; color: blue;">${threeDigits}</span> 
+    ล่าง <span id="twoDigitsDisplay" style="font-size: 32px; font-weight: bold; color: green;">${twoDigits}</span>
+</p>
+
                 </div>
             `;
 
