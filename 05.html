@@ -97,9 +97,7 @@
 
     .square-orange,
 .six-digit-frame {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
+  display: inline-block;
   background-color: white;
   color: red;
   font-size: 40px;
@@ -110,6 +108,9 @@
   border-radius: 50%;
   margin: 1px;
   box-sizing: border-box;
+  text-align: center;
+  line-height: 60px; /* สำคัญ: จัดให้อยู่กลางในแนวนอน */
+  vertical-align: middle;
 }
 
     .square-orange {
@@ -118,9 +119,9 @@
     }
 
     .six-digit-frame {
-      width: 40px;
-      height: 40px;
-      line-height: 42px;
+      width: 60px;
+      height: 60px;
+      line-height: 60px;
     }
 
     /* === Buttons === */
