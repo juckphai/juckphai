@@ -338,6 +338,11 @@ const resultHtml = `
         const resultContainer = document.getElementById("resultContainer");
         resultContainer.innerHTML = resultHtml;
         resultContainer.style.display = "block";
+        
+        // Reset button states when new numbers are converted
+        circleButtonActive = false;
+        squareButtonActive = false;
+        circleTopButtonActive = false;
     }
 
     // Convert a Date object to a formatted Thai date
@@ -354,33 +359,63 @@ const resultHtml = `
         return `วัน${dayOfWeek}ที่ ${day} ${month} พ.ศ. ${year}`;
     }
 
-    // Function to create circles around two digits
-    function createCircle() {
+    // Track button states
+    let circleButtonActive = false;
+    let squareButtonActive = false;
+    let circleTopButtonActive = false;
+
+    // Function to toggle circle around two digits
+    function toggleCircle() {
         const twoDigits = document.getElementById("resultContainer").querySelector("#twoDigits");
         if (twoDigits) {
-            twoDigits.innerHTML = `<span class="circle">${twoDigits.textContent}</span>`;
+            if (circleButtonActive) {
+                // Remove circle
+                twoDigits.innerHTML = twoDigits.textContent;
+                circleButtonActive = false;
+            } else {
+                // Add circle
+                twoDigits.innerHTML = `<span class="circle">${twoDigits.textContent}</span>`;
+                circleButtonActive = true;
+            }
         } else {
             alert("กรุณากรอกตัวเลข 6 หลักก่อน");
         }
     }
 
-    function createSquareTop() {
+    // Function to toggle square around three digits
+    function toggleSquare() {
         const threeDigits = document.getElementById("resultContainer").querySelector("#threeDigits");
         if (threeDigits) {
-            const digits = threeDigits.textContent.slice(-2); // เลขสองตัวหลัง
-            const hundredsDigit = threeDigits.textContent.slice(0, 1); // เลขตัวแรก
-            threeDigits.innerHTML = `${hundredsDigit}<span class="square-two">${digits}</span>`;
+            if (squareButtonActive) {
+                // Remove square
+                threeDigits.innerHTML = threeDigits.textContent;
+                squareButtonActive = false;
+            } else {
+                // Add square
+                const digits = threeDigits.textContent;
+                threeDigits.innerHTML = `<span class="square">${digits}</span>`;
+                squareButtonActive = true;
+            }
         } else {
             alert("กรุณากรอกตัวเลข 6 หลักก่อน");
         }
     }
 
-    // Function to create squares around three digits
-    function createSquare() {
+    // Function to toggle square around two top digits
+    function toggleSquareTop() {
         const threeDigits = document.getElementById("resultContainer").querySelector("#threeDigits");
         if (threeDigits) {
-            const digits = threeDigits.textContent;
-            threeDigits.innerHTML = `<span class="square">${digits}</span>`;
+            if (circleTopButtonActive) {
+                // Remove square
+                threeDigits.innerHTML = threeDigits.textContent;
+                circleTopButtonActive = false;
+            } else {
+                // Add square
+                const digits = threeDigits.textContent.slice(-2); // เลขสองตัวหลัง
+                const hundredsDigit = threeDigits.textContent.slice(0, 1); // เลขตัวแรก
+                threeDigits.innerHTML = `${hundredsDigit}<span class="square-two">${digits}</span>`;
+                circleTopButtonActive = true;
+            }
         } else {
             alert("กรุณากรอกตัวเลข 6 หลักก่อน");
         }
@@ -390,9 +425,9 @@ const resultHtml = `
     document.addEventListener("DOMContentLoaded", function () {
         setDefaultDate();
         document.getElementById("convertButton").addEventListener("click", convertNumber);
-        document.getElementById("circleButton").addEventListener("click", createCircle);
-        document.getElementById("circleTopButton").addEventListener("click", createSquareTop);
-        document.getElementById("squareButton").addEventListener("click", createSquare);
+        document.getElementById("circleButton").addEventListener("click", toggleCircle);
+        document.getElementById("squareButton").addEventListener("click", toggleSquare);
+        document.getElementById("circleTopButton").addEventListener("click", toggleSquareTop);
     });
 </script>
 </head>
