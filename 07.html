@@ -293,14 +293,33 @@
                 resultContainer.innerHTML = resultHtml;
                 resultContainer.style.display = "block";
             }
+            
+            // Reset button states when new number is converted
+            circleButtonState = false;
+            squareButtonState = false;
+            circleTopButtonState = false;
         }
+
+        // Track button states
+        let circleButtonState = false;
+        let squareButtonState = false;
+        let circleTopButtonState = false;
 
         function createSquareTop() {
             const threeDigitsDisplay = document.getElementById("threeDigitsDisplay");
             if (threeDigitsDisplay) {
-                const digits = threeDigitsDisplay.textContent.slice(-2);
-                const hundredsDigit = threeDigitsDisplay.textContent.slice(0, 1);
-                threeDigitsDisplay.innerHTML = `${hundredsDigit}<span class="square-two">${digits}</span>`;
+                if (circleTopButtonState) {
+                    // Revert to original
+                    const digits = threeDigitsDisplay.textContent;
+                    threeDigitsDisplay.innerHTML = digits;
+                    circleTopButtonState = false;
+                } else {
+                    // Apply effect
+                    const digits = threeDigitsDisplay.textContent.slice(-2);
+                    const hundredsDigit = threeDigitsDisplay.textContent.slice(0, 1);
+                    threeDigitsDisplay.innerHTML = `${hundredsDigit}<span class="square-two">${digits}</span>`;
+                    circleTopButtonState = true;
+                }
             } else {
                 alert("กรุณากรอกตัวเลข 5 หลักก่อน");
             }
@@ -309,7 +328,16 @@
         function createCircle() {
             const twoDigitsDisplay = document.getElementById("twoDigitsDisplay");
             if (twoDigitsDisplay) {
-                twoDigitsDisplay.innerHTML = `<span class="circle">${twoDigitsDisplay.textContent}</span>`;
+                if (circleButtonState) {
+                    // Revert to original
+                    const digits = twoDigitsDisplay.textContent;
+                    twoDigitsDisplay.innerHTML = digits;
+                    circleButtonState = false;
+                } else {
+                    // Apply effect
+                    twoDigitsDisplay.innerHTML = `<span class="circle">${twoDigitsDisplay.textContent}</span>`;
+                    circleButtonState = true;
+                }
             } else {
                 alert("กรุณากรอกตัวเลข 5 หลักก่อน");
             }
@@ -318,8 +346,17 @@
         function createSquare() {
             const threeDigitsDisplay = document.getElementById("threeDigitsDisplay");
             if (threeDigitsDisplay) {
-                const digits = threeDigitsDisplay.textContent;
-                threeDigitsDisplay.innerHTML = `<span class="square">${digits}</span>`;
+                if (squareButtonState) {
+                    // Revert to original
+                    const digits = threeDigitsDisplay.textContent;
+                    threeDigitsDisplay.innerHTML = digits;
+                    squareButtonState = false;
+                } else {
+                    // Apply effect
+                    const digits = threeDigitsDisplay.textContent;
+                    threeDigitsDisplay.innerHTML = `<span class="square">${digits}</span>`;
+                    squareButtonState = true;
+                }
             } else {
                 alert("กรุณากรอกตัวเลข 5 หลักก่อน");
             }
