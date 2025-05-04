@@ -199,6 +199,12 @@
         .convert-button:hover {
             background-color: #F57C00;
         }
+        
+        /* เพิ่มสไตล์สำหรับปุ่มที่ถูกเลือก */
+        .active-button {
+            background-color: #4CAF50;
+            color: white;
+        }
     </style>
     <script>
         document.addEventListener('contextmenu', function(e) {
@@ -303,46 +309,87 @@
                 resultContainer.innerHTML = resultHtml;
                 resultContainer.style.display = "block";
             }
+            
+            // Reset button states when new numbers are converted
+            document.getElementById("circleButton").classList.remove("active-button");
+            document.getElementById("squareButton").classList.remove("active-button");
+            document.getElementById("circleTopButton").classList.remove("active-button");
         }
 
-        // เปลี่ยนจากวงกลมเป็นสี่เหลี่ยมสองตัวบน
-        function createSquareTop() {
+        // เปลี่ยนจากวงกลมเป็นสี่เหลี่ยมสองตัวบน (toggle)
+        function toggleSquareTop() {
             const threeDigitsDisplay = document.getElementById("threeDigitsDisplay");
-            if (threeDigitsDisplay) {
+            const button = document.getElementById("circleTopButton");
+            
+            if (!threeDigitsDisplay) {
+                alert("กรุณากรอกตัวเลข 5 หลักก่อน");
+                return;
+            }
+            
+            if (button.classList.contains("active-button")) {
+                // ถ้าปุ่มถูกเลือกอยู่ ให้ยกเลิกการแสดงผล
+                const digits = threeDigitsDisplay.textContent;
+                threeDigitsDisplay.innerHTML = digits;
+                button.classList.remove("active-button");
+            } else {
+                // ถ้าปุ่มยังไม่ถูกเลือก ให้แสดงผล
                 const digits = threeDigitsDisplay.textContent.slice(-2);
                 const hundredsDigit = threeDigitsDisplay.textContent.slice(0, 1);
                 threeDigitsDisplay.innerHTML = `${hundredsDigit}<span class="square-two">${digits}</span>`;
-            } else {
-                alert("กรุณากรอกตัวเลข 5 หลักก่อน");
+                button.classList.add("active-button");
             }
         }
 
-        // วงกลมสองตัวล่าง (คงเดิม)
-        function createCircle() {
+        // วงกลมสองตัวล่าง (toggle)
+        function toggleCircle() {
             const twoDigitsDisplay = document.getElementById("twoDigitsDisplay");
-            if (twoDigitsDisplay) {
-                twoDigitsDisplay.innerHTML = `<span class="circle">${twoDigitsDisplay.textContent}</span>`;
-            } else {
+            const button = document.getElementById("circleButton");
+            
+            if (!twoDigitsDisplay) {
                 alert("กรุณากรอกตัวเลข 5 หลักก่อน");
+                return;
+            }
+            
+            if (button.classList.contains("active-button")) {
+                // ถ้าปุ่มถูกเลือกอยู่ ให้ยกเลิกการแสดงผล
+                const digits = twoDigitsDisplay.textContent;
+                twoDigitsDisplay.innerHTML = digits;
+                button.classList.remove("active-button");
+            } else {
+                // ถ้าปุ่มยังไม่ถูกเลือก ให้แสดงผล
+                twoDigitsDisplay.innerHTML = `<span class="circle">${twoDigitsDisplay.textContent}</span>`;
+                button.classList.add("active-button");
             }
         }
 
-        // สี่เหลี่ยมสามตัวบน (คงเดิม)
-        function createSquare() {
+        // สี่เหลี่ยมสามตัวบน (toggle)
+        function toggleSquare() {
             const threeDigitsDisplay = document.getElementById("threeDigitsDisplay");
-            if (threeDigitsDisplay) {
+            const button = document.getElementById("squareButton");
+            
+            if (!threeDigitsDisplay) {
+                alert("กรุณากรอกตัวเลข 5 หลักก่อน");
+                return;
+            }
+            
+            if (button.classList.contains("active-button")) {
+                // ถ้าปุ่มถูกเลือกอยู่ ให้ยกเลิกการแสดงผล
+                const digits = threeDigitsDisplay.textContent;
+                threeDigitsDisplay.innerHTML = digits;
+                button.classList.remove("active-button");
+            } else {
+                // ถ้าปุ่มยังไม่ถูกเลือก ให้แสดงผล
                 const digits = threeDigitsDisplay.textContent;
                 threeDigitsDisplay.innerHTML = `<span class="square">${digits}</span>`;
-            } else {
-                alert("กรุณากรอกตัวเลข 5 หลักก่อน");
+                button.classList.add("active-button");
             }
         }
 
         document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("convertButton").addEventListener("click", convertNumber);
-            document.getElementById("circleButton").addEventListener("click", createCircle);
-            document.getElementById("circleTopButton").addEventListener("click", createSquareTop);
-            document.getElementById("squareButton").addEventListener("click", createSquare);
+            document.getElementById("circleButton").addEventListener("click", toggleCircle);
+            document.getElementById("circleTopButton").addEventListener("click", toggleSquareTop);
+            document.getElementById("squareButton").addEventListener("click", toggleSquare);
             setDefaultDate();
         });
 
@@ -360,4 +407,4 @@
         }
     </script>
 </body>
-</html> 
+</html>
