@@ -281,6 +281,10 @@
     .submit-btn:hover {
       background-color: #45a049;
     }
+.active-button {
+    background-color: #4CAF50;
+    color: white;
+}
   </style>
 <script>
     // Disable right-click
@@ -318,22 +322,22 @@
         const threeDigits = num.slice(3);
         const twoDigits = num.slice(2, 4);
 
-const resultHtml = `
-    <div style="position: relative; text-align: center; line-height: 1;">
-        <h3 class="blue" style="display: inline-block; vertical-align: middle; margin: 0; font-size: 30px;">
-            ผลลาวพัฒนา
-        </h3>
-        <p class="blue" style="margin-top: 20px;">${thaiDate}</p>
-        <h2 class="blue" style="display: inline-block; vertical-align: middle; margin: 0; font-size: 28px;">รางวัลเลข 6 ตัว</h2>
-        <div style="text-align: center; margin: 10px 0;">
-            ${sixDigitHtml}
-        </div>
-        <p class="blue" style="letter-spacing: 2px; font-size: 36px; font-weight: bold; margin-top: 20px;">
-            บน <span style="color: green;" id="threeDigits">${threeDigits}</span> 
-            ล่าง <span style="color: blue;" id="twoDigits">${twoDigits}</span>
-        </p>
-    </div>
-`;
+        const resultHtml = `
+            <div style="position: relative; text-align: center; line-height: 1;">
+                <h3 class="blue" style="display: inline-block; vertical-align: middle; margin: 0; font-size: 30px;">
+                    ผลลาวพัฒนา
+                </h3>
+                <p class="blue" style="margin-top: 20px;">${thaiDate}</p>
+                <h2 class="blue" style="display: inline-block; vertical-align: middle; margin: 0; font-size: 28px;">รางวัลเลข 6 ตัว</h2>
+                <div style="text-align: center; margin: 10px 0;">
+                    ${sixDigitHtml}
+                </div>
+                <p class="blue" style="letter-spacing: 2px; font-size: 36px; font-weight: bold; margin-top: 20px;">
+                    บน <span style="color: green;" id="threeDigits">${threeDigits}</span> 
+                    ล่าง <span style="color: blue;" id="twoDigits">${twoDigits}</span>
+                </p>
+            </div>
+        `;
 
         const resultContainer = document.getElementById("resultContainer");
         resultContainer.innerHTML = resultHtml;
@@ -343,6 +347,11 @@ const resultHtml = `
         circleButtonActive = false;
         squareButtonActive = false;
         circleTopButtonActive = false;
+        
+        // Remove active class from all buttons
+        document.getElementById("circleButton").classList.remove("active-button");
+        document.getElementById("squareButton").classList.remove("active-button");
+        document.getElementById("circleTopButton").classList.remove("active-button");
     }
 
     // Convert a Date object to a formatted Thai date
@@ -367,15 +376,19 @@ const resultHtml = `
     // Function to toggle circle around two digits
     function toggleCircle() {
         const twoDigits = document.getElementById("resultContainer").querySelector("#twoDigits");
+        const circleButton = document.getElementById("circleButton");
+        
         if (twoDigits) {
             if (circleButtonActive) {
                 // Remove circle
                 twoDigits.innerHTML = twoDigits.textContent;
                 circleButtonActive = false;
+                circleButton.classList.remove("active-button");
             } else {
                 // Add circle
                 twoDigits.innerHTML = `<span class="circle">${twoDigits.textContent}</span>`;
                 circleButtonActive = true;
+                circleButton.classList.add("active-button");
             }
         } else {
             alert("กรุณากรอกตัวเลข 6 หลักก่อน");
@@ -385,16 +398,20 @@ const resultHtml = `
     // Function to toggle square around three digits
     function toggleSquare() {
         const threeDigits = document.getElementById("resultContainer").querySelector("#threeDigits");
+        const squareButton = document.getElementById("squareButton");
+        
         if (threeDigits) {
             if (squareButtonActive) {
                 // Remove square
                 threeDigits.innerHTML = threeDigits.textContent;
                 squareButtonActive = false;
+                squareButton.classList.remove("active-button");
             } else {
                 // Add square
                 const digits = threeDigits.textContent;
                 threeDigits.innerHTML = `<span class="square">${digits}</span>`;
                 squareButtonActive = true;
+                squareButton.classList.add("active-button");
             }
         } else {
             alert("กรุณากรอกตัวเลข 6 หลักก่อน");
@@ -404,17 +421,21 @@ const resultHtml = `
     // Function to toggle square around two top digits
     function toggleSquareTop() {
         const threeDigits = document.getElementById("resultContainer").querySelector("#threeDigits");
+        const circleTopButton = document.getElementById("circleTopButton");
+        
         if (threeDigits) {
             if (circleTopButtonActive) {
                 // Remove square
                 threeDigits.innerHTML = threeDigits.textContent;
                 circleTopButtonActive = false;
+                circleTopButton.classList.remove("active-button");
             } else {
                 // Add square
                 const digits = threeDigits.textContent.slice(-2); // เลขสองตัวหลัง
                 const hundredsDigit = threeDigits.textContent.slice(0, 1); // เลขตัวแรก
                 threeDigits.innerHTML = `${hundredsDigit}<span class="square-two">${digits}</span>`;
                 circleTopButtonActive = true;
+                circleTopButton.classList.add("active-button");
             }
         } else {
             alert("กรุณากรอกตัวเลข 6 หลักก่อน");
