@@ -83,37 +83,39 @@
             margin: 0 5px;
             box-sizing: border-box;
         }
-        .square-orange {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background-color: white;
-            color: red;
-            font-size: 40px;
-            font-weight: bold;
-            width: 60px;
-            height: 60px;
-            border: 3px solid green;
-            border-radius: 50%;
-            margin: 1px;
-            box-sizing: border-box;
-        }
-        .back-button {
-            display: block;
-            width: 90%;
-            max-width: 600px;
-            margin: 20px auto 10px;
-            padding: 10px 20px;
-            background-color: orange;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        .back-button:hover {
-            background-color: darkorange;
-        }
+.square-orange {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    color: red;
+    font-size: 40px; /* ขนาดใหญ่ขึ้น */
+    font-weight: bold;
+    width: 60px; /* เพิ่มขนาดกล่อง */
+    height: 60px;
+    border: 3px solid green;
+    border-radius: 50%;
+    margin: 1px;
+    box-sizing: border-box;
+}
+
+  .back-button {
+    display: block;
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto 10px;
+    padding: 10px 20px;
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .back-button:hover {
+    background-color: darkorange;
+  }
         .button-container {
             display: flex;
             justify-content: center;
@@ -158,6 +160,8 @@
             outline: none;
         }
         input[type="text"]::placeholder { text-align: center; }
+        
+        /* เพิ่มสไตล์สำหรับกรอบฟอร์ม */
         .form-container {
             background-color: #f9f9f9;
             border-radius: 15px;
@@ -194,6 +198,12 @@
         }
         .convert-button:hover {
             background-color: #F57C00;
+        }
+        
+        /* เพิ่มสไตล์สำหรับปุ่มที่ถูกเลือก */
+        .active-button {
+            background-color: #4CAF50;
+            color: white;
         }
     </style>
     <script>
@@ -241,17 +251,16 @@
     </footer>
     
     <script>
+        // Set the default date in the date input field
         function setDefaultDate() {
             const dateInput = document.getElementById("dateInput");
             if (dateInput) {
-                const today = new Date();
-                const year = today.getFullYear();
-                const month = String(today.getMonth() + 1).padStart(2, '0');
-                const day = String(today.getDate()).padStart(2, '0');
-                dateInput.value = `${year}-${month}-${day}`;
+                const today = new Date().toISOString().split('T')[0];
+                dateInput.value = today;
             }
         }
 
+        // Convert the input number and display the result
         function convertNumber() {
             const num = document.getElementById("numberInput").value;
             const selectedTopic = document.getElementById("topicSelect").value;
@@ -269,9 +278,9 @@
             const date = dateInput ? new Date(dateInput) : new Date();
             const thaiDate = getThaiDate(date);
 
-           let resultHtml = `
+            let resultHtml = `
                 <div style="position: relative; text-align: center; line-height: 2;">
-                    <h3 class="blue" style="font-size: 20px; margin: 8px 0;">
+                    <h3 class="blue" style="font-size: 22px; margin: 8px 0;">
                         ผล${selectedTopic}
                     </h3>
                     <p class="blue" style="font-size: 18px; margin: 8px 0;">
@@ -281,10 +290,10 @@
                     <div style="margin: 12px 0;">
                         ${fiveDigits.split('').map(digit => `<span class="square-orange">${digit}</span>`).join('')}
                     </div>
-                    <p class="blue" style="font-size: 32px; font-weight: bold; letter-spacing: 2px; margin: 12px 0;">
-                        บน <span id="threeDigitsDisplay" style="font-size: 36px; font-weight: bold; color: green;">${threeDigits}</span> 
-                        ล่าง <span id="twoDigitsDisplay" style="font-size: 36px; font-weight: bold; color: blue;">${twoDigits}</span>
-                    </p>
+<p class="blue" style="font-size: 32px; font-weight: bold; letter-spacing: 2px; margin: 12px 0;">
+    บน <span id="threeDigitsDisplay" style="font-size: 36px; font-weight: bold; color: green;">${threeDigits}</span> 
+    ล่าง <span id="twoDigitsDisplay" style="font-size: 36px; font-weight: bold; color: blue;">${twoDigits}</span>
+</p>
                 </div>
             `;
 
@@ -294,82 +303,90 @@
                 resultContainer.style.display = "block";
             }
             
-            // Reset button states when new number is converted
-            circleButtonState = false;
-            squareButtonState = false;
-            circleTopButtonState = false;
+            // Reset button states when new numbers are converted
+            document.getElementById("circleButton").classList.remove("active-button");
+            document.getElementById("squareButton").classList.remove("active-button");
+            document.getElementById("circleTopButton").classList.remove("active-button");
         }
 
-        // Track button states
-        let circleButtonState = false;
-        let squareButtonState = false;
-        let circleTopButtonState = false;
-
-        function createSquareTop() {
+        // เปลี่ยนจากวงกลมเป็นสี่เหลี่ยมสองตัวบน (toggle)
+        function toggleSquareTop() {
             const threeDigitsDisplay = document.getElementById("threeDigitsDisplay");
-            if (threeDigitsDisplay) {
-                if (circleTopButtonState) {
-                    // Revert to original
-                    const digits = threeDigitsDisplay.textContent;
-                    threeDigitsDisplay.innerHTML = digits;
-                    circleTopButtonState = false;
-                } else {
-                    // Apply effect
-                    const digits = threeDigitsDisplay.textContent.slice(-2);
-                    const hundredsDigit = threeDigitsDisplay.textContent.slice(0, 1);
-                    threeDigitsDisplay.innerHTML = `${hundredsDigit}<span class="square-two">${digits}</span>`;
-                    circleTopButtonState = true;
-                }
-            } else {
+            const button = document.getElementById("circleTopButton");
+            
+            if (!threeDigitsDisplay) {
                 alert("กรุณากรอกตัวเลข 5 หลักก่อน");
+                return;
+            }
+            
+            if (button.classList.contains("active-button")) {
+                // ถ้าปุ่มถูกเลือกอยู่ ให้ยกเลิกการแสดงผล
+                const digits = threeDigitsDisplay.textContent;
+                threeDigitsDisplay.innerHTML = digits;
+                button.classList.remove("active-button");
+            } else {
+                // ถ้าปุ่มยังไม่ถูกเลือก ให้แสดงผล
+                const digits = threeDigitsDisplay.textContent.slice(-2);
+                const hundredsDigit = threeDigitsDisplay.textContent.slice(0, 1);
+                threeDigitsDisplay.innerHTML = `${hundredsDigit}<span class="square-two">${digits}</span>`;
+                button.classList.add("active-button");
             }
         }
 
-        function createCircle() {
+        // วงกลมสองตัวล่าง (toggle)
+        function toggleCircle() {
             const twoDigitsDisplay = document.getElementById("twoDigitsDisplay");
-            if (twoDigitsDisplay) {
-                if (circleButtonState) {
-                    // Revert to original
-                    const digits = twoDigitsDisplay.textContent;
-                    twoDigitsDisplay.innerHTML = digits;
-                    circleButtonState = false;
-                } else {
-                    // Apply effect
-                    twoDigitsDisplay.innerHTML = `<span class="circle">${twoDigitsDisplay.textContent}</span>`;
-                    circleButtonState = true;
-                }
-            } else {
+            const button = document.getElementById("circleButton");
+            
+            if (!twoDigitsDisplay) {
                 alert("กรุณากรอกตัวเลข 5 หลักก่อน");
+                return;
+            }
+            
+            if (button.classList.contains("active-button")) {
+                // ถ้าปุ่มถูกเลือกอยู่ ให้ยกเลิกการแสดงผล
+                const digits = twoDigitsDisplay.textContent;
+                twoDigitsDisplay.innerHTML = digits;
+                button.classList.remove("active-button");
+            } else {
+                // ถ้าปุ่มยังไม่ถูกเลือก ให้แสดงผล
+                twoDigitsDisplay.innerHTML = `<span class="circle">${twoDigitsDisplay.textContent}</span>`;
+                button.classList.add("active-button");
             }
         }
 
-        function createSquare() {
+        // สี่เหลี่ยมสามตัวบน (toggle)
+        function toggleSquare() {
             const threeDigitsDisplay = document.getElementById("threeDigitsDisplay");
-            if (threeDigitsDisplay) {
-                if (squareButtonState) {
-                    // Revert to original
-                    const digits = threeDigitsDisplay.textContent;
-                    threeDigitsDisplay.innerHTML = digits;
-                    squareButtonState = false;
-                } else {
-                    // Apply effect
-                    const digits = threeDigitsDisplay.textContent;
-                    threeDigitsDisplay.innerHTML = `<span class="square">${digits}</span>`;
-                    squareButtonState = true;
-                }
-            } else {
+            const button = document.getElementById("squareButton");
+            
+            if (!threeDigitsDisplay) {
                 alert("กรุณากรอกตัวเลข 5 หลักก่อน");
+                return;
+            }
+            
+            if (button.classList.contains("active-button")) {
+                // ถ้าปุ่มถูกเลือกอยู่ ให้ยกเลิกการแสดงผล
+                const digits = threeDigitsDisplay.textContent;
+                threeDigitsDisplay.innerHTML = digits;
+                button.classList.remove("active-button");
+            } else {
+                // ถ้าปุ่มยังไม่ถูกเลือก ให้แสดงผล
+                const digits = threeDigitsDisplay.textContent;
+                threeDigitsDisplay.innerHTML = `<span class="square">${digits}</span>`;
+                button.classList.add("active-button");
             }
         }
 
         document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("convertButton").addEventListener("click", convertNumber);
-            document.getElementById("circleButton").addEventListener("click", createCircle);
-            document.getElementById("circleTopButton").addEventListener("click", createSquareTop);
-            document.getElementById("squareButton").addEventListener("click", createSquare);
+            document.getElementById("circleButton").addEventListener("click", toggleCircle);
+            document.getElementById("circleTopButton").addEventListener("click", toggleSquareTop);
+            document.getElementById("squareButton").addEventListener("click", toggleSquare);
             setDefaultDate();
         });
 
+        // Convert a Date object to a formatted Thai date
         function getThaiDate(date = new Date()) {
             const daysOfWeek = ["อาทิตย์", "จันทร์", "อังคาร", "พุธ", "พฤหัสบดี", "ศุกร์", "เสาร์"];
             const day = String(date.getDate()).padStart(2, '0');
