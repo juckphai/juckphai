@@ -4,316 +4,122 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ฟอร์มแปลตัวเลข 2 ตัว</title>
-<style>
-    /* ===== Base Styles ===== */
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #fffde7;
-        margin: 0;
-        padding: 0;
-        line-height: 1;
-    }
-    
-    h1 {
-        text-align: center;
-        font-size: 22px;
-        color: #2c3e50;
-        margin: 10px 0;
-    }
-    
-    label {
-        font-size: 18px;
-        color: #2c3e50;
-        display: block;
-        text-align: center;
-        margin-left: 5%;
-    }
-    
-    footer {
-        text-align: center;
-        padding: 20px;
-        font-size: 14px;
-        color: #95a5a6;
-    }
-
-    /* ===== Form Elements ===== */
-    input, select, button {
-        font-size: 18px;
-        padding: 10px;
-        width: 80%;
-        margin: 10px auto;
-        border-radius: 6px;
-        border: 1px solid #ddd;
-        display: block;
-        text-align: center;
-        box-sizing: border-box;
-    }
-
-    input[type="date"] {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-    }
-    
-    input[type="date"]::-webkit-datetime-edit {
-        text-align: center;
-        width: 100%;
-    }
-    
-    button {
-        background-color: #4CAF50;
-        color: white;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-    
-    button:hover {
-        background-color: #45a049;
-    }
-    
-    /* ===== ปุ่มกลับสู่หน้าหลัก ===== */
-    .back-button {
-        background-color: orange;
-        color: white;
-    }
-    
-    .back-button:hover {
-        background-color: darkorange;
-    }
-    
-    /* ===== Container Styles ===== */
-    .form-container {
-        border: 2px solid orange;
-        background-color: #FEFEF0;
-        margin: 30px auto;
-        padding: 15px;
-        border-radius: 10px;
-        width: 90%;
-        max-width: 600px;
-        box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
-        box-sizing: border-box;
-    }
-
-    #resultContainer {
-        display: none;
-        border: 2px solid #4CAF50;
-        background-color: #FAFAD2;
-        margin: 30px auto;
-        padding: 15px;
-        border-radius: 10px;
-        width: fit-content;
-        max-width: 100%;
-        min-height: 300px;
-        box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
-        position: relative;
-        box-sizing: border-box;
-    }
-    
-    #resultContainer::before {
-        content: "";
-        background-image: url('logo.png');
-        background-size: 90% auto;
-        background-repeat: no-repeat;
-        background-position: center top 15px;
-        opacity: 0.3;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 0;
-        margin: auto;
-    }
-    
-    /* ===== Result Content Styles ===== */
-    #resultContent {
-        position: relative;
-        z-index: 1;
-        line-height: 1.5; /* เพิ่ม line-height เพื่อให้ตัวหนังสือมีระยะห่างมากขึ้น */
-    }
-    
-    #resultContent h2 {
-        font-size: 22px;
-        margin: 12px 0; /* ปรับ margin จาก 6px 0 เป็น 12px 0 */
-    }
-    
-    #resultContent h3 {
-        font-size: 20px;
-        margin: 10px 0; /* ปรับ margin จาก 6px 0 เป็น 10px 0 */
-    }
-    
-    #resultContent .number-pairs {
-        font-size: 24px;
-        margin: 12px 0; /* ปรับ margin จาก 8px 0 เป็น 12px 0 */
-        font-weight: bold;
-    }
-    
-    #resultContent .note {
-        font-size: 20px;
-        margin: 12px 0; /* ปรับ margin จาก 8px 0 เป็น 12px 0 */
-    }
-    
-    #resultContent .translation {
-        font-size: 16px;
-        margin: 10px 0; /* ปรับ margin จาก 6px 0 เป็น 10px 0 */
-    }
-
-    /* ===== Slider Styles ===== */
-    #lineHeightSlider {
-        width: 80%;
-        margin: 20px auto;
-    }
-    
-    #lineHeightValue {
-        font-size: 16px;
-        color: #2c3e50;
-        text-align: center;
-        display: block;
-    }
-
-    /* ===== Responsive Styles ===== */
-    @media only screen and (max-width: 600px) {
-        .form-container, #resultContainer {
-            width: calc(100% - 20px);
-            margin: 10px;
+    <style>
+        /* ===== Base Styles ===== */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fffde7;
+            margin: 0;
+            padding: 0;
+            line-height: 1;
         }
         
+        h1 {
+            text-align: center;
+            font-size: 22px;
+            color: #2c3e50;
+            margin: 10px 0;
+        }
+        
+        label {
+            font-size: 18px;
+            color: #2c3e50;
+            display: block;
+            text-align: center;
+            margin-left: 5%;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            color: #95a5a6;
+        }
+
+        /* ===== Form Elements ===== */
         input, select, button {
-            width: 90%;
+            font-size: 18px;
+            padding: 10px;
+            width: 80%;
+            margin: 10px auto;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            display: block;
+            text-align: center;
+            box-sizing: border-box;
         }
+
+        input[type="date"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+        
+        input[type="date"]::-webkit-datetime-edit {
+            text-align: center;
+            width: 100%;
+        }
+        
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* ปุ่มกลับหน้าหลักสีส้ม */
+        .homeButton {
+      display: block;
+      width: 90%;
+      max-width: 600px;
+      margin: 20px auto 10px;
+      padding: 10px 20px;
+      background-color: orange;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
     }
-</style>
-    <script>
-        function getThaiDate(date = new Date()) {
-            const daysOfWeek = ["อาทิตย์", "จันทร์", "อังคาร", "พุธ", "พฤหัสบดี", "ศุกร์", "เสาร์"];
-            const day = String(date.getDate()).padStart(2, '0');
-            const month = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"][date.getMonth()];
-            const year = date.getFullYear() + 543;
-            const dayOfWeek = daysOfWeek[date.getDay()];
-            return `วัน${dayOfWeek}ที่ ${day} ${month} พ.ศ. ${year}`;
+
+        .homeButton:hover {
+            background-color: darkorange;
         }
 
-        function getThaiTime() {
-            const now = new Date();
-            return `เวลา ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')} น.`;
+        
+        /* ===== Container Styles ===== */
+        .form-container {
+            border: 2px solid orange;
+            background-color: #FEFEF0;
+            margin: 30px auto;
+            padding: 15px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
+            box-sizing: border-box;
         }
 
-        function convertNumber() {
-            const num = document.getElementById("numberInput").value;
-            const topicSelect = document.getElementById("topicSelect");
-            const selectedTopic = topicSelect.options[topicSelect.selectedIndex].value;
-            const personSelect = document.getElementById("personSelect");
-            const selectedPerson = personSelect.options[personSelect.selectedIndex].value;
-            let noteInput = document.getElementById("noteInput").value;
+        #resultContainer {
+            display: none;
+        }
 
-            if (!noteInput.trim()) {
-                noteInput = '<span style="color: red;">No remarks</span>';
+        /* ===== Responsive Styles ===== */
+        @media only screen and (max-width: 600px) {
+            .form-container {
+                width: calc(100% - 20px);
+                margin: 10px;
             }
-
-            if (num.length !== 2 || isNaN(num)) {
-                alert("กรุณาป้อนตัวเลข 2 หลัก");
-                return;
-            }
-
-            const transformRules = {
-                '0': '1', '1': '7', '2': '5', '3': '8',
-                '4': '9', '5': '2', '6': '9', '7': '1',
-                '8': '3', '9': '6'
-            };
-
-            const transformed = num.split('').map(digit => transformRules[digit]).join('');
-            const pairs = [
-                `${num[0]}${transformed[1]}`,
-                `${transformed[0]}${num[1]}`,
-                `${transformed[0]}${transformed[1]}`,
-                `${num[0]}${num[1]}`
-            ];
-
-            const formattedPairs = pairs.map(pair => {
-                const tens = parseInt(pair[0]);
-                const units = parseInt(pair[1]);
-                return tens <= units ? pair : `${units}${tens}`;
-            });
-
-            const uniquePairs = [...new Set(formattedPairs)];
-            const additionRules = {
-                '00': '02', '11': '12', '33': '23',
-                '44': '24', '55': '25', '66': '26', '77': '27',
-                '88': '28', '99': '29'
-            };
-
-            uniquePairs.forEach(pair => {
-                const addition = additionRules[pair];
-                if (addition) {
-                    uniquePairs.push(addition);
-                }
-            });
-
-            const sortedPairs = [...new Set(uniquePairs)].sort();
-
-            const dateInput = document.getElementById("dateInput").value;
-            const dateDisplay = dateInput ? getThaiDate(new Date(dateInput)) : getThaiDate();
-
- const resultHtml = `
-<div id="resultContent" style="position: relative; text-align: center; line-height: 2.0;">
-    <h2 style="color: blue; margin-bottom: 5px;">${selectedTopic}</h2>
-    <h3 style="color: blue; font-weight: normal; margin-bottom: 10px;">${dateDisplay}</h3>
-    
-    <h2 style="color: blue; margin-bottom: 8px;">
-        ตัวเลข 2 ตัว <span style="color: red;">${num}</span> By : ${selectedPerson}
-    </h2>
-    
-    <h2 style="color: blue; margin-bottom: 8px;">จัดชุด 2 ตัวดังนี้</h2>
-    
-    <div class="number-pairs" style="color: blue; font-weight: bold; margin-bottom: 12px;">
-        ${sortedPairs.join(' - ')}
-    </div>
-    
-    <h2 style="color: red; font-size: 22px; margin-bottom: 10px;">แนวทางเท่านั้น</h2>
-    
-<p style="color: blue; font-size: 13px; margin: 0 0 10px 0; line-height: 1;">
-  แปล: ${getThaiDate()} ${getThaiTime()}
-</p>
-    
-    <p class="note" style="color: blue;">
-        หมายเหตุ : <span style="color: red;">${noteInput}</span>
-    </p>
-</div>
-`;
-
-            const resultContainer = document.getElementById("resultContainer");
-            resultContainer.innerHTML = resultHtml;
-            resultContainer.style.display = "block";
             
-            // ตั้งค่า lineHeight เริ่มต้นเป็น 2.0
-            document.getElementById("lineHeightSlider").value = 2.0;
-            updateLineHeight();
-        }
-
-        function updateLineHeight() {
-            const lineHeight = document.getElementById("lineHeightSlider").value;
-            const resultContent = document.getElementById("resultContent");
-            
-            if (resultContent) {
-                const elements = resultContent.querySelectorAll('*');
-                elements.forEach(element => {
-                    element.style.lineHeight = lineHeight;
-                });
-                
-                resultContent.style.lineHeight = lineHeight;
-                document.getElementById("lineHeightValue").textContent = `ความสูงของบรรทัด: ${lineHeight}`;
+            input, select, button {
+                width: 90%;
             }
         }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            document.getElementById("convertButton").addEventListener("click", convertNumber);
-            document.getElementById("lineHeightSlider").addEventListener("input", updateLineHeight);
-            
-            // ตั้งค่าเริ่มต้นของ slider เป็น 2.0
-            document.getElementById("lineHeightSlider").value = 2.0;
-            document.getElementById("lineHeightValue").textContent = "ความสูงของบรรทัด: 2.0";
-        });
-    </script>
+    </style>
 </head>
 <body>
     <h1>ฟอร์มแปลตัวเลข 2 ตัว</h1>
@@ -376,21 +182,370 @@
         <button id="convertButton">แปลตัวเลข</button>
     </div>
     
-    <div id="resultContainer" style="display: none;"></div>
-    
-    <!-- Slider ปรับความสูงของบรรทัด -->
-    <div style="text-align: center; margin: 30px auto; max-width: 600px;">
-        <label for="lineHeightSlider">ปรับขนาดของบรรทัด:</label>
-        <input type="range" id="lineHeightSlider" min="0.5" max="3.5" step="0.1" value="2.0" />
-        <p id="lineHeightValue">ความสูงของบรรทัด: 2.0</p>
-    </div>
+    <!-- ปุ่มกลับสู่หน้าหลัก (แก้ไขแล้ว ใส่ class="homeButton") -->
+    <button id="homeButton" class="homeButton" onclick="window.location.href='https://juckphai.github.io/juckphai/01.html'">กลับสู่หน้าหลัก</button>
 
-    <button class="back-button" onclick="window.location.href='https://juckphai.github.io/juckphai/01.html'">กลับสู่หน้าหลัก</button>
     <footer>
         <div style="text-align: center; margin-bottom: 20px;">
             &copy; 2024 Juckphai. All Rights Reserved.
         </div>
+    </footer> 
 
-    </footer>
+    <script>
+        function getThaiDate(date = new Date()) {
+            const daysOfWeek = ["อาทิตย์", "จันทร์", "อังคาร", "พุธ", "พฤหัสบดี", "ศุกร์", "เสาร์"];
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"][date.getMonth()];
+            const year = date.getFullYear() + 543;
+            const dayOfWeek = daysOfWeek[date.getDay()];
+            return `วัน${dayOfWeek}ที่ ${day} ${month} พ.ศ. ${year}`;
+        }
+
+        function getThaiTime() {
+            const now = new Date();
+            return `เวลา ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')} น.`;
+        }
+
+        function convertNumber() {
+            const num = document.getElementById("numberInput").value;
+            const topicSelect = document.getElementById("topicSelect");
+            const selectedTopic = topicSelect.options[topicSelect.selectedIndex].value;
+            const personSelect = document.getElementById("personSelect");
+            const selectedPerson = personSelect.options[personSelect.selectedIndex].value;
+            let noteInput = document.getElementById("noteInput").value;
+
+            if (!noteInput.trim()) {
+                noteInput = '<span style="color: red;">No remarks</span>';
+            }
+
+            if (num.length !== 2 || isNaN(num)) {
+                alert("กรุณาป้อนตัวเลข 2 หลัก");
+                return null;
+            }
+
+            const transformRules = {
+                '0': '1', '1': '7', '2': '5', '3': '8',
+                '4': '9', '5': '2', '6': '9', '7': '1',
+                '8': '3', '9': '6'
+            };
+
+            const transformed = num.split('').map(digit => transformRules[digit]).join('');
+            const pairs = [
+                `${num[0]}${transformed[1]}`,
+                `${transformed[0]}${num[1]}`,
+                `${transformed[0]}${transformed[1]}`,
+                `${num[0]}${num[1]}`
+            ];
+
+            const formattedPairs = pairs.map(pair => {
+                const tens = parseInt(pair[0]);
+                const units = parseInt(pair[1]);
+                return tens <= units ? pair : `${units}${tens}`;
+            });
+
+            const uniquePairs = [...new Set(formattedPairs)];
+            const additionRules = {
+                '00': '02', '11': '12', '33': '23',
+                '44': '24', '55': '25', '66': '26', '77': '27',
+                '88': '28', '99': '29'
+            };
+
+            uniquePairs.forEach(pair => {
+                const addition = additionRules[pair];
+                if (addition) {
+                    uniquePairs.push(addition);
+                }
+            });
+
+            const sortedPairs = [...new Set(uniquePairs)].sort();
+
+            const dateInput = document.getElementById("dateInput").value;
+            const dateDisplay = dateInput ? getThaiDate(new Date(dateInput)) : getThaiDate();
+
+            const resultHtml = `
+                <div id="resultContent" style="position: relative; text-align: center; line-height: 2.0;">
+<h2 style="
+  color: blue;
+  margin-bottom: 5px;
+  text-shadow: -2px -2px 1px #fff8dc;
+">
+  ${selectedTopic}
+</h2>
+
+<h3 style="
+  color: blue;
+  font-weight: normal;
+  margin-bottom: 10px;
+  text-shadow: -1px -1px 1px #fff8dc;
+">
+  ${dateDisplay}
+</h3>
+
+<h2 style="
+  color: blue;
+  margin-bottom: 8px;
+  text-shadow: -2px -2px 1px #fff8dc;
+">
+  ตัวเลข 2 ตัว <span style="
+    color: red;
+    text-shadow: -2px -2px 1px #fff8dc;
+  ">${num}</span> By : ${selectedPerson}
+</h2>
+
+<h2 style="
+  color: blue;
+  margin-bottom: 8px;
+  text-shadow: -2px -2px 1px #fff8dc;
+">
+  จัดชุด 2 ตัวดังนี้
+</h2>
+
+<div class="number-pairs" style="
+  color: blue;
+  font-weight: bold;
+  margin-bottom: 12px;
+  text-shadow: -2px -2px 1px #fff8dc;
+">
+  ${sortedPairs.join(' - ')}
+</div>
+
+<h2 style="
+  color: red;
+  font-size: 22px;
+  margin-bottom: 10px;
+  text-shadow: -2px -2px 1px #fff8dc;
+">
+  แนวทางเท่านั้น
+</h2>          
+
+<p style="color: blue; font-size: 13px; margin: 0 0 10px 0; line-height: 1;">
+  แปล: ${getThaiDate()} ${getThaiTime()}
+</p>
+
+<p class="note" style="color: blue;">
+  หมายเหตุ : <span style="color: red;">${noteInput}</span>
+</p>
+                </div>
+            `;
+
+            return resultHtml;
+        }
+
+        function openResultInNewWindow() {
+            const resultHtml = convertNumber();
+            if (!resultHtml) return;
+
+            const isMobile = window.innerWidth <= 600;
+            const windowWidth = isMobile ? Math.min(window.innerWidth, 600) : 600;
+            const windowHeight = 700;
+
+            const newWindow = window.open('', '_blank', `width=${windowWidth},height=${windowHeight},scrollbars=yes,resizable=yes`);
+            if (!newWindow) {
+                alert("กรุณาปิดการบล็อคป๊อปอัพเพื่อใช้งานฟังก์ชันนี้");
+                return;
+            }
+
+            newWindow.document.write(`
+                <!DOCTYPE html>
+                <html lang="th">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>ผลลัพธ์การแปลตัวเลข</title>
+                    <style>
+                        body {
+                            margin: 0;
+                            padding: 10px;
+                            background-color: #fffde7;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            min-height: 100vh;
+                            box-sizing: border-box;
+                        }
+
+                        .result-container {
+                            border: 2px solid #4CAF50;
+                            background-color: #FAFAD2;
+                            padding: 15px;
+                            border-radius: 10px;
+                            width: calc(100% - 10px);
+                            margin: 10px auto;
+                            max-width: 600px;
+                            min-height: 300px;
+                            box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
+                            position: relative;
+                            box-sizing: border-box;
+                        }
+
+                        .result-container::before {
+                            content: "";
+                            background-image: url('logo.png');
+                            background-size: 90% auto;
+                            background-repeat: no-repeat;
+                            background-position: center top 15px;
+                            opacity: 0.5;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            z-index: 0;
+                        }
+
+                        #resultContent {
+                            position: relative;
+                            z-index: 1;
+                            line-height: 2.0;
+                            text-align: center;
+                            width: 100%;
+                        }
+
+                        #resultContent h2 {
+                            font-size: 22px;
+                            margin: 12px 0;
+                            color: blue;
+                        }
+
+                        #resultContent h3 {
+                            font-size: 20px;
+                            margin: 10px 0;
+                            color: blue;
+                        }
+
+                        .number-pairs {
+                            font-size: 24px;
+                            margin: 12px 0;
+                            font-weight: bold;
+                            color: blue;
+                        }
+
+                        .note {
+                            font-size: 20px;
+                            margin: 12px 0;
+                            color: blue;
+                        }
+
+                        .translation {
+                            font-size: 16px;
+                            margin: 10px 0;
+                            color: blue;
+                        }
+
+                        .controls {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            width: 100%;
+                            margin-top: 20px;
+                        }
+
+                        .line-height-control {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            width: 100%;
+                            margin-bottom: 15px;
+                        }
+
+                        .line-height-control label {
+                            font-size: 16px;
+                            margin-bottom: 5px;
+                            color: blue;
+                        }
+
+                        .line-height-control input[type="range"] {
+                            width: 80%;
+                            max-width: 300px;
+                        }
+
+                        .line-height-control span {
+                            font-size: 16px;
+                            color: blue;
+                        }
+
+                        .close-btn {
+                            padding: 10px 20px;
+                            background-color: #f44336;
+                            color: white;
+                            border: none;
+                            border-radius: 5px;
+                            cursor: pointer;
+                            font-size: 16px;
+                            margin: 10px auto;
+                            display: block;
+                            width: ${isMobile ? 'calc(100% - 40px)' : '200px'};
+                            max-width: 200px;
+                        }
+
+                        .close-btn:hover {
+                            background-color: #d32f2f;
+                        }
+
+                        @media only screen and (max-width: 600px) {
+                            .form-container,
+                            #resultContainer {
+                                width: calc(100% - 20px);
+                                margin: 10px;
+                            }
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="result-container">
+                        <div id="resultContent">${resultHtml}</div>
+                    </div>
+                    
+                    <div class="controls">
+                        <div class="line-height-control">
+                            <label for="popupLineHeightSlider">ปรับขนาดของบรรทัด:</label>
+                            <input type="range" id="popupLineHeightSlider" min="0.5" max="3.5" step="0.1" value="2.0" />
+                            <span id="popupLineHeightValue">ความสูงของบรรทัด: 2.0</span>
+                        </div>
+                        
+                        <button class="close-btn" onclick="window.close()">ปิดหน้าต่าง</button>
+                    </div>
+                    
+<script>
+    function updateLineHeight() {
+        const lineHeight = document.getElementById("popupLineHeightSlider").value;
+        const resultContent = document.getElementById("resultContent");
+        
+        if (resultContent) {
+            const elements = resultContent.querySelectorAll('*');
+            elements.forEach(element => {
+                element.style.lineHeight = lineHeight;
+            });
+
+            resultContent.style.lineHeight = lineHeight;
+            document.getElementById("popupLineHeightValue").textContent = "ความสูงของบรรทัด: " + lineHeight;
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const slider = document.getElementById("popupLineHeightSlider");
+        const lineHeightValue = document.getElementById("popupLineHeightValue");
+
+        if (slider && lineHeightValue) {
+            slider.addEventListener("input", updateLineHeight);
+            slider.value = 2.0;
+            lineHeightValue.textContent = "ความสูงของบรรทัด: 2.0";
+        }
+    });
+<\/script>
+</body>
+</html>
+`);
+newWindow.document.close();
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    const convertButton = document.getElementById("convertButton");
+    if (convertButton) {
+        convertButton.addEventListener("click", openResultInNewWindow);
+    }
+});
+</script>
+
 </body>
 </html>
