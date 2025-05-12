@@ -230,17 +230,19 @@ input, select {
 .pingpong-ball-orange {
   background: radial-gradient(circle at 30% 30%, #ff9933, #cc6600);
 }
-
+/* ป้ายรางวัลแบบนูน */
 .prize-label-red,
 .prize-label-blue,
 .prize-label-orange {
   font-weight: bold;
   font-size: 22px;
-  color: #800020;
   margin: 5px 0;
   text-shadow:
-    2px 2px 3px rgba(0, 0, 0, 0.4),
-   -1px -1px 1px rgba(255, 255, 255, 0.5);
+    -2px -2px 1px #fff8dc,     /* แสงสีทองอ่อนจากบนซ้าย */
+    -1px -1px 1px #fff8dc,
+     1px 1px 0 #cc9900,        /* เงาทองจากล่างขวา */
+     2px 2px 2px #996600,      /* เงาทองเข้มลึก */
+     3px 3px 4px rgba(0,0,0,0.3); /* เงาดำลึกช่วยยกตัวอักษร */
 }
 
 /* จัดกลุ่มลูกปิงปอง */
