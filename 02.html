@@ -262,12 +262,11 @@
             const dateInput = document.getElementById("dateInput").value;
             const dateDisplay = dateInput ? getThaiDate(new Date(dateInput)) : getThaiDate();
 
- const resultHtml = `
-  <div id="resultContent" style="position: relative; text-align: center; line-height: 2.0;">
-    
+const resultHtml = `
+  <div id="resultContent" style="position: relative; text-align: center; line-height: 1.5;">
     <h2 style="
       color: blue;
-      margin-bottom: 5px;
+      margin: 0 0 10px 0;
       text-shadow: 
         -1px -1px 0 white, 1px -1px 0 white,
         -1px 1px 0 white, 1px 1px 0 white;
@@ -278,7 +277,7 @@
     <h3 style="
       color: blue;
       font-weight: normal;
-      margin-bottom: 5px;
+      margin: 0 0 10px 0;
       text-shadow: 
         -1px -1px 0 white, 1px -1px 0 white,
         -1px 1px 0 white, 1px 1px 0 white;
@@ -288,26 +287,22 @@
 
     <h2 style="
       color: blue;
-      margin-bottom: 5px;
+      margin: 0 0 10px 0;
       text-shadow: 
         -1px -1px 0 white, 1px -1px 0 white,
         -1px 1px 0 white, 1px 1px 0 white;
     ">
-      ตัวเลข 2 ตัว 
-      <span style="
+      ตัวเลข 2 ตัว <span style="
         color: red;
         text-shadow: 
           -1px -1px 0 white, 1px -1px 0 white,
           -1px 1px 0 white, 1px 1px 0 white;
-      ">
-        ${num}
-      </span> 
-      By : ${selectedPerson}
+      ">${num}</span> By : ${selectedPerson}
     </h2>
 
     <h2 style="
       color: blue;
-      margin-bottom: 5px;
+      margin: 0 0 10px 0;
       text-shadow: 
         -1px -1px 0 white, 1px -1px 0 white,
         -1px 1px 0 white, 1px 1px 0 white;
@@ -318,7 +313,7 @@
     <div class="number-pairs" style="
       color: blue;
       font-weight: bold;
-      margin-bottom: 5px;
+      margin: 0 0 10px 0;
       text-shadow: 
         -1px -1px 0 white, 1px -1px 0 white,
         -1px 1px 0 white, 1px 1px 0 white;
@@ -329,7 +324,7 @@
     <h2 style="
       color: red;
       font-size: 22px;
-      margin-bottom: 5px;
+      margin: 0 0 10px 0;
       text-shadow: 
         -1px -1px 0 white, 1px -1px 0 white,
         -1px 1px 0 white, 1px 1px 0 white;
@@ -340,7 +335,7 @@
     <p style="
       color: blue;
       font-size: 13px;
-      margin-bottom: 5px;
+      margin: 0 0 10px 0;
       line-height: 1;
       text-shadow: 
         -1px -1px 0 white, 1px -1px 0 white,
@@ -351,22 +346,16 @@
 
     <p class="note" style="
       color: blue;
-      margin-bottom: 5px;
+      margin: 0 0 10px 0;
       text-shadow: 
         -1px -1px 0 white, 1px -1px 0 white,
         -1px 1px 0 white, 1px 1px 0 white;
     ">
-      หมายเหตุ : 
-      <span style="
-        color: red;
+      หมายเหตุ : <span style="color: red;
         text-shadow: 
           -1px -1px 0 white, 1px -1px 0 white,
-          -1px 1px 0 white, 1px 1px 0 white;
-      ">
-        ${noteInput}
-      </span>
+          -1px 1px 0 white, 1px 1px 0 white;">${noteInput}</span>
     </p>
-
   </div>
 `;
 
