@@ -1,112 +1,171 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>รวมลิงก์ผลหวยลาว</title>
-  <style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>เลือกเว็บไซต์ลาว</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&display=swap" rel="stylesheet" />
+<style>
+  body {
+    margin: 0;
+    padding: 20px 0;
+    font-family: 'Sarabun', sans-serif;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+  }
+
+.homeButton {
+  width: 100%;
+  max-width: 400px;
+  display: block;
+  padding: 12px 28px;
+  background-color: #ffa500;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(255, 165, 0, 0.7);
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
+  margin-bottom: 24px;
+}
+
+  .homeButton:hover {
+    background-color: #cc8400;
+    box-shadow: 0 7px 22px rgba(204, 132, 0, 0.8);
+  }
+
+  .container {
+    background-color: #fff8dc; /* เหลืองทองจางๆ */
+    width: 100%;
+    max-width: 400px;
+    padding: 30px 25px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(255, 165, 0, 0.25);
+    box-sizing: border-box;
+    text-align: center;
+    max-height: 320px;
+    overflow-y: auto;
+  }
+
+  h2 {
+    font-weight: 600;
+    color: #a66300;
+    margin-bottom: 28px;
+    font-size: 22px;
+  }
+
+select {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 2px solid #ffa500;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  background-color: #fff8dc;
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23a66300" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 16px;
+  box-shadow: inset 0 1px 3px rgba(255, 165, 0, 0.2);
+  cursor: pointer;
+  color: blue;
+}
+
+  .openButton {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    background-color: #ffa500;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 165, 0, 0.5);
+    transition: background-color 0.3s ease;
+  }
+
+  .openButton:hover {
+    background-color: #cc8400;
+    box-shadow: 0 6px 20px rgba(204, 132, 0, 0.6);
+  }
+
+  footer {
+    text-align: center;
+    font-size: 16px;
+    color: #a66300;
+    background-color: transparent;
+    margin-top: 5px;
+    padding: 8px 0;
+    line-height: 1;
+  }
+
+  @media (max-width: 600px) {
     body {
-        font-family: Arial, sans-serif;
-        background-color: #fffde7;
-        margin: 0;
-        padding: 0;
-        line-height: 1;
+      padding: 20px 12px;
     }
-    h1 {
-      text-align: center;
-      color: #2e7d32;
-      padding: 0 10px;
+    .container {
+      max-height: none;
+      max-width: 100%;
     }
-    .lottery-list {
-      width: 90%;
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    .lottery-item {
-      background-color: #4CAF50;
-      margin-bottom: 5px;
-      padding: 12px 10px;
-      border-radius: 8px;
-      text-align: center;
-      color: white;
-      font-weight: bold;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      box-sizing: border-box;
-    }
-    .lottery-item a {
-      text-decoration: none;
-      color: white;
-      display: block;
-      font-size: 16px;
-      word-break: break-word;
-    }
-    .lottery-item span {
-      display: block;
-      color: white;
-      margin-top: 5px;
-      font-size: 14px;
-    }
-    .back-button {
-      display: block;
-      width: 90%;
-      max-width: 600px;
-      margin: 20px auto 10px;
-      padding: 10px 20px;
-      background-color: orange;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    .back-button:hover {
-      background-color: darkorange;
-    }
-    footer {
-      text-align: center;
-      margin-bottom: 20px;
-      color: #888;
-      padding: 0 10px;
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
 
-<h1>📌ลิงก์ผลลาว</h1>
+  <button class="homeButton" onclick="window.location.href='https://juckmanphai.github.io/juck/01.html'">
+    กลับสู่หน้าหลัก
+  </button>
 
-<div class="lottery-list">
-  <div class="lottery-item"><a href="https://salavan-visa.com" target="_blank">สาละวัน VISA</a><span>เวลา 05:15 น.</span></div>
-  <div class="lottery-item"><a href="https://laopatuxay.com" target="_blank">ลาวประตูชัย</a><span>เวลา 05.45 น.</span></div>
-  <div class="lottery-item"><a href="https://luangprabang-visa.com" target="_blank">หลวงพระบาง VISA</a><span>เวลา 06:15 น.</span></div>
-  <div class="lottery-item"><a href="https://laosantipap.com" target="_blank">ลาวสันติภาพ</a><span>เวลา 06.45 น.</span></div>
-  <div class="lottery-item"><a href="https://vientiane-visa.com" target="_blank">เวียงจันทน์ VISA</a><span>เวลา 07:15 น.</span></div>
-  <div class="lottery-item"><a href="https://laocitizen.com" target="_blank">ประชาชนลาว</a><span>เวลา 07.45 น.</span></div>
-  <div class="lottery-item"><a href="https://lao-visa.com" target="_blank">ลาว VISA</a><span>เวลา 08:15 น.</span></div>
-  <div class="lottery-item"><a href="https://laoextra.com" target="_blank">ลาว Extra</a><span>เวลา 08:30 น.</span></div>
-  <div class="lottery-item"><a href="https://laochowlottery.com" target="_blank">ลาวเช้า</a><span>เวลา 08:30 น.</span></div>
-  <div class="lottery-item"><a href="https://lao-tv.com" target="_blank">ลาวทีวี</a><span>เวลา 10:30 น.</span></div>
-  <div class="lottery-item"><a href="https://laosspecial.com" target="_blank">ลาวพิเศษ</a><span>เวลา 12:00 น.</span></div>
-  <div class="lottery-item"><a href="https://laoshd.com" target="_blank">ลาว HD</a><span>เวลา 13:45 น.</span></div>
-  <div class="lottery-item"><a href="https://laostars.com" target="_blank">ลาวสตาร์</a><span>เวลา 15:45 น.</span></div>
-  <div class="lottery-item"><a href="https://laodl.com/" target="_blank">ลาวพัฒนา</a><span>เวลา 20:30 น.</span></div>
-  <div class="lottery-item"><a href="https://laounion.com" target="_blank">ลาวสามัคคี</a><span>เวลา 20:30 น.</span></div>
-  <div class="lottery-item"><a href="https://lotterylaosasean.com" target="_blank">ลาวอาเซียน</a><span>เวลา 21:00 น.</span></div>
-  <div class="lottery-item"><a href="https://www.laosviplot.com" target="_blank">ลาว VIP</a><span>เวลา 21:30 น.</span></div>
-  <div class="lottery-item"><a href="https://laounionvip.com" target="_blank">ลาวสามัคคี VIP</a><span>เวลา 21:30 น.</span></div>
-  <div class="lottery-item"><a href="https://laostars-vip.com" target="_blank">ลาวสตาร์ VIP</a><span>เวลา 22:00 น.</span></div>
-  <div class="lottery-item"><a href="https://lao-redcross.com" target="_blank">ลาวกาชาด</a><span>เวลา 23:30 น.</span></div>
-</div>
-
-<button class="back-button" onclick="window.location.href='https://juckphai.github.io/juckphai/01.html'">กลับสู่หน้าหลัก</button>
-
-<footer> 
-  <div style="text-align: center; margin-bottom: 20px;">
-     &copy; 2024 Juckphai. All Rights Reserved.
+  <div class="container">
+    <h2>เลือกเว็บไซต์ลาวที่ต้องการเข้า</h2>
+<select id="siteSelector">
+  <option value="">-- กรุณาเลือกเว็บไซต์ --</option>
+  <option value="https://salavan-visa.com">สาละวัน VISA - เวลา 05:15 น.</option>
+  <option value="https://laopatuxay.com">ลาวประตูชัย - เวลา 05.45 น.</option>
+  <option value="https://luangprabang-visa.com">หลวงพระบาง VISA - เวลา 06:15 น.</option>
+  <option value="https://laosantipap.com">ลาวสันติภาพ - เวลา 06.45 น.</option>
+  <option value="https://vientiane-visa.com">เวียงจันทน์ VISA - เวลา 07:15 น.</option>
+  <option value="https://laocitizen.com">ประชาชนลาว - เวลา 07.45 น.</option>
+  <option value="https://lao-visa.com">ลาว VISA - เวลา 08:15 น.</option>
+  <option value="https://laoextra.com">ลาว Extra - เวลา 08:30 น.</option>
+  <option value="https://laochowlottery.com">ลาวเช้า - เวลา 08:30 น.</option>
+  <option value="https://lao-tv.com">ลาวทีวี - เวลา 10:30 น.</option>
+  <option value="https://laosspecial.com">ลาวพิเศษ - เวลา 12:00 น.</option>
+  <option value="https://laoshd.com">ลาว HD - เวลา 13:45 น.</option>
+  <option value="https://laostars.com">ลาวสตาร์ - เวลา 15:45 น.</option>
+  <option value="https://laodl.com/">ลาวพัฒนา - เวลา 20:30 น.</option>
+  <option value="https://laounion.com">ลาวสามัคคี - เวลา 20:30 น.</option>
+  <option value="https://lotterylaosasean.com">ลาวอาเซียน - เวลา 21:00 น.</option>
+  <option value="https://www.laosviplot.com">ลาว VIP - เวลา 21:30 น.</option>
+  <option value="https://laounionvip.com">ลาวสามัคคี VIP - เวลา 21:30 น.</option>
+  <option value="https://laostars-vip.com">ลาวสตาร์ VIP - เวลา 22:00 น.</option>
+  <option value="https://lao-redcross.com">ลาวกาชาด - เวลา 23:30 น.</option>
+</select>
+    <button class="openButton" onclick="openSelectedSite()">เปิดเว็บไซต์</button>
   </div>
-</footer>
+
+  <footer>
+    &copy; 2024-2025 Juckphai. All Rights Reserved.
+  </footer>
+
+  <script>
+    function openSelectedSite() {
+      const url = document.getElementById("siteSelector").value;
+      if (url) {
+        window.open(url, "_blank");
+      } else {
+        alert("กรุณาเลือกเว็บไซต์ก่อน");
+      }
+    }
+  </script>
 
 </body>
 </html>
