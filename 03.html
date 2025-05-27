@@ -299,20 +299,20 @@
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
                     <title>ผลลัพธ์การแปลตัวเลข</title>
                     <style>
-                        body {
-                            margin: 0;
-                            padding: 10px;
-                            background-color: #fffde7;
-                            display: flex;
-                            flex-direction: column;
-                            align-items: center;
-                            min-height: 100vh;
-                            box-sizing: border-box;
-                        }
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fffde7;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    color: blue;
+}
+
+/* กล่องผลลัพธ์ */
 .result-container {
     border: 2px solid #4CAF50;
     background-color: #FAFAD2;
-    margin: 20px 3px; /* บนล่าง 20px, ซ้ายขวา 3px */
+    margin: 20px 2px; /* บนล่าง 20px, ซ้ายขวา 2px */
     padding: 15px;
     border-radius: 10px;
     width: auto;
@@ -324,118 +324,125 @@
     box-sizing: border-box;
 }
 
-                        .result-container::before {
-                            content: "";
-                            background-image: url('logo.png');
-                            background-size: 90% auto;
-                            background-repeat: no-repeat;
-                            background-position: center top 15px;
-                            opacity: 0.4;
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            right: 0;
-                            bottom: 0;
-                            z-index: 0;
-                        }
+.result-container::before {
+    content: "";
+    background-image: url('logo.png');
+    background-size: 90% auto;
+    background-repeat: no-repeat;
+    background-position: center top 15px;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+}
 
-                        #resultContent {
-                            position: relative;
-                            z-index: 1;
-                            line-height: 2.0;
-                            text-align: center;
-                            width: 100%;
-                        }
+/* เนื้อหาผลลัพธ์ */
+#resultContent {
+    position: relative;
+    z-index: 1;
+    color: blue;
+}
 
-                        #resultContent h2 {
-                            font-size: 22px;
-                            margin: 12px 0;
-                            color: blue;
-                        }
+#resultContent h2,
+#resultContent h3,
+#resultContent .number-pairs,
+#resultContent .note,
+#resultContent .translation {
+    color: blue;
+}
 
-                        #resultContent h3 {
-                            font-size: 20px;
-                            margin: 10px 0;
-                            color: blue;
-                        }
+#resultContent h2 {
+    font-size: 22px;
+    margin: 6px 0;
+    line-height: 1;
+}
 
-                        .number-pairs {
-                            font-size: 24px;
-                            margin: 12px 0;
-                            font-weight: bold;
-                            color: blue;
-                        }
+#resultContent h3 {
+    font-size: 20px;
+    margin: 6px 0;
+    line-height: 1;
+}
 
-                        .note {
-                            font-size: 20px;
-                            margin: 12px 0;
-                            color: blue;
-                        }
+#resultContent .number-pairs {
+    font-size: 20px;
+    margin: 8px 0;
+    font-weight: bold;
+}
 
-                        .translation {
-                            font-size: 16px;
-                            margin: 10px 0;
-                            color: blue;
-                        }
+#resultContent .note {
+    font-size: 20px;
+    margin: 8px 0;
+}
 
-                        .controls {
-                            display: flex;
-                            flex-direction: column;
-                            align-items: center;
-                            width: 100%;
-                            margin-top: 20px;
-                        }
+#resultContent .translation {
+    font-size: 16px;
+    margin: 6px 0;
+}
 
-                        .line-height-control {
-                            display: flex;
-                            flex-direction: column;
-                            align-items: center;
-                            width: 100%;
-                            margin-bottom: 15px;
-                        }
+/* ส่วนควบคุมการตั้งค่า */
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
 
-                        .line-height-control label {
-                            font-size: 16px;
-                            margin-bottom: 5px;
-                            color: blue;
-                        }
+.line-height-control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 15px;
+}
 
-                        .line-height-control input[type="range"] {
-                            width: 80%;
-                            max-width: 300px;
-                        }
+.line-height-control label,
+.line-height-control span {
+    font-size: 16px;
+    color: blue;
+}
 
-                        .line-height-control span {
-                            font-size: 16px;
-                            color: blue;
-                        }
+.line-height-control input[type="range"] {
+    width: 80%;
+    max-width: 300px;
+}
 
-                        .close-btn {
-                            padding: 10px 20px;
-                            background-color: #f44336;
-                            color: white;
-                            border: none;
-                            border-radius: 5px;
-                            cursor: pointer;
-                            font-size: 16px;
-                            margin: 10px auto;
-                            display: block;
-                            width: ${isMobile ? 'calc(100% - 40px)' : '200px'};
-                            max-width: 200px;
-                        }
+/* ปุ่มปิด */
+.close-btn {
+    padding: 10px 20px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 20px auto;
+    display: block;
+    width: 90%;
+    max-width: 200px;
+    text-align: center;
+}
 
-                        .close-btn:hover {
-                            background-color: #d32f2f;
-                        }
+.close-btn:hover {
+    background-color: #d32f2f;
+}
 
-                        @media only screen and (max-width: 600px) {
-                            .form-container,
-                            #resultContainer {
-                                width: calc(100% - 20px);
-                                margin: 10px;
-                            }
-                        }
-                    </style>
+/* Responsive */
+@media only screen and (max-width: 600px) {
+    .result-container {
+        margin: 20px 3px; /* ยังคง 20px บนล่าง และ 3px ซ้ายขวา */
+        width: calc(100% - 6px); /* 100% ลบ margin ซ้าย+ขวา */
+    }
+
+    input, select, button {
+        width: 90%;
+    }
+}
+
+</style>
                 </head>
                 <body>
                     <div class="result-container">
