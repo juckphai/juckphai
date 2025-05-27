@@ -309,20 +309,20 @@
                             min-height: 100vh;
                             box-sizing: border-box;
                         }
-
-                        .result-container {
-                            border: 2px solid #4CAF50;
-                            background-color: #FAFAD2;
-                            padding: 15px;
-                            border-radius: 10px;
-                            width: calc(100% - 10px);
-                            margin: 10px auto;
-                            max-width: 600px;
-                            min-height: 300px;
-                            box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
-                            position: relative;
-                            box-sizing: border-box;
-                        }
+.result-container {
+    border: 2px solid #4CAF50;
+    background-color: #FAFAD2;
+    margin: 20px 3px; /* บนล่าง 20px, ซ้ายขวา 3px */
+    padding: 15px;
+    border-radius: 10px;
+    width: auto;
+    max-width: calc(100% - 6px); /* เผื่อ margin ซ้าย+ขวา รวมกัน = 6px */
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
+    position: relative;
+    min-height: 300px;
+    box-sizing: border-box;
+}
 
                         .result-container::before {
                             content: "";
