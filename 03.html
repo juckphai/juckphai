@@ -14,12 +14,14 @@
             line-height: 1;
         }
         
-        h1 {
-            text-align: center;
-            font-size: 22px;
-            color: #2c3e50;
-            margin: 10px 0;
-        }
+    h1 {
+        text-align: center;
+        font-size: 22px;
+        color: blue;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        line-height: 1;
+    }
         
         label {
             font-size: 18px;
@@ -71,6 +73,7 @@
             background-color: #45a049;
         }
 
+        /* ปุ่มกลับหน้าหลักสีส้ม */
         .homeButton {
       display: block;
       width: 90%;
@@ -88,6 +91,7 @@
         .homeButton:hover {
             background-color: darkorange;
         }
+
         
         /* ===== Container Styles ===== */
         .form-container {
@@ -490,6 +494,14 @@
             if (convertButton) {
                 convertButton.addEventListener("click", openResultInNewWindow);
             }
+        });
+                document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("convertButton").addEventListener("click", openResultInNewWindow);
+            
+            // ตั้งค่าวันที่เริ่มต้นเป็นวันปัจจุบัน
+            const today = new Date();
+            const dateStr = today.toISOString().substr(0, 10);
+            document.getElementById("dateInput").value = dateStr;
         });
     </script>
 </body>
