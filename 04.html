@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ฟอร์มแปลตัวเลข 4 ตัว</title>
+    <title>ฟอร์มแปลตัวเลข 3 ตัว</title>
 <style>
     /* Base Styles */
         body {
@@ -190,12 +190,12 @@
 </style>
 </head>
 <body>
-      <h1>ฟอร์มแปลตัวเลข 4 ตัว</h1>
+      <h1>ฟอร์มแปลตัวเลข 3 ตัว</h1>
     <div class="form-container">
         <!-- แถวที่ 1: ช่องกรอกตัวเลขกับตัวเลือกชนิดของตัวเลข -->
         <div class="form-row">
             <div class="form-col" style="width: 100%;">
-                <input type="text" id="numberInput" placeholder="กรุณากรอกตัวเลข 4 หลัก" pattern="\d{4}" maxlength="4" inputmode="numeric" />
+                <input type="text" id="numberInput" placeholder="กรุณากรอกตัวเลข 3 หลัก" pattern="\d{3}" maxlength="3" inputmode="numeric" />
             </div>
             <div class="form-col" style="width: 100%;">
                 <select id="topicSelect">
@@ -227,8 +227,8 @@
         <div class="form-row">
             <div class="form-col" style="width: 100%;">
                 <select id="personSelect">
-                    <option value="@">@</option> 
-                   <option value="Team">Team</option>
+                    <option value="@">@</option>                    
+                    <option value="Team">Team</option>
                     <option value="โรงงาน">โรงงาน</option>
                     <option value="Udon Don">Udon Don</option>
                     <option value="เจ้าที่">เจ้าที่</option>
@@ -252,11 +252,10 @@
     
     <!-- ปุ่มกลับสู่หน้าหลัก (แก้ไขแล้ว ใส่ class="homeButton") -->
     <button id="homeButton" class="homeButton" onclick="window.location.href='https://juckphai.github.io/juckphai/01.html'">กลับสู่หน้าหลัก</button>
+</div>
 
     <footer>
-        <div style="text-align: center; margin-bottom: 20px;">
-            &copy; 2024-2025 Juckphai. All Rights Reserved.
-        </div>
+        &copy; 2024-2025 Juckphai. All Rights Reserved.
     </footer>
 
 <script>
@@ -284,32 +283,9 @@
         }
     }
 
-    function sortDigits(str) {
-        return str.split('').sort().join('');
-    }
-    
-    function getTwoDigitPairs(num) {
-        const pairs = [];
-        const digits = num.split('');
-        for (let i = 0; i < digits.length; i++) {
-            for (let j = i + 1; j < digits.length; j++) {
-                const tens = digits[i];
-                const units = digits[j];
-                pairs.push((parseInt(tens) <= parseInt(units)) ? tens + units : units + tens);
-            }
-        }
-        return Array.from(new Set(pairs)).sort();
-    }
-    
-    function getThreeDigitCombinations(num) {
-        const combinations = [];
-        const digits = num.split('');
-        combinations.push(digits[0] + digits[1] + digits[2]);
-        combinations.push(digits[0] + digits[1] + digits[3]);
-        combinations.push(digits[0] + digits[2] + digits[3]);
-        combinations.push(digits[1] + digits[2] + digits[3]);
-        const sortedCombinations = combinations.map(sortDigits);
-        return Array.from(new Set(sortedCombinations)).sort();
+    function sortPair(pair) {
+        const digits = pair.split('');
+        return digits[0] > digits[1] ? digits[1] + digits[0] : pair;
     }
 
     function getThaiDate(date = new Date()) {
@@ -336,94 +312,545 @@
         let noteInput = document.getElementById("noteInput").value;
         const dateInputValue = document.getElementById("dateInput").value;
         const dateInput = dateInputValue ? new Date(dateInputValue) : new Date();
-        const displayDate = getThaiDate(dateInput);
 
         if (!noteInput.trim()) {
             noteInput = '<span style="color: red;">No remarks</span>';
-        } else {
-            noteInput = `<span style="color: red;">${noteInput}</span>`;
         }
 
-        if (num.length !== 4 || isNaN(num)) {
-            alert("กรุณากรอกตัวเลข 4 หลัก");
+        if (num.length !== 3 || isNaN(num)) {
+            alert("กรุณาป้อนตัวเลข 3 หลัก");
             return null;
         }
 
-        const twoDigitPairs = getTwoDigitPairs(num);
-        const threeDigitCombinations = getThreeDigitCombinations(num);
+        const transformRules = {
+            '0': '1', '1': '7', '2': '5', '3': '8',
+            '4': '9', '5': '2', '6': '9', '7': '1',
+            '8': '3', '9': '6'
+        };
 
-        // กำหนดขนาดฟอนต์
-        const fontSizeTopic = "22px";
-        const fontSizeDate = "18px";
-        const fontSizeNumber = "22px";
-        const fontSizeTwoDigit = "20px";
-        const fontSizeThreeDigit = "20px";
-        const fontSizeGuide = "18px";
-        const fontSizeTranslation = "13px";
-        const fontSizeNote = "18px";
+        const transformed = num.split('').map(digit => transformRules[digit]).join('');
 
-        return `
-            <div id="resultContent" style="position: relative; text-align: center; font-size: 20px; line-height: 1.0; margin-top: 10px; color: blue;">
-                <p style="font-size: ${fontSizeTopic}; margin: 0 0 10px 0; font-weight: bold; line-height: 1.5; color: blue;
-                    text-shadow: 
-                        -1px -1px 0 white, 1px -1px 0 white,
-                        -1px 1px 0 white, 1px 1px 0 white;">
-                    ${selectedTopic}
-                </p>
-                <p style="font-size: ${fontSizeDate}; margin: 0 0 10px 0; line-height: 1.5;
-                    text-shadow: 
-                        -1px -1px 0 white, 1px -1px 0 white,
-                        -1px 1px 0 white, 1px 1px 0 white;">
-                    ${displayDate}
-                </p>
-                <h2 style="font-size: ${fontSizeNumber}; font-weight: bold; margin: 0 0 10px 0; line-height: 1.5;
-                    text-shadow: 
-                        -1px -1px 0 white, 1px -1px 0 white,
-                        -1px 1px 0 white, 1px 1px 0 white;">
-                    ตัวเลข 4 ตัว <span style="color: red;
-                        text-shadow: 
-                            -1px -1px 0 white, 1px -1px 0 white,
-                            -1px 1px 0 white, 1px 1px 0 white;">${num}</span> By : <span style="color: green;
-                        text-shadow: 
-                            -1px -1px 0 white, 1px -1px 0 white,
-                            -1px 1px 0 white, 1px 1px 0 white;">${selectedPerson}</span>
-                </h2>
-                <h3 style="font-size: ${fontSizeTwoDigit}; font-weight: bold; margin: 0 0 10px 0; line-height: 1.5;
-                    text-shadow: 
-                        -1px -1px 0 white, 1px -1px 0 white,
-                        -1px 1px 0 white, 1px 1px 0 white;">จัดชุด 2 ตัว</h3>
-                <p style="font-size: ${fontSizeTwoDigit}; margin: 0 0 10px 0; line-height: 1.5;
-                    text-shadow: 
-                        -1px -1px 0 white, 1px -1px 0 white,
-                        -1px 1px 0 white, 1px 1px 0 white;">
-                    ${twoDigitPairs.join(' - ')}
-                </p>
-                <h3 style="font-size: ${fontSizeThreeDigit}; font-weight: bold; margin: 0 0 10px 0; line-height: 1.5;
-                    text-shadow: 
-                        -1px -1px 0 white, 1px -1px 0 white,
-                        -1px 1px 0 white, 1px 1px 0 white;">จัดชุด 3 ตัว</h3>
-                <p style="font-size: ${fontSizeThreeDigit}; margin: 0 0 10px 0; line-height: 1.5;
-                    text-shadow: 
-                        -1px -1px 0 white, 1px -1px 0 white,
-                        -1px 1px 0 white, 1px 1px 0 white;">
-                    ${threeDigitCombinations.join(' - ')}
-                </p>
-                <h2 style="font-size: ${fontSizeGuide}; font-weight: bold; margin: 0 0 10px 0; color: red; line-height: 1.5;
-                    text-shadow: 
-                        -1px -1px 0 white, 1px -1px 0 white,
-                        -1px 1px 0 white, 1px 1px 0 white;">แนวทางเท่านั้น</h2>
-                <p style="font-size: ${fontSizeTranslation}; margin: 0 0 10px 0; line-height: 1.5;
-                    text-shadow: 
-                        -1px -1px 0 white, 1px -1px 0 white,
-                        -1px 1px 0 white, 1px 1px 0 white;">แปล: ${getThaiDate()} ${getThaiTime()}</p>
-                <p style="font-size: ${fontSizeNote}; margin: 0 0 10px 0; line-height: 1.5;
-                    text-shadow: 
-                        -1px -1px 0 white, 1px -1px 0 white,
-                        -1px 1px 0 white, 1px 1px 0 white;">
-                    หมายเหตุ : ${noteInput}
-                </p>
-            </div>
-        `;
+        const firstSet = [
+            sortPair(`${num[0]}${num[1]}`),
+            sortPair(`${num[0]}${num[2]}`),
+            sortPair(`${num[1]}${num[2]}`)
+        ];
+
+        let secondSet = [];
+
+        for (let i = 0; i < 3; i++) {
+            if (i === 0) {
+                secondSet.push(sortPair(`${num[i]}${transformed[1]}`));
+                secondSet.push(sortPair(`${num[i]}${transformed[2]}`));
+            } else if (i === 1) {
+                secondSet.push(sortPair(`${num[i]}${transformed[0]}`));
+                secondSet.push(sortPair(`${num[i]}${transformed[2]}`));
+            } else if (i === 2) {
+                secondSet.push(sortPair(`${num[i]}${transformed[0]}`));
+                secondSet.push(sortPair(`${num[i]}${transformed[1]}`));
+            }
+        }
+
+        const uniqueFirstSet = [...new Set(firstSet)].sort();
+        secondSet = [...new Set(secondSet)].sort();
+
+        const transformedPairs = [
+            sortPair(`${transformed[0]}${transformed[1]}`),
+            sortPair(`${transformed[0]}${transformed[2]}`),
+            sortPair(`${transformed[1]}${transformed[2]}`)
+        ];
+
+        // Remove duplicates within transformedPairs itself
+        const uniqueTransformedPairs = [...new Set(transformedPairs)];
+
+        // Sort transformed pairs
+        const sortedTransformedPairs = uniqueTransformedPairs.sort();
+
+        // Filter out duplicates from uniqueFirstSet, secondSet, and self
+        const uniquePairs = sortedTransformedPairs.filter(pair => 
+            !uniqueFirstSet.includes(pair) && 
+            !secondSet.includes(pair)
+        );
+
+        // Check if uniquePairs is empty
+        let transformedPairsText = '';
+        if (uniquePairs.length === 0) {
+            transformedPairsText = '<span style="color: red;">ไม่มีชุดตัวเลขเพิ่ม</span>';
+        } else {
+            transformedPairsText = uniquePairs.join(' - ');
+        }
+
+        const additionalNumbers = [];
+        if (uniqueFirstSet.includes('00') || secondSet.includes('00')) {
+            additionalNumbers.push('02');
+        }
+        if (uniqueFirstSet.includes('11') || secondSet.includes('11')) {
+            additionalNumbers.push('12');
+        }
+        if (uniqueFirstSet.includes('22') || secondSet.includes('22')) {
+            // ไม่ต้องเพิ่ม
+        }
+        if (uniqueFirstSet.includes('33') || secondSet.includes('33')) {
+            additionalNumbers.push('23');
+        }
+        if (uniqueFirstSet.includes('44') || secondSet.includes('44')) {
+            additionalNumbers.push('24');
+        }
+        if (uniqueFirstSet.includes('55') || secondSet.includes('55')) {
+            additionalNumbers.push('25');
+        }
+        if (uniqueFirstSet.includes('66') || secondSet.includes('66')) {
+            additionalNumbers.push('26');
+        }
+        if (uniqueFirstSet.includes('77') || secondSet.includes('77')) {
+            additionalNumbers.push('27');
+        }
+        if (uniqueFirstSet.includes('88') || secondSet.includes('88')) {
+            additionalNumbers.push('28');
+        }
+        if (uniqueFirstSet.includes('99') || secondSet.includes('99')) {
+            additionalNumbers.push('29');
+        }
+
+        const finalSecondSet = [...new Set([...secondSet, ...additionalNumbers])].sort();
+        const filteredSecondSet = finalSecondSet.filter(pair => !uniqueFirstSet.includes(pair));
+
+        const thirdSet = [
+            `${num[0]}${num[1]}${num[2]}`,
+            `${num[0]}${num[1]}${transformed[2]}`,
+            `${num[0]}${transformed[1]}${num[2]}`,
+            `${num[0]}${transformed[1]}${transformed[2]}`,
+            `${transformed[0]}${num[1]}${num[2]}`,
+            `${transformed[0]}${num[1]}${transformed[2]}`,
+            `${transformed[0]}${transformed[1]}${num[2]}`,
+            `${transformed[0]}${transformed[1]}${transformed[2]}`
+        ];
+
+        const sortedThirdSet = [...new Set(thirdSet.map(triplet => triplet.split('').sort().join('')))].sort();
+
+        const additionalNumbersForThirdSet = [];
+        if (sortedThirdSet.includes('000')) {
+            additionalNumbersForThirdSet.push('002');
+        }
+        if (sortedThirdSet.includes('011')) {
+            additionalNumbersForThirdSet.push('012');
+        }
+        if (sortedThirdSet.includes('022')) {
+            additionalNumbersForThirdSet.push('022');
+        }
+        if (sortedThirdSet.includes('033')) {
+            additionalNumbersForThirdSet.push('023');
+        }
+        if (sortedThirdSet.includes('044')) {
+            additionalNumbersForThirdSet.push('024');
+        }
+        if (sortedThirdSet.includes('055')) {
+            additionalNumbersForThirdSet.push('025');
+        }
+        if (sortedThirdSet.includes('066')) {
+            additionalNumbersForThirdSet.push('026');
+        }
+        if (sortedThirdSet.includes('077')) {
+            additionalNumbersForThirdSet.push('027');
+        }
+        if (sortedThirdSet.includes('088')) {
+            additionalNumbersForThirdSet.push('028');
+        }
+        if (sortedThirdSet.includes('099')) {
+            additionalNumbersForThirdSet.push('029');
+        }
+        if (sortedThirdSet.includes('111')) {
+            additionalNumbersForThirdSet.push('112');
+        }
+        if (sortedThirdSet.includes('122')) {
+            additionalNumbersForThirdSet.push('122');
+        }
+        if (sortedThirdSet.includes('133')) {
+            additionalNumbersForThirdSet.push('123');
+        }
+        if (sortedThirdSet.includes('144')) {
+            additionalNumbersForThirdSet.push('124');
+        }
+        if (sortedThirdSet.includes('155')) {
+            additionalNumbersForThirdSet.push('125');
+        }
+        if (sortedThirdSet.includes('166')) {
+            additionalNumbersForThirdSet.push('126');
+        }
+        if (sortedThirdSet.includes('177')) {
+            additionalNumbersForThirdSet.push('127');
+        }
+        if (sortedThirdSet.includes('188')) {
+            additionalNumbersForThirdSet.push('128');
+        }
+        if (sortedThirdSet.includes('199')) {
+            additionalNumbersForThirdSet.push('129');
+        }
+        if (sortedThirdSet.includes('222')) {
+            additionalNumbersForThirdSet.push('222');
+        }
+        if (sortedThirdSet.includes('233')) {
+            additionalNumbersForThirdSet.push('223');
+        }
+        if (sortedThirdSet.includes('244')) {
+            additionalNumbersForThirdSet.push('224');
+        }
+        if (sortedThirdSet.includes('255')) {
+            additionalNumbersForThirdSet.push('225');
+        }
+        if (sortedThirdSet.includes('266')) {
+            additionalNumbersForThirdSet.push('226');
+        }
+        if (sortedThirdSet.includes('277')) {
+            additionalNumbersForThirdSet.push('227');
+        }
+        if (sortedThirdSet.includes('288')) {
+            additionalNumbersForThirdSet.push('228');
+        }
+        if (sortedThirdSet.includes('299')) {
+            additionalNumbersForThirdSet.push('229');
+        }
+        if (sortedThirdSet.includes('333')) {
+            additionalNumbersForThirdSet.push('233');
+        }
+        if (sortedThirdSet.includes('344')) {
+            additionalNumbersForThirdSet.push('234');
+        }
+        if (sortedThirdSet.includes('355')) {
+            additionalNumbersForThirdSet.push('235');
+        }
+        if (sortedThirdSet.includes('366')) {
+            additionalNumbersForThirdSet.push('236');
+        }
+        if (sortedThirdSet.includes('377')) {
+            additionalNumbersForThirdSet.push('237');
+        }
+        if (sortedThirdSet.includes('388')) {
+            additionalNumbersForThirdSet.push('238');
+        }
+        if (sortedThirdSet.includes('399')) {
+            additionalNumbersForThirdSet.push('239');
+        }
+        if (sortedThirdSet.includes('444')) {
+            additionalNumbersForThirdSet.push('244');
+        }
+        if (sortedThirdSet.includes('455')) {
+            additionalNumbersForThirdSet.push('245');
+        }
+        if (sortedThirdSet.includes('466')) {
+            additionalNumbersForThirdSet.push('246');
+        }
+        if (sortedThirdSet.includes('477')) {
+            additionalNumbersForThirdSet.push('247');
+        }
+        if (sortedThirdSet.includes('488')) {
+            additionalNumbersForThirdSet.push('248');
+        }
+        if (sortedThirdSet.includes('499')) {
+            additionalNumbersForThirdSet.push('249');
+        }
+        if (sortedThirdSet.includes('555')) {
+            additionalNumbersForThirdSet.push('255');
+        }
+        if (sortedThirdSet.includes('566')) {
+            additionalNumbersForThirdSet.push('256');
+        }
+        if (sortedThirdSet.includes('577')) {
+            additionalNumbersForThirdSet.push('257');
+        }
+        if (sortedThirdSet.includes('588')) {
+            additionalNumbersForThirdSet.push('258');
+        }
+        if (sortedThirdSet.includes('599')) {
+            additionalNumbersForThirdSet.push('259');
+        }
+        if (sortedThirdSet.includes('666')) {
+            additionalNumbersForThirdSet.push('266');
+        }
+        if (sortedThirdSet.includes('677')) {
+            additionalNumbersForThirdSet.push('267');
+        }
+        if (sortedThirdSet.includes('688')) {
+            additionalNumbersForThirdSet.push('268');
+        }
+        if (sortedThirdSet.includes('699')) {
+            additionalNumbersForThirdSet.push('269');
+        }
+        if (sortedThirdSet.includes('777')) {
+            additionalNumbersForThirdSet.push('277');
+        }
+        if (sortedThirdSet.includes('788')) {
+            additionalNumbersForThirdSet.push('278');
+        }
+        if (sortedThirdSet.includes('799')) {
+            additionalNumbersForThirdSet.push('279');
+        }
+        if (sortedThirdSet.includes('888')) {
+            additionalNumbersForThirdSet.push('288');
+        }
+        if (sortedThirdSet.includes('899')) {
+            additionalNumbersForThirdSet.push('289');
+        }
+        if (sortedThirdSet.includes('999')) {
+            additionalNumbersForThirdSet.push('299');
+        }
+        if (sortedThirdSet.includes('001')) {
+            additionalNumbersForThirdSet.push('012');
+        }
+        if (sortedThirdSet.includes('002')) {
+            additionalNumbersForThirdSet.push('022');
+        }
+        if (sortedThirdSet.includes('003')) {
+            additionalNumbersForThirdSet.push('023');
+        }
+        if (sortedThirdSet.includes('004')) {
+            additionalNumbersForThirdSet.push('024');
+        }
+        if (sortedThirdSet.includes('005')) {
+            additionalNumbersForThirdSet.push('025');
+        }
+        if (sortedThirdSet.includes('006')) {
+            additionalNumbersForThirdSet.push('026');
+        }
+        if (sortedThirdSet.includes('007')) {
+            additionalNumbersForThirdSet.push('027');
+        }
+        if (sortedThirdSet.includes('008')) {
+            additionalNumbersForThirdSet.push('028');
+        }
+        if (sortedThirdSet.includes('009')) {
+            additionalNumbersForThirdSet.push('029');
+        }
+        if (sortedThirdSet.includes('112')) {
+            additionalNumbersForThirdSet.push('122');
+        }
+        if (sortedThirdSet.includes('113')) {
+            additionalNumbersForThirdSet.push('123');
+        }
+        if (sortedThirdSet.includes('114')) {
+            additionalNumbersForThirdSet.push('124');
+        }
+        if (sortedThirdSet.includes('115')) {
+            additionalNumbersForThirdSet.push('125');
+        }
+        if (sortedThirdSet.includes('116')) {
+            additionalNumbersForThirdSet.push('126');
+        }
+        if (sortedThirdSet.includes('117')) {
+            additionalNumbersForThirdSet.push('127');
+        }
+        if (sortedThirdSet.includes('118')) {
+            additionalNumbersForThirdSet.push('128');
+        }
+        if (sortedThirdSet.includes('119')) {
+            additionalNumbersForThirdSet.push('129');
+        }
+        if (sortedThirdSet.includes('223')) {
+            additionalNumbersForThirdSet.push('223');
+        }
+        if (sortedThirdSet.includes('224')) {
+            additionalNumbersForThirdSet.push('224');
+        }
+        if (sortedThirdSet.includes('225')) {
+            additionalNumbersForThirdSet.push('225');
+        }
+        if (sortedThirdSet.includes('226')) {
+            additionalNumbersForThirdSet.push('226');
+        }
+        if (sortedThirdSet.includes('227')) {
+            additionalNumbersForThirdSet.push('227');
+        }
+        if (sortedThirdSet.includes('228')) {
+            additionalNumbersForThirdSet.push('228');
+        }
+        if (sortedThirdSet.includes('229')) {
+            additionalNumbersForThirdSet.push('229');
+        }
+        if (sortedThirdSet.includes('334')) {
+            additionalNumbersForThirdSet.push('234');
+        }
+        if (sortedThirdSet.includes('335')) {
+            additionalNumbersForThirdSet.push('235');
+        }
+        if (sortedThirdSet.includes('336')) {
+            additionalNumbersForThirdSet.push('236');
+        }
+        if (sortedThirdSet.includes('337')) {
+            additionalNumbersForThirdSet.push('237');
+        }
+        if (sortedThirdSet.includes('338')) {
+            additionalNumbersForThirdSet.push('238');
+        }
+        if (sortedThirdSet.includes('339')) {
+            additionalNumbersForThirdSet.push('239');
+        }
+        if (sortedThirdSet.includes('445')) {
+            additionalNumbersForThirdSet.push('245');
+        }
+        if (sortedThirdSet.includes('446')) {
+            additionalNumbersForThirdSet.push('246');
+        }
+        if (sortedThirdSet.includes('447')) {
+            additionalNumbersForThirdSet.push('247');
+        }
+        if (sortedThirdSet.includes('448')) {
+            additionalNumbersForThirdSet.push('248');
+        }
+        if (sortedThirdSet.includes('449')) {
+            additionalNumbersForThirdSet.push('249');
+        }
+        if (sortedThirdSet.includes('556')) {
+            additionalNumbersForThirdSet.push('256');
+        }
+        if (sortedThirdSet.includes('557')) {
+            additionalNumbersForThirdSet.push('257');
+        }
+        if (sortedThirdSet.includes('558')) {
+            additionalNumbersForThirdSet.push('258');
+        }
+        if (sortedThirdSet.includes('559')) {
+            additionalNumbersForThirdSet.push('259');
+        }
+        if (sortedThirdSet.includes('667')) {
+            additionalNumbersForThirdSet.push('267');
+        }
+        if (sortedThirdSet.includes('668')) {
+            additionalNumbersForThirdSet.push('268');
+        }
+        if (sortedThirdSet.includes('669')) {
+            additionalNumbersForThirdSet.push('269');
+        }
+        if (sortedThirdSet.includes('778')) {
+            additionalNumbersForThirdSet.push('278');
+        }
+        if (sortedThirdSet.includes('779')) {
+            additionalNumbersForThirdSet.push('279');
+        }
+        if (sortedThirdSet.includes('889')) {
+            additionalNumbersForThirdSet.push('289');
+        }
+
+        // สร้างชุดตัวเลข 3 ตัว (ปกติ)
+        const filteredFinalThirdSet = [...new Set(sortedThirdSet)].sort((a, b) => a - b);
+
+        // สร้างชุดตัวเลข 3 ตัว (แปลเพิ่ม) และทำให้เป็นเอกลักษณ์
+        const uniqueAdditionalNumbersSet = new Set(additionalNumbersForThirdSet);
+        const uniqueAdditionalNumbers = [...uniqueAdditionalNumbersSet];
+
+        // ตัดตัวเลขที่ซ้ำกับชุด 3 ตัว (ปกติ)
+        const finalAdditionalNumbers = uniqueAdditionalNumbers.filter(num => 
+            !filteredFinalThirdSet.includes(num)
+        );
+
+        // จัดเรียงชุด 3 ตัว (แปลเพิ่ม) จากน้อยไปหามาก
+        finalAdditionalNumbers.sort((a, b) => a - b);
+
+        const additionalNumbersForThirdSetText = finalAdditionalNumbers.length > 0
+            ? finalAdditionalNumbers.join(' - ')
+            : '<span style="color: red;">ไม่มีชุดตัวเลขเพิ่ม</span>';
+
+return `
+  <div id="resultContent" style="position: relative; text-align: center; font-size: 20px; line-height: 1.0; margin-top: 10px; color: blue;">
+    <p style="font-size: 18px; margin: 0 0 10px 0; font-weight: bold; line-height: 1; color: blue;
+      text-shadow: 
+        -1px -1px 0 white, 1px -1px 0 white,
+        -1px 1px 0 white, 1px 1px 0 white;">
+      ${selectedTopic}
+    </p>
+    <p style="font-size: 18px; margin: 0 0 10px 0; line-height: 1;
+      text-shadow: 
+        -1px -1px 0 white, 1px -1px 0 white,
+        -1px 1px 0 white, 1px 1px 0 white;">
+      ${dateInputValue ? getThaiDate(dateInput) : getThaiDate(new Date())}
+    </p>
+<h2 style="font-size: 18px; font-weight: bold; margin: 0 0 10px 0;;; line-height: 1;
+  text-shadow: 
+    -1px -1px 0 white, 1px -1px 0 white,
+    -1px 1px 0 white, 1px 1px 0 white;">
+  ตัวเลข 3 ตัว <span style="color: red;
+    text-shadow: 
+      -1px -1px 0 white, 1px -1px 0 white,
+      -1px 1px 0 white, 1px 1px 0 white;">${num}</span> By : <span style="color: green;
+    text-shadow: 
+      -1px -1px 0 white, 1px -1px 0 white,
+      -1px 1px 0 white, 1px 1px 0 white;">${selectedPerson}</span>
+</h2>
+    <h3 style="font-size: 18px; font-weight: bold; margin: 0 0 10px 0; line-height: 1;
+      text-shadow: 
+        -1px -1px 0 white, 1px -1px 0 white,
+        -1px 1px 0 white, 1px 1px 0 white;">จัดชุดเด่น 2 ตัว</h3>
+    <p style="font-size: 18px; margin: 0 0 10px 0; line-height: 1;
+      text-shadow: 
+        -1px -1px 0 white, 1px -1px 0 white,
+        -1px 1px 0 white, 1px 1px 0 white;">
+      ${uniqueFirstSet.join(' - ')}
+    </p>
+    <h3 style="font-size: 18px; font-weight: bold; margin: 0 0 10px 0; line-height: 1;
+      text-shadow: 
+        -1px -1px 0 white, 1px -1px 0 white,
+        -1px 1px 0 white, 1px 1px 0 white;">จัดชุดรอง 2 ตัว</h3>
+    <p style="font-size: 18px; margin: 0 0 10px 0; line-height: 1;
+      text-shadow: 
+        -1px -1px 0 white, 1px -1px 0 white,
+        -1px 1px 0 white, 1px 1px 0 white;">
+      ${filteredSecondSet.join(' - ')}
+    </p>
+    <h3 style="font-size: 18px; font-weight: bold; margin: 0 0 10px 0; line-height: 1;
+      text-shadow: 
+        -1px -1px 0 white, 1px -1px 0 white,
+        -1px 1px 0 white, 1px 1px 0 white;">
+      จัดชุด 2 ตัว <span style="color: red;
+        text-shadow: 
+          -1px -1px 0 white, 1px -1px 0 white,
+          -1px 1px 0 white, 1px 1px 0 white;">(แปลเพิ่ม)</span>
+    </h3>
+    <p style="font-size: 18px; margin: 0 0 10px 0; line-height: 1;
+      text-shadow: 
+        -1px -1px 0 white, 1px -1px 0 white,
+        -1px 1px 0 white, 1px 1px 0 white;">
+      ${transformedPairsText}
+    </p>
+    <h3 style="font-size: 18px; font-weight: bold; margin: 0 0 10px 0; line-height: 1;
+      text-shadow: 
+        -1px -1px 0 white, 1px -1px 0 white,
+        -1px 1px 0 white, 1px 1px 0 white;">จัดชุด 3 ตัว (ปกติ)</h3>
+    <p style="font-size: 16px; margin: 0 0 10px 0; line-height: 1;
+      text-shadow: 
+        -1px -1px 0 white, 1px -1px 0 white,
+        -1px 1px 0 white, 1px 1px 0 white;">
+      ${filteredFinalThirdSet.join(' - ')}
+    </p>
+    <h3 style="font-size: 18px; font-weight: bold; margin: 0 0 10px 0; line-height: 1;
+      text-shadow: 
+        -1px -1px 0 white, 1px -1px 0 white,
+        -1px 1px 0 white, 1px 1px 0 white;">
+      จัดชุด 3 ตัว <span style="color: red;
+        text-shadow: 
+          -1px -1px 0 white, 1px -1px 0 white,
+          -1px 1px 0 white, 1px 1px 0 white;">(แปลเพิ่ม)</span>
+    </h3>
+    <p style="font-size: 16px; margin: 0 0 10px 0; line-height: 1;
+      text-shadow: 
+        -1px -1px 0 white, 1px -1px 0 white,
+        -1px 1px 0 white, 1px 1px 0 white;">
+      ${additionalNumbersForThirdSetText}
+    </p>
+    <h2 style="font-size: 18px; font-weight: bold; margin: 0 0 10px 0; color: red; line-height: 1;
+      text-shadow: 
+        -1px -1px 0 white, 1px -1px 0 white,
+        -1px 1px 0 white, 1px 1px 0 white;">แนวทางเท่านั้น</h2>
+    <p style="font-size: 13px; margin: 0 0 10px 0; line-height: 1;
+      text-shadow: 
+        -1px -1px 0 white, 1px -1px 0 white,
+        -1px 1px 0 white, 1px 1px 0 white;">แปล: ${getThaiDate()} ${getThaiTime()}</p>
+    <p style="font-size: 18px; margin: 0 0 10px 0; line-height: 1;
+      text-shadow: 
+        -1px -1px 0 white, 1px -1px 0 white,
+        -1px 1px 0 white, 1px 1px 0 white;">
+      หมายเหตุ : <span style="color: red;">${noteInput}</span>
+    </p>
+  </div>
+`;
     }
 
     function convertNumber() {
@@ -440,216 +867,221 @@
         updateLineHeight(); // เรียกใช้ฟังก์ชันเพื่ออัปเดตทันที
     }
 
-    function openResultInNewWindow() {
-        const resultHtml = generateResultHTML();
-        if (!resultHtml) return;
+ function openResultInNewWindow() {
+    const resultHtml = generateResultHTML();
+    if (!resultHtml) return;
 
-        const isMobile = window.innerWidth <= 600;
-        const windowWidth = isMobile ? Math.min(window.innerWidth, 600) : 600;
-        const windowHeight = 700;
+    const isMobile = window.innerWidth <= 600;
+    const windowWidth = isMobile ? Math.min(window.innerWidth, 600) : 600;
+    const windowHeight = 700;
+    const buttonWidth = isMobile ? '90%' : '200px'; // ✅ ใช้แยกก่อนนำไปแทรกใน HTML
 
-        const newWindow = window.open('', '_blank', `width=${windowWidth},height=${windowHeight},scrollbars=yes,resizable=yes`);
-        if (!newWindow) {
-            alert("กรุณาปิดการบล็อคป๊อปอัพเพื่อใช้งานฟังก์ชันนี้");
-            return;
-        }
+    const newWindow = window.open('', '_blank', `width=${windowWidth},height=${windowHeight},scrollbars=yes,resizable=yes`);
+    if (!newWindow) {
+        alert("กรุณาปิดการบล็อคป๊อปอัพเพื่อใช้งานฟังก์ชันนี้");
+        return;
+    }
 
-        newWindow.document.write(`
-            <!DOCTYPE html>
-            <html lang="th">
-            <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>ผลลัพธ์การแปลตัวเลข</title>
-                <style>
-                body {
-                    font-family: Arial, sans-serif;
-                    background-color: #fffde7;
-                    margin: 0;
-                    padding: 0;
-                    line-height: 1;
-                    color: blue;
-                }
+    newWindow.document.write(`
+        <!DOCTYPE html>
+        <html lang="th">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>ผลลัพธ์การแปลตัวเลข</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fffde7;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    color: blue;
+}
 
-                /* กล่องผลลัพธ์ */
-                .result-container {
-                    border: 2px solid #4CAF50;
-                    background-color: #FAFAD2;
-                    margin: 20px 2px;
-                    padding: 15px;
-                    border-radius: 10px;
-                    width: auto;
-                    max-width: calc(100% - 6px);
-                    text-align: center;
-                    box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
-                    position: relative;
-                    min-height: 300px;
-                    box-sizing: border-box;
-                }
+/* กล่องผลลัพธ์ */
+.result-container {
+    border: 2px solid #4CAF50;
+    background-color: #FAFAD2;
+    margin: 20px 2px; /* บนล่าง 20px, ซ้ายขวา 2px */
+    padding: 15px;
+    border-radius: 10px;
+    width: auto;
+    max-width: calc(100% - 6px); /* เผื่อ margin ซ้าย+ขวา รวมกัน = 6px */
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
+    position: relative;
+    min-height: 300px;
+    box-sizing: border-box;
+}
 
-                .result-container::before {
-                    content: "";
-                    background-image: url('logo.png');
-                    background-size: 90% auto;
-                    background-repeat: no-repeat;
-                    background-position: center top 15px;
-                    opacity: 0.5;
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
-                    z-index: 0;
-                }
+.result-container::before {
+    content: "";
+    background-image: url('logo.png');
+    background-size: 90% auto;
+    background-repeat: no-repeat;
+    background-position: center top 15px;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+}
 
-                /* เนื้อหาผลลัพธ์ */
-                #resultContent {
-                    position: relative;
-                    z-index: 1;
-                    color: blue;
-                }
+/* เนื้อหาผลลัพธ์ */
+#resultContent {
+    position: relative;
+    z-index: 1;
+    color: blue;
+}
 
-                #resultContent h2,
-                #resultContent h3,
-                #resultContent .number-pairs,
-                #resultContent .note,
-                #resultContent .translation {
-                    color: blue;
-                }
+#resultContent h2,
+#resultContent h3,
+#resultContent .number-pairs,
+#resultContent .note,
+#resultContent .translation {
+    color: blue;
+}
 
-                #resultContent h2 {
-                    font-size: 22px;
-                    margin: 6px 0;
-                    line-height: 1.5;
-                }
+#resultContent h2 {
+    font-size: 22px;
+    margin: 6px 0;
+    line-height: 1;
+}
 
-                #resultContent h3 {
-                    font-size: 20px;
-                    margin: 6px 0;
-                    line-height: 1.5;
-                }
+#resultContent h3 {
+    font-size: 20px;
+    margin: 6px 0;
+    line-height: 1;
+}
 
-                #resultContent .number-pairs {
-                    font-size: 20px;
-                    margin: 8px 0;
-                    font-weight: bold;
-                }
+#resultContent .number-pairs {
+    font-size: 20px;
+    margin: 8px 0;
+    font-weight: bold;
+}
 
-                #resultContent .note {
-                    font-size: 20px;
-                    margin: 8px 0;
-                }
+#resultContent .note {
+    font-size: 20px;
+    margin: 8px 0;
+}
 
-                #resultContent .translation {
-                    font-size: 16px;
-                    margin: 6px 0;
-                }
+#resultContent .translation {
+    font-size: 16px;
+    margin: 6px 0;
+}
 
-                /* ส่วนควบคุมการตั้งค่า */
-                .controls {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    width: 100%;
-                    margin-top: 20px;
-                }
+/* ส่วนควบคุมการตั้งค่า */
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
 
-                .line-height-control {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    width: 100%;
-                    margin-bottom: 15px;
-                }
+.line-height-control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 15px;
+}
 
-                .line-height-control label,
-                .line-height-control span {
-                    font-size: 16px;
-                    color: blue;
-                }
+.line-height-control label,
+.line-height-control span {
+    font-size: 16px;
+    color: blue;
+}
 
-                .line-height-control input[type="range"] {
-                    width: 80%;
-                    max-width: 300px;
-                }
+.line-height-control input[type="range"] {
+    width: 80%;
+    max-width: 300px;
+}
 
-                /* ปุ่มปิด */
-                .close-btn {
-                    padding: 10px 20px;
-                    background-color: #f44336;
-                    color: white;
-                    border: none;
-                    border-radius: 5px;
-                    cursor: pointer;
-                    font-size: 16px;
-                    margin: 20px auto;
-                    display: block;
-                    width: 90%;
-                    max-width: 200px;
-                    text-align: center;
-                }
+/* ปุ่มปิด */
+.close-btn {
+    padding: 10px 20px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 20px auto;
+    display: block;
+    width: 90%;
+    max-width: 200px;
+    text-align: center;
+}
 
-                .close-btn:hover {
-                    background-color: #d32f2f;
-                }
+.close-btn:hover {
+    background-color: #d32f2f;
+}
 
-                /* Responsive */
-                @media only screen and (max-width: 600px) {
-                    .result-container {
-                        margin: 20px 3px;
-                        width: calc(100% - 6px);
-                    }
+/* Responsive */
+@media only screen and (max-width: 600px) {
+    .result-container {
+        margin: 20px 3px; /* ยังคง 20px บนล่าง และ 3px ซ้ายขวา */
+        width: calc(100% - 6px); /* 100% ลบ margin ซ้าย+ขวา */
+    }
 
-                    input, select, button {
-                        width: 90%;
-                    }
-                }
-                </style>
-            </head>
-            <body>
-                <div class="result-container">
-                    <div id="resultContent">${resultHtml}</div>
-                </div>
-                
-                <div class="controls">
-                    <div class="line-height-control">
-                        <label for="popupLineHeightSlider">ปรับขนาดของบรรทัด:</label>
-                        <input type="range" id="popupLineHeightSlider" min="0.5" max="2.5" step="0.1" value="1.5" />
-                        <span id="popupLineHeightValue">ความสูงของบรรทัด: 1.5</span>
+    input, select, button {
+        width: 90%;
+    }
+}
+</style>
+
+        </head>
+                 <body>
+                    <div class="result-container">
+                        <div id="resultContent">${resultHtml}</div>
                     </div>
                     
-                    <button class="close-btn" onclick="window.close()">ปิดหน้าต่าง</button>
-                </div>
-                
-                <script>
-                    function updateLineHeight() {
-                        const lineHeight = document.getElementById("popupLineHeightSlider").value;
-                        const resultContent = document.getElementById("resultContent");
+                    <div class="controls">
+                        <div class="line-height-control">
+                            <label for="popupLineHeightSlider">ปรับขนาดของบรรทัด:</label>
+                            <input type="range" id="popupLineHeightSlider" min="0.5" max="2.5" step="0.1" value="1.0" />
+                            <span id="popupLineHeightValue">ความสูงของบรรทัด: 1.0</span>
+                        </div>
                         
-                        if (resultContent) {
-                            const elements = resultContent.querySelectorAll('*');
-                            elements.forEach(element => {
-                                element.style.lineHeight = lineHeight;
-                            });
-                            
-                            resultContent.style.lineHeight = lineHeight;
-                            document.getElementById("popupLineHeightValue").textContent = "ความสูงของบรรทัด: " + lineHeight;
-                        }
-                    }
+                        <button class="close-btn" onclick="window.close()">ปิดหน้าต่าง</button>
+                    </div>
                     
-                    document.addEventListener("DOMContentLoaded", function() {
-                        document.getElementById("popupLineHeightSlider").addEventListener("input", updateLineHeight);
-                        document.getElementById("popupLineHeightSlider").value = 1.5;
-                        document.getElementById("popupLineHeightValue").textContent = "ความสูงของบรรทัด: 1.5";
-                    });
-                <\/script>
-                 </body>
+                    <script>
+                        function updateLineHeight() {
+                            const lineHeight = document.getElementById("popupLineHeightSlider").value;
+                            const resultContent = document.getElementById("resultContent");
+                            
+                            if (resultContent) {
+                                const elements = resultContent.querySelectorAll('*');
+                                elements.forEach(element => {
+                                    element.style.lineHeight = lineHeight;
+                                });
+                                
+                                resultContent.style.lineHeight = lineHeight;
+                                document.getElementById("popupLineHeightValue").textContent = "ความสูงของบรรทัด: " + lineHeight;
+                            }
+                        }
+                        
+                        document.addEventListener("DOMContentLoaded", function() {
+                            document.getElementById("popupLineHeightSlider").addEventListener("input", updateLineHeight);
+                            document.getElementById("popupLineHeightSlider").value = 1.0;
+                            document.getElementById("popupLineHeightValue").textContent = "ความสูงของบรรทัด: 1.0";
+                        });
+                    <\/script>
+                </body>
                 </html>
             `);
             newWindow.document.close();
         }
 
         document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("convertButton").addEventListener("click", openResultInNewWindow);
+        });
+            document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("convertButton").addEventListener("click", openResultInNewWindow);
             
             // ตั้งค่าวันที่เริ่มต้นเป็นวันปัจจุบัน
