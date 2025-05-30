@@ -227,7 +227,7 @@
         <div class="form-row">
             <div class="form-col" style="width: 100%;">
                 <select id="personSelect">
-                    <option value="@">@</option>                    
+                    <option value="@">@</option>
                     <option value="Team">Team</option>
                     <option value="โรงงาน">โรงงาน</option>
                     <option value="Udon Don">Udon Don</option>
@@ -252,10 +252,11 @@
     
     <!-- ปุ่มกลับสู่หน้าหลัก (แก้ไขแล้ว ใส่ class="homeButton") -->
     <button id="homeButton" class="homeButton" onclick="window.location.href='https://juckphai.github.io/juckphai/01.html'">กลับสู่หน้าหลัก</button>
-</div>
 
     <footer>
-        &copy; 2024-2025 Juckphai. All Rights Reserved.
+        <div style="text-align: center; margin-bottom: 20px;">
+            &copy; 2024-2025 Juckphai. All Rights Reserved.
+        </div>
     </footer>
 
 <script>
@@ -751,7 +752,7 @@
 
 return `
   <div id="resultContent" style="position: relative; text-align: center; font-size: 20px; line-height: 1.0; margin-top: 10px; color: blue;">
-    <p style="font-size: 18px; margin: 0 0 10px 0; font-weight: bold; line-height: 1; color: blue;
+    <p style="font-size: 28px; margin: 0 0 10px 0; font-weight: bold; line-height: 1; color: blue;
       text-shadow: 
         -1px -1px 0 white, 1px -1px 0 white,
         -1px 1px 0 white, 1px 1px 0 white;">
@@ -763,7 +764,7 @@ return `
         -1px 1px 0 white, 1px 1px 0 white;">
       ${dateInputValue ? getThaiDate(dateInput) : getThaiDate(new Date())}
     </p>
-<h2 style="font-size: 18px; font-weight: bold; margin: 0 0 10px 0;;; line-height: 1;
+<h2 style="font-size: 24px; font-weight: bold; margin: 0 0 10px 0;;; line-height: 1;
   text-shadow: 
     -1px -1px 0 white, 1px -1px 0 white,
     -1px 1px 0 white, 1px 1px 0 white;">
@@ -775,27 +776,27 @@ return `
       -1px -1px 0 white, 1px -1px 0 white,
       -1px 1px 0 white, 1px 1px 0 white;">${selectedPerson}</span>
 </h2>
-    <h3 style="font-size: 18px; font-weight: bold; margin: 0 0 10px 0; line-height: 1;
+    <h3 style="font-size: 22px; font-weight: bold; margin: 0 0 10px 0; line-height: 1;
       text-shadow: 
         -1px -1px 0 white, 1px -1px 0 white,
         -1px 1px 0 white, 1px 1px 0 white;">จัดชุดเด่น 2 ตัว</h3>
-    <p style="font-size: 18px; margin: 0 0 10px 0; line-height: 1;
+    <p style="font-size: 22px; margin: 0 0 10px 0; line-height: 1;
       text-shadow: 
         -1px -1px 0 white, 1px -1px 0 white,
         -1px 1px 0 white, 1px 1px 0 white;">
       ${uniqueFirstSet.join(' - ')}
     </p>
-    <h3 style="font-size: 18px; font-weight: bold; margin: 0 0 10px 0; line-height: 1;
+    <h3 style="font-size: 22px; font-weight: bold; margin: 0 0 10px 0; line-height: 1;
       text-shadow: 
         -1px -1px 0 white, 1px -1px 0 white,
         -1px 1px 0 white, 1px 1px 0 white;">จัดชุดรอง 2 ตัว</h3>
-    <p style="font-size: 18px; margin: 0 0 10px 0; line-height: 1;
+    <p style="font-size: 22px; margin: 0 0 10px 0; line-height: 1;
       text-shadow: 
         -1px -1px 0 white, 1px -1px 0 white,
         -1px 1px 0 white, 1px 1px 0 white;">
       ${filteredSecondSet.join(' - ')}
     </p>
-    <h3 style="font-size: 18px; font-weight: bold; margin: 0 0 10px 0; line-height: 1;
+    <h3 style="font-size: 22px; font-weight: bold; margin: 0 0 10px 0; line-height: 1;
       text-shadow: 
         -1px -1px 0 white, 1px -1px 0 white,
         -1px 1px 0 white, 1px 1px 0 white;">
@@ -804,23 +805,23 @@ return `
           -1px -1px 0 white, 1px -1px 0 white,
           -1px 1px 0 white, 1px 1px 0 white;">(แปลเพิ่ม)</span>
     </h3>
-    <p style="font-size: 18px; margin: 0 0 10px 0; line-height: 1;
+    <p style="font-size: 22px; margin: 0 0 10px 0; line-height: 1;
       text-shadow: 
         -1px -1px 0 white, 1px -1px 0 white,
         -1px 1px 0 white, 1px 1px 0 white;">
       ${transformedPairsText}
     </p>
-    <h3 style="font-size: 18px; font-weight: bold; margin: 0 0 10px 0; line-height: 1;
+    <h3 style="font-size: 22px; font-weight: bold; margin: 0 0 10px 0; line-height: 1;
       text-shadow: 
         -1px -1px 0 white, 1px -1px 0 white,
         -1px 1px 0 white, 1px 1px 0 white;">จัดชุด 3 ตัว (ปกติ)</h3>
-    <p style="font-size: 16px; margin: 0 0 10px 0; line-height: 1;
+    <p style="font-size: 18px; margin: 0 0 10px 0; line-height: 1;
       text-shadow: 
         -1px -1px 0 white, 1px -1px 0 white,
         -1px 1px 0 white, 1px 1px 0 white;">
       ${filteredFinalThirdSet.join(' - ')}
     </p>
-    <h3 style="font-size: 18px; font-weight: bold; margin: 0 0 10px 0; line-height: 1;
+    <h3 style="font-size: 22px; font-weight: bold; margin: 0 0 10px 0; line-height: 1;
       text-shadow: 
         -1px -1px 0 white, 1px -1px 0 white,
         -1px 1px 0 white, 1px 1px 0 white;">
@@ -829,13 +830,13 @@ return `
           -1px -1px 0 white, 1px -1px 0 white,
           -1px 1px 0 white, 1px 1px 0 white;">(แปลเพิ่ม)</span>
     </h3>
-    <p style="font-size: 16px; margin: 0 0 10px 0; line-height: 1;
+    <p style="font-size: 22px; margin: 0 0 10px 0; line-height: 1;
       text-shadow: 
         -1px -1px 0 white, 1px -1px 0 white,
         -1px 1px 0 white, 1px 1px 0 white;">
       ${additionalNumbersForThirdSetText}
     </p>
-    <h2 style="font-size: 18px; font-weight: bold; margin: 0 0 10px 0; color: red; line-height: 1;
+    <h2 style="font-size: 24px; font-weight: bold; margin: 0 0 10px 0; color: red; line-height: 1;
       text-shadow: 
         -1px -1px 0 white, 1px -1px 0 white,
         -1px 1px 0 white, 1px 1px 0 white;">แนวทางเท่านั้น</h2>
@@ -843,7 +844,7 @@ return `
       text-shadow: 
         -1px -1px 0 white, 1px -1px 0 white,
         -1px 1px 0 white, 1px 1px 0 white;">แปล: ${getThaiDate()} ${getThaiTime()}</p>
-    <p style="font-size: 18px; margin: 0 0 10px 0; line-height: 1;
+    <p style="font-size: 20px; margin: 0 0 10px 0; line-height: 1;
       text-shadow: 
         -1px -1px 0 white, 1px -1px 0 white,
         -1px 1px 0 white, 1px 1px 0 white;">
@@ -1081,7 +1082,7 @@ body {
         document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("convertButton").addEventListener("click", openResultInNewWindow);
         });
-            document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("convertButton").addEventListener("click", openResultInNewWindow);
             
             // ตั้งค่าวันที่เริ่มต้นเป็นวันปัจจุบัน
