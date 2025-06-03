@@ -246,10 +246,10 @@
 
         <!-- แถวที่ 4: ช่องกรอกข้อมูลแบบกำหนดเอง (จะแสดงเมื่อเลือก "พิมพ์เอง...") -->
         <div class="form-row" id="customTopicRow" style="display: none;">
-            <div class="custom-input-container">
-                <input type="text" id="customTopicName" placeholder="ชื่อหัวข้อ" />
-                <input type="text" id="customTopicTime" placeholder="เวลา (เช่น 08.30 น)" />
-            </div>
+<div class="custom-input-container" style="display: flex; gap: 10px;">
+    <input type="text" id="customTopicName" placeholder="ชื่อหัวข้อ" style="width: 60%;" />
+    <input type="text" id="customTopicTime" placeholder="เวลา (เช่น 08.30 น)" style="width: 40%;" />
+</div>
         </div>
 
         <!-- แถวที่ 2: ช่องเลือกผู้บอกกับวันเดือนปี -->
@@ -362,11 +362,12 @@
 
     function generateResultHTML() {
         let selectedTopic = document.getElementById("topicSelect").value;
-        if (selectedTopic === "custom") {
-            const customName = document.getElementById("customTopicName").value.trim();
-            const customTime = document.getElementById("customTopicTime").value.trim();
-            selectedTopic = customName + (customTime ? " เวลา " + customTime : "");
-        }
+      if (selectedTopic === "custom") {
+    const customName = document.getElementById("customTopicName").value.trim();
+    const customTime = document.getElementById("customTopicTime").value.trim();
+    selectedTopic = customName + (customTime ? " เวลา " + customTime + " น." : "");
+}
+
 
         let selectedPerson = document.getElementById("personSelect").value;
         if (selectedPerson === "custom") {
