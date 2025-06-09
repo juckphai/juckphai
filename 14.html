@@ -174,12 +174,28 @@
         grid-template-columns: 1fr;
       }
     }
+    
+    /* New styles for date summary sections */
+    .date-summary-section {
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      padding: 15px;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+    }
+    
+    .date-summary-title {
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #333;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
 
   <div style="text-align: center; margin-top: 20px;">
-    <button class="back-button" onclick="window.location.href='https://juckmanphai.github.io/juck/01.html'">กลับสู่หน้าหลัก</button>
+    <button class="back-button" onclick="window.location.href='https://juckphai.github.io/juckphai/01.html'">กลับสู่หน้าหลัก</button>
   </div>
 <div class="container">
 <h1 style="text-align: center; color: blue; font-size: 16px;">
@@ -228,26 +244,36 @@
     </div>
 
     <!-- กลุ่มสรุปช่วงเวลา -->
-    <div class="entry-form">
-      <div class="entry-group">
-        <label for="startDate">จากวันที่ (วัน/เดือน/ปี):</label>
-        <input type="text" id="startDate" placeholder="เช่น 10/11/2024">
+    <div class="date-summary-section">
+      <div class="date-summary-title">สรุปวันที่ถึงวันที่</div>
+      <div class="entry-form">
+        <div class="entry-group">
+          <label for="startDate">จากวันที่ (วัน/เดือน/ปี):</label>
+          <input type="text" id="startDate" placeholder="เช่น 10/11/2024">
+        </div>
+        <div class="entry-group">
+          <label for="endDate">ถึงวันที่ (วัน/เดือน/ปี):</label>
+          <input type="text" id="endDate" placeholder="เช่น 15/11/2024">
+        </div>
       </div>
-      <div class="entry-group">
-        <label for="endDate">ถึงวันที่ (วัน/เดือน/ปี):</label>
-        <input type="text" id="endDate" placeholder="เช่น 15/11/2024">
-      </div>
-      <div class="entry-group">
-        <label for="customDayMonth">สรุปวันที่เลือก (วัน/เดือน/ปี):</label>
-        <input type="text" id="customDayMonth" placeholder="เช่น 10/11/2024">
+      <div class="button-container" style="text-align: center; margin-top: 10px;">
+        <button type="button" onclick="summarize()">สรุปวันที่ถึงวันที่</button>
       </div>
     </div>
 
-<!-- แถวที่ 1 -->
-<div class="button-container" style="display: flex; gap: 10px;">
-  <button type="button" onclick="summarize()" style="flex: 7;">สรุปวันที่ถึงวันที่</button>
-  <button type="button" onclick="summarizeByDayMonth()" style="flex: 3;">สรุปวันที่เลือก</button>
-</div>
+    <!-- กลุ่มสรุปวันที่เลือก -->
+    <div class="date-summary-section">
+      <div class="date-summary-title">สรุปวันที่เลือก</div>
+      <div class="entry-form">
+        <div class="entry-group">
+          <label for="customDayMonth">วันที่ (วัน/เดือน/ปี):</label>
+          <input type="text" id="customDayMonth" placeholder="เช่น 10/11/2024">
+        </div>
+      </div>
+      <div class="button-container" style="text-align: center; margin-top: 10px;">
+        <button type="button" onclick="summarizeByDayMonth()">สรุปวันที่เลือก</button>
+      </div>
+    </div>
 
 <!-- แถวที่ 2 -->
 <div class="button-container" style="display: flex; gap: 10px; margin-top: 10px;">
@@ -260,6 +286,7 @@
   <button type="button" onclick="saveToFile()" style="flex: 5;">บันทึก</button>
   <button type="button" onclick="saveToLocal()" style="flex: 5;">บันทึกเพื่อเปิดอีก</button>
 </div>
+
 
   <!-- กล่องรายการและสรุป -->
   <div id="detailsSection" class="container" style="display: none;">
@@ -277,8 +304,7 @@
       <tbody id="recordBody"></tbody>
     </table>
   </div>
-    </div>
-
+</div>
   <div id="summaryResult" class="summaryResult"></div>
 
   <script>
