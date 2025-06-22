@@ -30,7 +30,7 @@
       background-color: #4CAF50;
       color: white;
       padding: 12px 15px;
-      border-radius: 5px;
+      border-radius: 20px;
       margin-bottom: 10px;
       cursor: pointer;
       display: flex;
@@ -44,7 +44,7 @@
       display: none;
       padding: 15px;
       border: 1px solid #ddd;
-      border-radius: 5px;
+      border-radius: 20px;
       background-color: #f9f9f9;
       margin-bottom: 15px;
     }
@@ -92,7 +92,7 @@
       padding: 10px;
       font-size: 16px;
       border: 1px solid #ccc;
-      border-radius: 5px;
+      border-radius: 20px;
       background-color: #f9f9f9;
       box-sizing: border-box;
     }
@@ -106,7 +106,7 @@
     .file-button {
       font-size: 16px;
       padding: 12px 20px;
-      border-radius: 10px;
+      border-radius: 20px;
       border: none;
       color: white;
       cursor: pointer;
@@ -125,7 +125,7 @@
       padding: 12px;
       font-size: 16px;
       border: none;
-      border-radius: 5px;
+      border-radius: 50px;
       background-color: #4caf50;
       color: white;
       cursor: pointer;
@@ -157,7 +157,7 @@
       color: blue;
       background-color: #ffffcc;
       border: 2px solid green;
-      border-radius: 8px;
+      border-radius: 5px;
       padding: 15px;
       max-width: 800px;
       width: calc(100% - 20px);
@@ -172,7 +172,7 @@
       height: 40px;
       min-width: 150px;
       border: none;
-      border-radius: 4px;
+      border-radius: 20px;
       color: white;
       cursor: pointer;
       font-size: 14px;
@@ -188,7 +188,7 @@
         right: 20px;
         padding: 12px 24px;
         color: white;
-        border-radius: 5px;
+        border-radius: 30px;
         box-shadow: 0 2px 10px rgba(0,0,0,0.2);
         z-index: 1001;
         opacity: 0;
@@ -207,7 +207,7 @@
         gap: 10px;
         background-color: #e9ecef;
         padding: 10px;
-        border-radius: 5px;
+        border-radius: 20px;
         border: 1px solid #ced4da;
     }
     .checkbox-item {
@@ -258,13 +258,13 @@
 <body>
 
   <div style="text-align: center; margin-top: 20px;">
-    <button class="back-button" onclick="window.location.href='https://juckphai.github.io/juckphai/01.html'">กลับสู่หน้าหลัก</button>
+   <button class="back-button" onclick="window.location.href='https://juckphai.github.io/juckphai/01.html'">กลับสู่หน้าหลัก</button>
   </div>
 <div class="file-actions" style="display: flex; justify-content: center; gap: 10px; width: 100%; max-width: 800px; margin: 10px auto; box-sizing: border-box;">
   <div class="file-button-wrapper" style="flex: 1; min-width: 0;">
     <input type="file" id="fileInput" onchange="loadFromFile(event)" style="display: none;" accept=".json,application/json">
     <button type="button" onclick="document.getElementById('fileInput').click()" 
-            class="action-button" style="width: 100%; padding: 10px; background-color: #0070C0; color: #FFFFFF; border: 1px solid #CCCCCC; border-radius: 4px; cursor: pointer;">
+            class="action-button" style="width: 100%; padding: 10px; background-color: #0070C0; color: #FFFFFF; border: 1px solid #CCCCCC; border-radius: 20px; cursor: pointer;">
       โหลดข้อมูลบัญชี
     </button>
   </div>
@@ -893,6 +893,8 @@
         const [day, month, year] = dateStr.split('/');
         return new Date(year, month - 1, day);
     }
+
+    // ***** START OF MODIFIED CODE *****
     function summarizeByDayMonth() {
         if (!records || !currentAccount) {
             alert("กรุณาเลือกบัญชีก่อนทำการสรุปข้อมูล");
@@ -964,7 +966,7 @@
         if (dayRecords.length > 0) {
             recordsHTML = `
                 <div style="margin-top: 20px;">
-                    <h4 style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">รายละเอียดวันนี้ : ${day}/${month}/${parseInt(year) + 543}</h4>
+                    <h4 style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">รายละเอียดวันที่เลือก : ${day}/${month}/${parseInt(year) + 543}</h4>
                     <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
                         <thead><tr style="background-color: #f2f2f2;"><th style="padding: 8px; border: 1px solid #ddd; text-align: center;">เวลา</th><th style="padding: 8px; border: 1px solid #ddd; text-align: center;">ประเภท</th><th style="padding: 8px; border: 1px solid #ddd; text-align: center;">รายละเอียด</th><th style="padding: 8px; border: 1px solid #ddd; text-align: center;">จำนวนเงิน</th></tr></thead>
                         <tbody>
@@ -986,12 +988,34 @@
         const thaiYear = thaiDate.getFullYear() + 543;
         const summaryDateTime = new Date().toLocaleString("th-TH", { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'}) + ' น.';
         const remarkInput = prompt("กรุณากรอกหมายเหตุ (ถ้าไม่กรอกจะใช้ 'No comment'):", "No comment") || "No comment";
-        const netAmount = summary.totalIncome - summary.totalExpense;
-        const netColor = netAmount >= 0 ? 'blue' : 'red';
-        const netText = netAmount >= 0 ? 'รายได้มากกว่ารายจ่าย' : 'รายจ่ายมากกว่ารายได้';
-        document.getElementById('summaryResult').innerHTML = `<p><strong>ชื่อบัญชี:</strong> ${currentAccount}</p><p><strong>สรุปเมื่อวันที่ : </strong> ${summaryDateTime}</p><p><strong>สรุปข้อมูลของวันที่ : </strong> ${thaiDay} ${thaiMonth} ${thaiYear}</p><hr><p><strong>รายรับวันนี้ : </strong> ${summary.incomeCount} ครั้ง เป็นเงิน ${summary.totalIncome.toLocaleString()} บาท</p>${incomeHTML}<hr><p><strong>รายจ่ายวันนี้ : </strong> ${summary.expenseCount} ครั้ง เป็นเงิน ${summary.totalExpense.toLocaleString()} บาท</p>${expenseHTML}<hr><p style="color: ${netColor}; font-weight: bold;">สรุปวันนี้ : ${netText} = ${Math.abs(netAmount).toLocaleString()} บาท</p><p><span style="color: blue; font-size: 14px; font-weight: bold;">เงินในบัญชีถึงวันนี้มี =  </span><span style="color: ${totalBalance >= 0 ? 'green' : 'red'}; font-size: 16px; font-weight: bold;">${totalBalance.toLocaleString()}</span> บาท</p><p>ข้อความเพิ่ม : <span style="color: orange;">${remarkInput}</span></p>${recordsHTML}`;
+        
+        let summaryLineHTML;
+        if (summary.totalIncome === 0 && summary.totalExpense === 0) {
+            summaryLineHTML = `<p style="color: green; font-weight: bold;">สรุป : ไม่มีธุระกรรมการเงินวันนี้</p>`;
+        } else {
+            const netAmount = summary.totalIncome - summary.totalExpense;
+            const netColor = netAmount >= 0 ? 'blue' : 'red';
+            const netText = netAmount >= 0 ? 'รายได้มากกว่ารายจ่าย' : 'รายจ่ายมากกว่ารายได้';
+            summaryLineHTML = `<p style="color: ${netColor}; font-weight: bold;">สรุป : ${netText} = ${Math.abs(netAmount).toLocaleString()} บาท</p>`;
+        }
+        
+        document.getElementById('summaryResult').innerHTML = `
+            <p><strong>ชื่อบัญชี:</strong> ${currentAccount}</p>
+            <p><strong>สรุปเมื่อวันที่ : </strong> ${summaryDateTime}</p>
+            <p><strong>สรุปข้อมูลของวันที่ : </strong> ${thaiDay} ${thaiMonth} ${thaiYear}</p>
+            <hr>
+            <p><strong>รายรับ : </strong> ${summary.incomeCount} ครั้ง เป็นเงิน ${summary.totalIncome.toLocaleString()} บาท</p>${incomeHTML}
+            <hr>
+            <p><strong>รายจ่าย : </strong> ${summary.expenseCount} ครั้ง เป็นเงิน ${summary.totalExpense.toLocaleString()} บาท</p>${expenseHTML}
+            <hr>
+            ${summaryLineHTML}
+            <p><span style="color: blue; font-size: 14px; font-weight: bold;">เงินในบัญชีถึงวันนี้มี =  </span><span style="color: ${totalBalance >= 0 ? 'green' : 'red'}; font-size: 16px; font-weight: bold;">${totalBalance.toLocaleString()}</span> บาท</p>
+            <p>ข้อความเพิ่ม : <span style="color: orange;">${remarkInput}</span></p>
+            ${recordsHTML}`;
         document.getElementById('summaryResult').style.display = 'block';
     }
+    // ***** END OF MODIFIED CODE *****
+    
     function summarize() {
         if (!records || !currentAccount) {
             alert("กรุณาเลือกบัญชีก่อนทำการสรุปข้อมูล");
@@ -1088,6 +1112,8 @@
         document.getElementById('summaryResult').innerHTML = `<p><strong>ชื่อบัญชี : </strong> ${currentAccount}</p><p><strong>สรุปเมื่อวันที่ : </strong> ${summaryDateTime}</p><p><strong>สรุปวันที่ :</strong> ${thaiStartDay} ${thaiStartMonth} ${thaiStartYear} ถึง ${thaiEndDay} ${thaiEndMonth} ${thaiEndYear}</p><p style="font-size: 16px; color: blue; font-weight: bold;">จำนวน ${daysDiff} วัน</p><hr><p><strong>รายรับทั้งหมด : </strong> ${summary.incomeCount} ครั้ง เป็นเงิน ${summary.totalIncome.toLocaleString()} บาท</p>${incomeHTML}<hr><p><strong>รายจ่ายทั้งหมด : </strong> ${summary.expenseCount} ครั้ง เป็นเงิน ${summary.expenseCount.toLocaleString()} บาท</p>${expenseHTML}<hr><p style="color: ${comparisonColor}; font-weight: bold; font-size: 16px;">สรุป : ${comparisonText}</p><p><span style="color: blue; font-size: 14px; font-weight: bold;">เงินในบัญชีถึงวันนี้มี = </span><span style="color: ${totalBalance >= 0 ? 'green' : 'red'}; font-size: 16px; font-weight: bold;">${totalBalance.toLocaleString()}</span> บาท</p><p>ข้อความเพิ่ม : <span style="color: orange;">${remarkInput}</span></p>`;
         document.getElementById('summaryResult').style.display = 'block';
     }
+
+    // ***** START OF MODIFIED CODE *****
     function summarizeToday() {
         if (!records || !currentAccount) {
             alert("กรุณาเลือกบัญชีก่อนทำการสรุปข้อมูล");
@@ -1166,30 +1192,47 @@
         const thaiYear = thaiDate.getFullYear() + 543;
         const summaryDateTime = new Date().toLocaleString("th-TH", { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'}) + ' น.';
         const remarkInput = prompt("กรุณากรอกหมายเหตุ (ถ้าไม่กรอกจะใช้ 'No comment'):", "No comment") || "No comment";
-        const netAmount = summary.totalIncome - summary.totalExpense;
-        const netColor = netAmount >= 0 ? 'blue' : 'red';
-        const netText = netAmount >= 0 ? 'รายได้มากกว่ารายจ่าย' : 'รายจ่ายมากกว่ารายได้';
-        document.getElementById('summaryResult').innerHTML = `<p><strong>ชื่อบัญชี : </strong> ${currentAccount}</p><p><strong>สรุปเมื่อวันที่ : </strong> ${summaryDateTime}</p><p><strong>สรุปข้อมูลของวันที่ : </strong> ${thaiDay} ${thaiMonth} ${thaiYear}</p><hr><p><strong>รายรับวันนี้ : </strong> ${summary.incomeCount} ครั้ง เป็นเงิน ${summary.totalIncome.toLocaleString()} บาท</p>${incomeHTML}<hr><p><strong>รายจ่ายวันนี้ : </strong> ${summary.expenseCount} ครั้ง เป็นเงิน ${summary.totalExpense.toLocaleString()} บาท</p>${expenseHTML}<hr><p style="color: ${netColor}; font-weight: bold;">สรุปวันนี้ : ${netText} = ${Math.abs(netAmount).toLocaleString()} บาท</p><p><span style="color: blue; font-size: 14px; font-weight: bold;">เงินในบัญชีถึงวันนี้มี = </span><span style="color: ${totalBalance >= 0 ? 'green' : 'red'}; font-size: 16px; font-weight: bold;">${totalBalance.toLocaleString()}</span> บาท</p><p>ข้อความเพิ่ม : <span style="color: orange;">${remarkInput}</span></p>${recordsHTML}`;
+        
+        let summaryLineHTML;
+        if (summary.totalIncome === 0 && summary.totalExpense === 0) {
+            summaryLineHTML = `<p style="color: green; font-weight: bold;">สรุปวันนี้ : ไม่มีธุระกรรมการเงินวันนี้</p>`;
+        } else {
+            const netAmount = summary.totalIncome - summary.totalExpense;
+            const netColor = netAmount >= 0 ? 'blue' : 'red';
+            const netText = netAmount >= 0 ? 'รายได้มากกว่ารายจ่าย' : 'รายจ่ายมากกว่ารายได้';
+            summaryLineHTML = `<p style="color: ${netColor}; font-weight: bold;">สรุปวันนี้ : ${netText} = ${Math.abs(netAmount).toLocaleString()} บาท</p>`;
+        }
+        
+        document.getElementById('summaryResult').innerHTML = `
+            <p><strong>ชื่อบัญชี : </strong> ${currentAccount}</p>
+            <p><strong>สรุปเมื่อวันที่ : </strong> ${summaryDateTime}</p>
+            <p><strong>สรุปข้อมูลของวันที่ : </strong> ${thaiDay} ${thaiMonth} ${thaiYear}</p>
+            <hr>
+            <p><strong>รายรับวันนี้ : </strong> ${summary.incomeCount} ครั้ง เป็นเงิน ${summary.totalIncome.toLocaleString()} บาท</p>
+            ${incomeHTML}
+            <hr>
+            <p><strong>รายจ่ายวันนี้ : </strong> ${summary.expenseCount} ครั้ง เป็นเงิน ${summary.totalExpense.toLocaleString()} บาท</p>
+            ${expenseHTML}
+            <hr>
+            ${summaryLineHTML}
+            <p><span style="color: blue; font-size: 14px; font-weight: bold;">เงินในบัญชีถึงวันนี้มี = </span><span style="color: ${totalBalance >= 0 ? 'green' : 'red'}; font-size: 16px; font-weight: bold;">${totalBalance.toLocaleString()}</span> บาท</p>
+            <p>ข้อความเพิ่ม : <span style="color: orange;">${remarkInput}</span></p>
+            ${recordsHTML}`;
+        
         document.getElementById('summaryResult').style.display = 'block';
     }
+    // ***** END OF MODIFIED CODE *****
 
-    // ***** START OF MODIFIED CODE *****
     function exportToExcel() {
         if (!currentAccount) {
             alert("กรุณาเลือกบัญชีก่อนส่งออกข้อมูล");
             return;
         }
-
-        // 1. สร้างแถวสำหรับชื่อบัญชี (เพื่อให้ง่ายต่อการผสานเซลล์ใน Excel) และแถวหัวตาราง
         const titleRow = [`ชื่อบัญชี: ${currentAccount}`, "", "", "", ""];
         const headerRow = ["วันที่", "เวลา", "ประเภท", "รายละเอียด", "จำนวนเงิน (บาท)"];
         let excelData = [titleRow, headerRow];
-
-        // 2. กรองข้อมูลเฉพาะบัญชีปัจจุบัน และเรียงลำดับจากเก่าสุดไปใหม่สุด
         const filteredRecords = records.filter(record => record.account === currentAccount)
                                       .sort((a, b) => new Date(a.dateTime) - new Date(b.dateTime));
-
-        // 3. เพิ่มข้อมูลแต่ละรายการลงใน excelData โดยไม่มีคอลัมน์ชื่อบัญชี
         filteredRecords.forEach(record => {
             const dateTime = new Date(record.dateTime);
             const formattedDate = `${String(dateTime.getDate()).padStart(2, '0')}/${String(dateTime.getMonth() + 1).padStart(2, '0')}/${dateTime.getFullYear()}`;
@@ -1198,10 +1241,6 @@
             
             excelData.push([formattedDate, formattedTime, record.type, record.description, formattedAmount]);
         });
-
-        // 4. แปลงข้อมูลเป็นรูปแบบ CSV
-        // หมายเหตุ: การจัดกึ่งกลางเซลล์เป็นคุณสมบัติการจัดรูปแบบของ Excel และไม่สามารถตั้งค่าได้ในไฟล์ CSV
-        // แต่โครงสร้างนี้จะทำให้ง่ายต่อการจัดรูปแบบใน Excel ด้วยตนเอง (เช่น ผสานเซลล์ A1:E1)
         let csvContent = excelData.map(row => 
             row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(",")
         ).join("\r\n");
@@ -1210,8 +1249,6 @@
         const dateStr = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}`;
         const timeStr = `${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}`;
         const fileName = `บัญชี_${currentAccount}_${dateStr}_${timeStr}.csv`;
-
-        // 5. สร้าง Blob และทริกเกอร์การดาวน์โหลดไฟล์
         const blob = new Blob(["\uFEFF" + csvContent], { type: "text/csv;charset=utf-8;" });
         const link = document.createElement("a");
         link.href = URL.createObjectURL(blob);
@@ -1221,7 +1258,6 @@
         link.click();
         document.body.removeChild(link);
     }
-    // ***** END OF MODIFIED CODE *****
 
     function saveToFile() {
         const fileName = prompt("กรุณากรอกชื่อไฟล์ (ไม่ต้องใส่นามสกุล):");
