@@ -6,14 +6,14 @@
     <title>ฟอร์มแปลตัวเลข 2 ตัว</title>
 <style>
     /* Base Styles */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #fffde7;
-            margin: 0;
-            padding: 0;
-            line-height: 1;
-        }
-        
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #fffde7;
+        margin: 0;
+        padding: 0;
+        line-height: 1;
+    }
+    
     h1 {
         text-align: center;
         font-size: 22px;
@@ -22,59 +22,64 @@
         margin-bottom: 10px;
         line-height: 1;
     }
-        
-        label {
-            font-size: 18px;
-            color: #2c3e50;
-            display: block;
-            text-align: center;
-            margin-left: 5%;
-        }
-        
-        footer {
-            text-align: center;
-            padding: 20px;
-            font-size: 14px;
-            color: #95a5a6;
-        }
+    
+    label {
+        font-size: 18px;
+        color: #2c3e50;
+        display: block;
+        text-align: center;
+        margin-left: 5%;
+    }
+    
+    footer {
+        text-align: center;
+        padding: 20px;
+        font-size: 14px;
+        color: #95a5a6;
+    }
 
-        /* ===== Form Elements ===== */
-        input, select, button {
-            font-size: 18px;
-            padding: 10px;
-            width: 80%;
-            margin: 10px auto;
-            border-radius: 6px;
-            border: 1px solid #ddd;
-            display: block;
-            text-align: center;
-            box-sizing: border-box;
-        }
+    footer > div {
+        text-align: center;
+        margin-bottom: 20px;
+    }
 
-        input[type="date"] {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-        }
-        
-        input[type="date"]::-webkit-datetime-edit {
-            text-align: center;
-            width: 100%;
-        }
-        
-        button {
-            background-color: #4CAF50;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        
-        button:hover {
-            background-color: #45a049;
-        }
+    /* ===== Form Elements ===== */
+    input, select, button {
+        font-size: 18px;
+        padding: 10px;
+        width: 80%;
+        margin: 10px auto;
+        border-radius: 6px;
+        border: 1px solid #ddd;
+        display: block;
+        text-align: center;
+        box-sizing: border-box;
+    }
 
-        /* ปุ่มกลับหน้าหลักสีส้ม */
-        .homeButton {
+    input[type="date"] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
+    
+    input[type="date"]::-webkit-datetime-edit {
+        text-align: center;
+        width: 100%;
+    }
+    
+    button {
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    button:hover {
+        background-color: #45a049;
+    }
+
+    /* ปุ่มกลับหน้าหลักสีส้ม */
+    .homeButton {
       display: block;
       width: 90%;
       max-width: 600px;
@@ -88,130 +93,134 @@
       cursor: pointer;
     }
 
-        .homeButton:hover {
-            background-color: darkorange;
-        }
-
-        
-        /* ===== Container Styles ===== */
-        .form-container {
-            border: 2px solid orange;
-            background-color: #FEFEF0;
-            margin: 30px auto;
-            padding: 15px;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 600px;
-            box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
-            box-sizing: border-box;
-        }
-
-        #resultContainer {
-            display: none;
-        }
-
-#resultContainer {
-    display: none;
-    border: 2px solid #4CAF50;
-    background-color: #FAFAD2;
-    margin: 20px 5px; /* บนล่าง 20px, ซ้ายขวา 3px */
-    padding: 15px;
-    border-radius: 10px;
-    width: auto;
-    max-width: calc(100% - 40px); /* เผื่อ margin ซ้าย+ขวา = 20px */
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
-    position: relative;
-    min-height: 300px;
-    box-sizing: border-box;
-}
-
-#resultContainer::before {
-    content: "";
-    background-image: url('logo.png');
-    background-size: 90% auto;
-    background-repeat: no-repeat;
-    background-position: center top 15px;
-    opacity: 0.4;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 0;
-    margin: auto;
-}
-
-/* Result Content Styles */
-#resultContent {
-    position: relative;
-    z-index: 1;
-}
-
-#resultContent h2 {
-    font-size: 22px;
-    margin: 6px 0;
-    line-height: 1.0;
-}
-
-#resultContent h3 {
-    font-size: 20px;
-    margin: 6px 0;
-    line-height: 1.0;
-}
-
-#resultContent .number-pairs {
-    font-size: 20px;
-    margin: 8px 0;
-    font-weight: bold;
-}
-
-#resultContent .note {
-    font-size: 20px;
-    margin: 8px 0;
-}
-
-#resultContent .translation {
-    font-size: 16px;
-    margin: 6px 0;
-}
-
-/* Responsive Styles */
-@media only screen and (max-width: 600px) {
-    .form-container, #resultContainer {
-        margin: 20px 20px !important; /* บนล่าง 20px, ซ้ายขวา 20px */
-        width: calc(100% - 40px);
+    .homeButton:hover {
+        background-color: darkorange;
     }
 
-    input, select, button {
+    
+    /* ===== Container Styles ===== */
+    .form-container {
+        border: 2px solid orange;
+        background-color: #FEFEF0;
+        margin: 30px auto;
+        padding: 15px;
+        border-radius: 10px;
         width: 90%;
+        max-width: 600px;
+        box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
+        box-sizing: border-box;
     }
-}
 
-/* Custom topic input row */
-.custom-topic-row {
-    display: flex;
-    justify-content: space-between;
-    width: 80%;
-    margin: 10px auto;
-    gap: 10px;
-}
+    /* Styles for form layout columns */
+    .form-col {
+        width: 100%;
+    }
 
-.custom-topic-row input {
-    width: 100%;
-    margin: 0;
-}
+    /* Styles for custom inputs (previously inline) */
+    #customTopicInputs {
+        display: none;
+    }
+
+    #customPersonInput {
+        display: none;
+        width: 80%;
+        margin: 10px auto;
+        font-size: 18px;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #ddd;
+        text-align: center;
+    }
+
+    /* Custom topic input row */
+    .custom-topic-row {
+        display: flex;
+        justify-content: space-between;
+        width: 80%;
+        margin: 10px auto;
+        gap: 10px;
+    }
+
+    .custom-topic-row input {
+        width: 100%;
+        margin: 0;
+    }
+
+    .custom-topic-row #customTopicName {
+        width: 60%;
+    }
+
+    .custom-topic-row #customTopicTime {
+        width: 40%;
+    }
+
+    /* ===== Unused Result Container on Main Page (kept for reference) ===== */
+    #resultContainer {
+        display: none;
+        border: 2px solid #4CAF50;
+        background-color: #FAFAD2;
+        margin: 20px 5px;
+        padding: 15px;
+        border-radius: 10px;
+        width: auto;
+        max-width: calc(100% - 40px);
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2);
+        position: relative;
+        min-height: 300px;
+        box-sizing: border-box;
+    }
+
+    #resultContainer::before {
+        content: "";
+        background-image: url('logo.png');
+        background-size: 90% auto;
+        background-repeat: no-repeat;
+        background-position: center top 15px;
+        opacity: 0.4;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 0;
+        margin: auto;
+    }
+
+    /* Result Content Styles (for the unused container) */
+    #resultContent {
+        position: relative;
+        z-index: 1;
+    }
+    #resultContent h2 { font-size: 22px; margin: 6px 0; line-height: 1.0; }
+    #resultContent h3 { font-size: 20px; margin: 6px 0; line-height: 1.0; }
+    #resultContent .number-pairs { font-size: 20px; margin: 8px 0; font-weight: bold; }
+    #resultContent .note { font-size: 20px; margin: 8px 0; }
+    #resultContent .translation { font-size: 16px; margin: 6px 0; }
+
+    /* Responsive Styles */
+    @media only screen and (max-width: 600px) {
+        .form-container, #resultContainer {
+            /* Removed !important by keeping selector specificity */
+            margin: 20px;
+            width: calc(100% - 40px);
+        }
+
+        input, select, button {
+            width: 90%;
+        }
+    }
 </style>
 </head>
 <body>
-      <h1>ฟอร์มแปลตัวเลข 2 ตัว</h1>
+    <h1>ฟอร์มแปลตัวเลข 2 ตัว</h1>
     <div class="form-container">
         <!-- แถวที่ 1: ช่องกรอกตัวเลขกับตัวเลือกชนิดของตัวเลข -->
         <div class="form-row">
-            <div class="form-col" style="width: 100%;">
+            <div class="form-col">
                 <input type="text" id="numberInput" placeholder="กรุณากรอกตัวเลข 2 หลัก" pattern="\d{2}" maxlength="2" inputmode="numeric" />
             </div>
-            <div class="form-col" style="width: 100%;">
+            <div class="form-col">
                 <select id="topicSelect" onchange="checkCustomTopicOption(this)">
                     <option value="ลาวประตูชัย เวลา 05.45 น.">ลาวประตูชัย เวลา 05.45 น.</option>
                     <option value="ลาวสันติภาพ เวลา 06.45 น.">ลาวสันติภาพ เวลา 06.45 น.</option>
@@ -234,10 +243,10 @@
                     <option value="ฮานอย เวลา 18.30 น.">ฮานอย เวลา 18.30 น.</option>
                     <option value="ฮานอย VIP เวลา 19.30 น.">ฮานอย VIP เวลา 19.30 น.</option>
                 </select>
-                <div id="customTopicInputs" style="display: none;">
+                <div id="customTopicInputs">
                     <div class="custom-topic-row">
-                        <input type="text" id="customTopicName" placeholder="กรุณากรอกหัวข้อเอง" style="width: 60%;" />
-                        <input type="text" id="customTopicTime" placeholder="เวลา (เช่น 08.30 น)" style="width: 40%;" />
+                        <input type="text" id="customTopicName" placeholder="กรุณากรอกหัวข้อเอง" />
+                        <input type="text" id="customTopicTime" placeholder="เวลา (เช่น 08.30 น)" />
                     </div>
                 </div>
             </div>
@@ -245,23 +254,23 @@
 
         <!-- แถวที่ 2: ช่องเลือกผู้บอกกับวันเดือนปี -->
         <div class="form-row">
-            <div class="form-col" style="width: 100%;">
+            <div class="form-col">
                 <select id="personSelect" onchange="checkCustomOption(this)">
                     <option value="@">@</option>  
-                  <option value="Team">Team</option>
+                    <option value="Team">Team</option>
                     <option value="Udon Don">Udon Don</option>
                     <option value="custom">อื่นๆ (พิมพ์เอง)</option>
                 </select>
-                <input type="text" id="customPersonInput" placeholder="กรุณากรอกชื่อผู้บอกเอง" style="display: none; width: 80%; margin: 10px auto; font-size: 18px; padding: 10px; border-radius: 6px; border: 1px solid #ddd; text-align: center;" />
+                <input type="text" id="customPersonInput" placeholder="กรุณากรอกชื่อผู้บอกเอง" />
             </div>
-            <div class="form-col" style="width: 100%;">
+            <div class="form-col">
                 <input type="date" id="dateInput" />
             </div>
         </div>
 
         <!-- แถวที่ 3: หมายเหตุ -->
         <div class="form-row">
-            <div class="form-col" style="width: 100%;">
+            <div class="form-col">
                 <input type="text" id="noteInput" placeholder="หมายเหตุ (ถ้ามี)" />
             </div>
         </div>
@@ -270,11 +279,11 @@
         <button id="convertButton">แปลตัวเลข</button>
     </div>
     
-    <!-- ปุ่มกลับสู่หน้าหลัก (แก้ไขแล้ว ใส่ class="homeButton") -->
+    <!-- ปุ่มกลับสู่หน้าหลัก -->
     <button id="homeButton" class="homeButton" onclick="window.location.href='https://juckphai.github.io/juckphai/01.html'">กลับสู่หน้าหลัก</button>
 
     <footer>
-        <div style="text-align: center; margin-bottom: 20px;">
+        <div>
             &copy; 2025 Juckphai. All Rights Reserved.
         </div>
     </footer>
@@ -1142,7 +1151,6 @@
         const selectedDate = dateInput ? new Date(dateInput) : new Date();
         const dateDisplay = dateInput ? getThaiDate(new Date(dateInput)) : getThaiDate();
         
-        // --- START: โค้ดที่แก้ไข ---
         const lunarDisplay = getLunarDate(selectedDate);
         let lunarHtml;
 
@@ -1389,7 +1397,7 @@ body {
         </head>
                  <body>
                     <div class="result-container">
-                        <div id="resultContent">${resultHtml}</div>
+                        ${resultHtml}
                     </div>
                     
                     <div class="controls">
@@ -1408,20 +1416,26 @@ body {
                             const resultContent = document.getElementById("resultContent");
                             
                             if (resultContent) {
-                                const elements = resultContent.querySelectorAll('*');
+                                // Find all child elements within resultContent to apply the line height
+                                const elements = resultContent.querySelectorAll('p, h2, h3');
                                 elements.forEach(element => {
                                     element.style.lineHeight = lineHeight;
                                 });
                                 
+                                // Apply to the container itself as a fallback
                                 resultContent.style.lineHeight = lineHeight;
                                 document.getElementById("popupLineHeightValue").textContent = "ความสูงของบรรทัด: " + lineHeight;
                             }
                         }
                         
                         document.addEventListener("DOMContentLoaded", function() {
-                            document.getElementById("popupLineHeightSlider").addEventListener("input", updateLineHeight);
-                            document.getElementById("popupLineHeightSlider").value = 1.8;
-                            document.getElementById("popupLineHeightValue").textContent = "ความสูงของบรรทัด: 1.8";
+                            const slider = document.getElementById("popupLineHeightSlider");
+                            if(slider) {
+                                slider.addEventListener("input", updateLineHeight);
+                                // Set initial value and text
+                                slider.value = 1.8;
+                                updateLineHeight(); // Call once to set initial state
+                            }
                         });
                     <\/script>
                 </body>
