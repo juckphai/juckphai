@@ -61,9 +61,10 @@
             margin-bottom: 0;
             cursor: pointer;
             display: flex;
-            justify-content: space-between;
+            justify-content: center; /* [ปรับปรุง] เปลี่ยนเป็น center เพื่อให้ title อยู่กลาง */
             align-items: center;
             transition: background-color 0.3s ease;
+            position: relative; /* [ปรับปรุง] เพิ่ม position relative เพื่อให้ arrow จัดตำแหน่งได้ */
         }
         
         .section-header.active {
@@ -72,6 +73,8 @@
         .section-header .arrow { 
             transition: transform 0.3s; 
             font-size: 1.2rem;
+            position: absolute; /* [ปรับปรุง] ทำให้ arrow ลอยและไม่กระทบการจัดกลาง */
+            right: 20px;      /* [ปรับปรุง] จัดตำแหน่งไปทางขวา */
         }
         .section-header.active .arrow { 
             transform: rotate(90deg); 
@@ -128,6 +131,7 @@
             text-decoration: none;
             transition: all 0.3s ease;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center; /* [ปรับปรุง] เพิ่มการจัดข้อความกึ่งกลางในปุ่ม */
         }
 
         .btn:hover {
