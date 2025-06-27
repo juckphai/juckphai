@@ -30,7 +30,7 @@
     .container {
       max-width: 800px;
       margin: 20px auto;
-      background-color: #ffffff;
+      background-color: #FFFFF3;
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -45,6 +45,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      /* [REMOVED] ลบขอบออกจากคลาสทั่วไป */
     }
     .section-header:hover { background-color: #45a049; }
     .section-header .arrow { transition: transform 0.3s; }
@@ -56,18 +57,23 @@
         text-align: center; /* จัดข้อความให้อยู่กึ่งกลาง */
     }
 
+    /* [MODIFIED] เพิ่มขอบสีแดงเฉพาะเมนูหลัก 4 เมนู */
+    .header-account, .header-add-data, .header-actions, .header-summary {
+        border: 3px solid #E97132;
+    }
+
     /* [NEW] Custom colors for main section headers */
     .header-account { background-color: #4A90E2; }
-    .header-account:hover { background-color: #357ABD; }
+    .header-account:hover { background-color: #B5E6A2; }
 
     .header-add-data { background-color: #2ECC71; }
-    .header-add-data:hover { background-color: #27AE60; }
+    .header-add-data:hover { background-color: #B5E6A2; }
 
     .header-actions { background-color: #F39C12; }
-    .header-actions:hover { background-color: #E67E22; }
+    .header-actions:hover { background-color: #B5E6A2; }
 
     .header-summary { background-color: #1ABC9C; }
-    .header-summary:hover { background-color: #16A085; }
+    .header-summary:hover { background-color: #B5E6A2; }
     
     .section-content {
       display: none;
@@ -79,13 +85,18 @@
     }
     .section-content.active { display: block; }
     
+    /* === จุดที่แก้ไข ตามคำขอ === */
     .sub-section-header {
-      background-color: #5c6bc0;
+      /* background-color: #5c6bc0; */ /* สีเดิม */
+      background-color: rgba(92, 107, 192, 0.6); /* [ปรับแก้] เปลี่ยนเป็นสีเดิมแต่จางลง */
       margin-top: 20px;
     }
     .sub-section-header:hover {
-        background-color: #3f51b5;
+      /* background-color: #3f51b5; */ /* สีเดิม */
+      background-color: rgba(63, 81, 181, 0.75); /* [ปรับแก้] ทำให้สี hover เข้มขึ้นเล็กน้อยเพื่อการตอบสนองที่ดี */
     }
+    /* === สิ้นสุดจุดที่แก้ไข === */
+
     .sub-section-content {
         border: none;
         background-color: transparent;
@@ -488,7 +499,6 @@
 
 <div id="summaryResult" class="summaryResult" style="display: none;"></div>
 <div id="toast" class="toast-notification"></div>
-
 
 <script>
     // The JavaScript code is already modern and compatible.
