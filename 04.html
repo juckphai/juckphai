@@ -337,14 +337,15 @@
             </div>
         </div>
         
-        <!-- Custom Select for Person -->
-        <div class="custom-select-wrapper">
-            <select id="personSelect" class="custom-select">
-                <option value="@">@</option> 
-               <option value="Team">Team</option>
-                <option value="Udon Don">Udon Don</option>
-                <option value="custom">อื่นๆ พิมพ์เอง</option>
-            </select>
+        <!-- แถวที่ 2: ช่องเลือกผู้บอกกับวันเดือนปี -->
+        <div class="form-row">
+            <div class="form-col" style="width: 100%;">
+                <select id="personSelect" onchange="checkCustomOption(this)">
+                    <option value="@">@</option>  
+                  <option value="Team">Team</option>
+                    <option value="Udon Don">Udon Don</option>
+                    <option value="custom">อื่นๆ (พิมพ์เอง)</option>
+                </select>
             <input type="text" id="personCustomInput" class="custom-input" placeholder="กรอกชื่อผู้บอกตัวเลข">
         </div>
         
@@ -355,10 +356,13 @@
         <button id="convertButton">แปลตัวเลข</button>
     </div>
     
+    <!-- ปุ่มกลับสู่หน้าหลัก (แก้ไขแล้ว ใส่ class="homeButton") -->
     <button id="homeButton" class="homeButton" onclick="window.location.href='https://juckphai.github.io/juckphai/01.html'">กลับสู่หน้าหลัก</button>
 
     <footer>
-        &copy; 2025 Juckphai. All Rights Reserved.
+        <div style="text-align: center; margin-bottom: 20px;">
+            &copy; 2025 Juckphai. All Rights Reserved.
+        </div>
     </footer>
 
 <script>
@@ -583,31 +587,62 @@
                 </div>
                 <div class="controls">
                     <div class="line-height-control">
+                        <label for="popupFontSizeSlider">ปรับขนาดตัวอักษร:</label>
+                        <input type="range" id="popupFontSizeSlider" min="0.5" max="1.5" step="0.05" value="1.0">
+                        <span id="popupFontSizeValue">ขนาด: 100%</span>
+                    </div>
+                    <div class="line-height-control">
                         <label for="popupLineHeightSlider">ปรับขนาดของบรรทัด:</label>
-                        <input type="range" id="popupLineHeightSlider" min="0.5" max="2.5" step="0.1" value="0.8" />
+                        <input type="range" id="popupLineHeightSlider" min="0.5" max="2.5" step="0.1" value="0.8">
                         <span id="popupLineHeightValue">ความสูงของบรรทัด: 0.8</span>
                     </div>
                     <button class="close-btn" onclick="window.close()">ปิดหน้าต่าง</button>
                 </div>
                 <script>
                     document.addEventListener("DOMContentLoaded", function() {
-                        const slider = document.getElementById("popupLineHeightSlider");
-                        const valueSpan = document.getElementById("popupLineHeightValue");
+                        // --- Get Elements ---
                         const resultContent = document.getElementById("resultContent");
-
+                        if (!resultContent) return;
+                        const textElements = resultContent.querySelectorAll('p, h2, h3');
+                        
+                        // --- Line Height Control ---
+                        const lhSlider = document.getElementById("popupLineHeightSlider");
+                        const lhValueSpan = document.getElementById("popupLineHeightValue");
+                        
                         function updateLineHeight() {
-                            const lineHeight = slider.value;
-                            if (resultContent) {
-                                resultContent.style.lineHeight = lineHeight;
-                                const elements = resultContent.querySelectorAll('p, h2, h3');
-                                elements.forEach(el => el.style.lineHeight = lineHeight);
-                            }
-                            valueSpan.textContent = "ความสูงของบรรทัด: " + lineHeight;
+                            const lineHeight = lhSlider.value;
+                            resultContent.style.lineHeight = lineHeight;
+                            textElements.forEach(el => el.style.lineHeight = lineHeight);
+                            lhValueSpan.textContent = "ความสูงของบรรทัด: " + lineHeight;
                         }
+                        
+                        lhSlider.addEventListener("input", updateLineHeight);
 
-                        slider.addEventListener("input", updateLineHeight);
-                        // Initial call to set the line height based on the default slider value
-                        updateLineHeight(); 
+                        // --- Font Size Control ---
+                        const fsSlider = document.getElementById("popupFontSizeSlider");
+                        const fsValueSpan = document.getElementById("popupFontSizeValue");
+                        
+                        // Store original font sizes in a data attribute
+                        textElements.forEach(el => {
+                            el.dataset.originalSize = parseFloat(window.getComputedStyle(el).fontSize);
+                        });
+                        
+                        function updateFontSize() {
+                            const scale = fsSlider.value;
+                            textElements.forEach(el => {
+                                const originalSize = el.dataset.originalSize;
+                                if (originalSize) {
+                                    el.style.fontSize = (originalSize * scale) + 'px';
+                                }
+                            });
+                            fsValueSpan.textContent = "ขนาด: " + Math.round(scale * 100) + "%";
+                        }
+                        
+                        fsSlider.addEventListener("input", updateFontSize);
+                        
+                        // --- Initial Calls to set default values ---
+                        updateLineHeight();
+                        updateFontSize();
                     });
                 <\/script>
             </body>
