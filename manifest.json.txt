@@ -1,5 +1,5 @@
 {
-  "name": "Juckmanphai Apps",
+  "name": "Juckphai Apps",
   "short_name": "JuckApp",
   "description": "ชุดเครื่องมือและแอปพลิเคชันโดย Juckmanphai",
   "start_url": "./01.html",
