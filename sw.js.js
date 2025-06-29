@@ -1,5 +1,5 @@
 // เปลี่ยนชื่อ Cache เพื่อบังคับให้เบราว์เซอร์ติดตั้ง Service Worker ใหม่
-const CACHE_NAME = 'juckmanphai-pwa-cache-v5'; // อัปเดตเวอร์ชันเป็น v5
+const CACHE_NAME = 'juckphai-pwa-cache-v5'; // อัปเดตเวอร์ชันเป็น v5
 
 // [สำคัญ] เพิ่ม './06.html' และไฟล์อื่นๆ ที่อาจเกี่ยวข้องลงในลิสต์นี้
 const urlsToCache = [
