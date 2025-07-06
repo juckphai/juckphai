@@ -1,7 +1,7 @@
 {
-  "name": "Juckphai Apps",
-  "short_name": "JuckApp",
-  "description": "ชุดเครื่องมือและแอปพลิเคชันโดย Juckmanphai",
+  "name": "Juckphai",
+  "short_name": "Juckphai",
+  "description": "ชุดเครื่องมือและแอปพลิเคชันโดย Juckphai",
   "start_url": "./14.html",
   "display": "standalone",
   "background_color": "#FAFAD2",
