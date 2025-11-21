@@ -25,9 +25,9 @@
         }
 
         .main-wrapper {
-            max-width: 900px; 
+            max-width: 800px; 
             margin: 5px auto; /* ลด margin ด้านบน/ล่าง */
-            background-color: var(--background-color);
+            background-color: #FAFAD2;
             border: 1px solid #ED01ED; 
             padding: 5px; /* ลด padding โดยรวม */
             border-radius: 8px; /* ลด radius เล็กน้อย */
@@ -38,7 +38,7 @@
         #login-screen { 
             padding: 20px; /* ลด padding */
             text-align: center;
-            background-color: var(--background-color);
+            background-color: #FAFAD2;
             color: var(--text-color);
         }
         #login-screen h1 { 
@@ -139,16 +139,16 @@
         /* === END: ICON STYLES === */
         
         /* --- Colors for each section header --- */
-        .header-pos { background-color: #00B0F0; }
-        .header-products { background-color: #00B050; }
-        .header-stock { background-color: #28a745; }
-        .header-stock-out { background-color: var(--warning-color); } /* NEW Color for Stock Out */
-        .header-history { background-color: #ff9800; }
-        .header-reports { background-color: #ED01ED; }
-        .header-summary { background-color: #673ab7; }
-        .header-stores { background-color: #ff5722; } /* New Color for Stores */
-        .header-users { background-color: #0070C0; }
-        .header-data { background-color: #607d8b; }
+        .header-pos { background-color: #4a90e2; } /* Primary Blue */
+        .header-products { background-color: #00b050; } /* Green */
+        .header-stock { background-color: #ff9800; } /* Orange */
+        .header-stock-out { background-color: #d0021b; } /* Danger Red */
+        .header-history { background-color: #00b0f0; } /* Light Blue */
+        .header-reports { background-color: #673ab7; } /* Deep Purple */
+        .header-summary { background-color: #ff5722; } /* Deep Orange */
+        .header-stores { background-color: #28a745; } /* Success Green */
+        .header-users { background-color: #ED01ED; } /* Neon Pink */
+        .header-data { background-color: #607d8b; } /* Blue Gray */
         
         .section-content { 
             display: none; 
@@ -284,7 +284,7 @@
             grid-template-columns: 150px 1fr;
             gap: 10px; /* ลด gap */
             align-items: center;
-            max-width: 600px;
+            max-width: 800px;
             margin: 0 auto 10px auto; /* ลด margin */
             background-color: var(--background-color);
         }
@@ -485,11 +485,11 @@
         .modal-overlay {
             position: fixed;
             z-index: 1000;
+            background-color: #eef5ff;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(255, 253, 231, 0.95); /* Semi-transparent light yellow */
             display: none;
             justify-content: center;
             align-items: center;
@@ -511,13 +511,13 @@
 }
 
 #modalBodyContent {
-    background-color: var(--background-color);
-    border: 1px solid #4CAF50; /* ลดขนาดเส้นขอบ */
-    border-radius: 8px;        /* ลด radius */
+    background-color: #FAFAD2; /* ✅ ปรับพื้นหลังเป็นสีเหลืองอ่อน */
+    border: clamp(1px, 0.3vw, 3px) solid #ED01ED; /* ✅ ปรับเส้นขอบเป็นสีชมพู */
+    border-radius: 8px;
     padding: 15px 5px;
     width: 100%;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.25); /* ลดขนาดเงา */
-    max-height: 90vh;          /* เพิ่ม max height */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    max-height: 90vh;
     overflow-y: auto;
     color: #0088ff !important;
 }
@@ -564,7 +564,7 @@
             align-items: center;
             width: 100%;
             margin-top: 8px; /* ลด margin */
-            max-width: 600px;
+            max-width: 800px;
             background-color: var(--background-alt);
             padding: 10px; /* ลด padding */
             border-radius: 6px;
@@ -594,9 +594,10 @@
         .modal-close-btn { background-color: #E97132; color: white; padding: 8px 20px; /* ลด padding */ border: none; cursor: pointer; border-radius: 15px; /* ลด radius */ font-size: 15px; /* ลด font size */ margin-top: 8px; /* ลด margin */ transition: background-color 0.3s; width: 90%; max-width: 250px;}
         .modal-close-btn:hover { background-color: #e64a19; }
 .format-modal-content {
-    background-color: #e0e0e0; /* พื้นหลังสีเทา */
+    background-color: #ffffff; /* พื้นหลังสีเทา */
     padding: 15px 20px; /* ลด padding */
     border-radius: 10px;
+    border: 1px solid #ED01ED; 
     text-align: center;
     box-shadow: 0 3px 10px rgba(0,0,0,0.3); /* ลดขนาดเงา */
     width: 90%;
@@ -744,7 +745,7 @@
     /* กำหนดให้ฟอร์มใช้ Grid 1 คอลัมน์ (สำหรับ Desktop) */
     grid-template-columns: 1fr;
     /* ลดขนาดสูงสุดของฟอร์มเพื่อควบคุมความกว้าง */
-    max-width: 350px !important; /* ปรับขนาดให้แคบลงและกำหนดให้มีความสำคัญสูง */
+    max-width: 400px !important; /* ปรับขนาดให้แคบลงและกำหนดให้มีความสำคัญสูง */
     margin: 10px auto 10px auto !important; /* จัดให้อยู่ตรงกลาง */
     padding: 10px;
     border: 1px solid var(--border-color); /* เพิ่มเส้นขอบเล็กน้อย */
@@ -1386,7 +1387,7 @@
             /* --- Page Layout --- */
             @page {
                 size: A4;
-                margin: 15mm 5mm 10mm 10mm; /* top, right, bottom, left */
+                margin: 15mm 5mm 8mm 8mm; /* top, right, bottom, left */
                 @top-center {
                     content: "หน้า " counter(page);
                     font-family: Arial, sans-serif;
@@ -1581,192 +1582,269 @@
     font-weight: bold;
 }
 
-/* ปรับปรุงตารางผู้ใช้ - แก้ไขปัญหาสีหัวข้อตาราง */
-#page-users .table-container {
-    margin-top: 15px; /* ลด margin */
-    border-radius: 6px;
-    overflow: hidden;
+/* === START: ปรับปรุงเต็มรูปแบบสำหรับหน้า "จัดการผู้ใช้" (COMPACT) === */
+
+/* ปรับปรุงฟอร์มจัดการผู้ใช้ */
+#page-users #user-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px; /* ลด gap */
+    max-width: 800px;
+    margin: 0 auto 15px auto; /* ลด margin */
+    background-color: var(--background-alt);
+    padding: 15px; /* ลด padding */
+    border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    color: var(--text-color);
+}
+
+#page-users #user-form label {
+    text-align: right;
+    font-weight: bold;
+    margin-bottom: 3px; /* ลด margin */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    color: var(--text-color);
+}
+
+#page-users #user-form input,
+#page-users #user-form select {
+    width: 100%;
+    padding: 8px 10px; /* ลด padding */
+    border-radius: 4px; /* ลด radius */
     border: 1px solid #666;
+    font-size: 0.95em; /* ลด font size */
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+#page-users #user-form input:focus,
+#page-users #user-form select:focus {
+    border-color: #4a90e2;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(74, 144, 226, 0.25);
+}
+
+/* ปรับปรุงส่วนของ Commission Sources */
+#page-users #user-form .form-group {
+    grid-column: 1 / -1;
+    margin-top: 8px; /* ลด margin */
+}
+
+#page-users #user-form #user-commission-sources {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* ลด minmax */
+    gap: 8px; /* ลด gap */
+    padding: 10px; /* ลด padding */
+    background: #e9f7fe;
+    border-radius: 6px;
+    border: 1px solid #b8e2f5;
+}
+
+#page-users #user-form #user-commission-sources label {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-weight: normal;
+    margin-bottom: 0;
+    cursor: pointer;
+    padding: 3px; /* ลด padding */
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    color: var(--text-color);
+}
+
+#page-users #user-form #user-commission-sources label:hover {
+    background-color: rgba(74, 144, 226, 0.1);
+}
+
+#page-users #user-form #user-commission-sources input {
+    width: auto;
+    margin-right: 6px; /* ลด margin */
+}
+
+/* ปรับปรุงปุ่มในฟอร์ม */
+#page-users #user-form .form-actions {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* ลด gap */
+    margin-top: 15px; /* ลด margin */
+}
+
+#page-users #user-form .form-actions button {
+    min-width: 120px;
+    padding: 10px 15px; /* ลด padding */
+    font-weight: bold;
+}
+
+/* === START: ปรับปรุงตารางจัดการผู้ใช้ให้ตรงกับรูปแบบที่ต้องการ === */
+
+/* ปรับปรุงตารางผู้ใช้ให้ตรงกับรูปแบบในรูป 1 */
+#page-users .table-container {
+    [cite_start]margin-top: 15px; [cite: 1]
+    [cite_start]border-radius: 6px; [cite: 1]
+    [cite_start]overflow: hidden; [cite: 1]
+    [cite_start]box-shadow: 0 1px 3px rgba(0,0,0,0.1); [cite: 2]
+    [cite_start]border: 1px solid #666; [cite: 2]
+    [cite_start]background-color: var(--background-color); [cite: 2]
 }
 
 #page-users #user-table {
-    width: 100%;
-    border-collapse: collapse;
+    [cite_start]width: 100%; [cite: 3]
+    [cite_start]border-collapse: collapse; [cite: 3]
 }
 
-/* ===== หัวตาราง สีเทา / ตัวหนังสือสีฟ้า ===== */
+/* ===== หัวตาราง สีฟ้า / ตัวหนังสือสีขาว ===== */
 #page-users #user-table thead {
-    background: #e0e0e0; 
-    color: #0088ff;
-    border-bottom: 1px solid #bfbfbf; /* ลดขนาดเส้นขอบ */
+    [cite_start]background: #4a90e2; [cite: 4]
+    /* สีฟ้าเหมือนในรูป 1 */
+    [cite_start]color: white; [cite: 4]
+    [cite_start]border-bottom: 2px solid #3a7bc8; [cite: 4]
 }
 
 #page-users #user-table th {
-    padding: 10px 10px; /* ลด padding */
-    text-align: center;
-    font-weight: 700;
-    border: none;
-    cursor: default;
-    transition: none;
-    font-size: 1.0em; /* ลด font size */
-    letter-spacing: 0.5px;
-    border-right: 1px solid rgba(0,0,0,0.1);
-    color: #0088ff;
+    [cite_start]padding: 12px 10px; [cite: 6]
+    [cite_start]text-align: center; [cite: 6]
+    [cite_start]font-weight: 700; [cite: 6]
+    [cite_start]border: none; [cite: 6]
+    [cite_start]cursor: default; [cite: 6]
+    [cite_start]transition: none; [cite: 6]
+    [cite_start]font-size: 1.0em; [cite: 6]
+    [cite_start]letter-spacing: 0.5px; [cite: 6]
+    [cite_start]border-right: 1px solid rgba(255,255,255,0.2); [cite: 6]
+    [cite_start]color: white; [cite: 6]
 }
 
 #page-users #user-table th:last-child {
-    border-right: none;
+    [cite_start]border-right: none; [cite: 7]
 }
 
-/* ปิด hover */
+/* ปิด hover effect บนหัวตาราง */
 #page-users #user-table th:hover {
-    background: inherit;
-    box-shadow: none;
-    transform: none;
-}
-
-/* สัญลักษณ์ sort ยังมี */
-#page-users #user-table th.sortable::after {
-    content: "↕";
-    margin-left: 6px; /* ลด margin */
-    font-size: 0.8em; /* ลด font size */
-    opacity: 0.8;
-}
-
-#page-users #user-table th.asc::after {
-    content: "↑";
-    opacity: 1;
-    font-weight: bold;
-}
-
-#page-users #user-table th.desc::after {
-    content: "↓";
-    opacity: 1;
-    font-weight: bold;
-}
-
-/* เปลี่ยนสี asc/desc ให้เป็น theme เดียวกันกับสีเทา */
-#page-users #user-table th.asc,
-#page-users #user-table th.desc {
-    background: #d6d6d6;
+    [cite_start]background: inherit; [cite: 8]
+    [cite_start]box-shadow: none; [cite: 8]
+    [cite_start]transform: none; [cite: 8]
 }
 
 /* ============ เนื้อหาตาราง ============ */
 #page-users #user-table tbody tr {
-    transition: none;
-    background-color: var(--background-color);
+    [cite_start]transition: none; [cite: 9]
+    [cite_start]background-color: var(--background-color); [cite: 9]
+    [cite_start]border-bottom: 1px solid #e0e0e0; [cite: 9]
 }
 
 #page-users #user-table tbody tr:nth-child(even) {
-    background-color: var(--background-alt);
+    [cite_start]background-color: #f8f9fa; [cite: 10]
 }
 
-/* ปิด hover */
+/* เพิ่ม hover effect บนแถวข้อมูล */
 #page-users #user-table tbody tr:hover {
-    background-color: inherit;
+    [cite_start]background-color: #eef5ff; [cite: 11]
 }
 
 #page-users #user-table td {
-    padding: 8px 10px; /* ลด padding */
-    border: none;
-    border-bottom: 1px solid #e9ecef;
-    vertical-align: middle;
-    color: var(--text-color);
+    [cite_start]padding: 10px 10px; [cite: 12]
+    [cite_start]border: none; [cite: 12]
+    [cite_start]border-bottom: 1px solid #e9ecef; [cite: 12]
+    [cite_start]vertical-align: middle; [cite: 12]
+    [cite_start]color: var(--text-color); [cite: 12]
+    [cite_start]text-align: center; [cite: 12]
 }
 
 /* ปุ่มภายในตาราง */
 #page-users #user-table .action-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 5px; /* ลด gap */
-    min-width: 120px;
+    [cite_start]display: flex; [cite: 13]
+    [cite_start]justify-content: center; [cite: 13]
+    [cite_start]gap: 5px; [cite: 13]
+    [cite_start]min-width: 120px; [cite: 13]
 }
 
 #page-users #user-table .action-buttons button {
-    padding: 5px 10px; /* ลด padding */
-    font-size: 0.8em; /* ลด font size */
-    border-radius: 4px;
-    transition: all 0.2s;
+    [cite_start]padding: 6px 12px; [cite: 14]
+    [cite_start]font-size: 0.85em; [cite: 14]
+    [cite_start]border-radius: 4px; [cite: 14]
+    [cite_start]transition: all 0.2s; [cite: 14]
 }
 
 #page-users #user-table .action-buttons button:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    [cite_start]transform: translateY(-1px); [cite: 15]
+    [cite_start]box-shadow: 0 1px 3px rgba(0,0,0,0.1); [cite: 15]
 }
 
 /* ===== มือถือ ===== */
 @media (max-width: 768px) {
     #page-users #user-table {
-        display: block;
-        overflow-x: auto;
+        [cite_start]display: block; [cite: 16]
+        [cite_start]overflow-x: auto; [cite: 16]
     }
 
     /* ซ่อนหัวตาราง */
     #page-users #user-table thead {
-        display: none;
+        [cite_start]display: none; [cite: 17]
     }
 
     #page-users #user-table tbody,
     #page-users #user-table tr,
     #page-users #user-table td {
-        display: block;
-        width: 100%;
+        [cite_start]display: block; [cite: 18]
+        [cite_start]width: 100%; [cite: 18]
     }
 
     #page-users #user-table tr {
-        margin-bottom: 10px; /* ลด margin */
-        border: 1px solid #e9ecef;
-        border-radius: 6px;
-        overflow: hidden;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        background-color: var(--background-color);
+        [cite_start]margin-bottom: 10px; [cite: 19]
+        [cite_start]border: 1px solid #e9ecef; [cite: 19]
+        [cite_start]border-radius: 6px; [cite: 20]
+        [cite_start]overflow: hidden; [cite: 20]
+        [cite_start]box-shadow: 0 1px 3px rgba(0,0,0,0.1); [cite: 20]
+        [cite_start]background-color: var(--background-color); [cite: 20]
     }
 
     #page-users #user-table td {
-        text-align: left;
-        padding: 8px 10px; /* ลด padding */
-        border-bottom: 1px solid #e9ecef;
-        position: relative;
-        padding-left: 45%;
-        color: var(--text-color);
+        [cite_start]text-align: left; [cite: 21]
+        [cite_start]padding: 8px 10px; [cite: 21]
+        [cite_start]border-bottom: 1px solid #e9ecef; [cite: 21]
+        [cite_start]position: relative; [cite: 21]
+        [cite_start]padding-left: 45%; [cite: 21]
     }
 
     /* label ข้างซ้าย สำหรับมือถือ */
     #page-users #user-table td:before {
-        content: attr(data-label);
-        position: absolute;
-        left: 10px; /* ลด left */
-        width: 40%;
-        font-weight: 600;
-        color: #0088ff;
-        background-color: #e0e0e0;
-        padding: 2px 6px; /* ลด padding */
-        border-radius: 4px;
+        [cite_start]content: attr(data-label); [cite: 22]
+        [cite_start]position: absolute; [cite: 22]
+        [cite_start]left: 10px; [cite: 22]
+        [cite_start]width: 40%; [cite: 22]
+        [cite_start]font-weight: 600; [cite: 22]
+        [cite_start]color: #4a90e2; [cite: 22]
+        [cite_start]background-color: #eef5ff; [cite: 22]
+        [cite_start]padding: 2px 6px; [cite: 23]
+        [cite_start]border-radius: 4px; [cite: 23]
     }
 
     #page-users #user-table .action-buttons {
-        justify-content: flex-start;
+        [cite_start]justify-content: flex-start; [cite: 24]
     }
 
     #page-users #user-table .action-buttons:before {
-        display: none;
+        [cite_start]display: none; [cite: 25]
     }
 
     #page-users #user-table td.action-buttons {
-        padding-left: 10px !important; /* ลด padding */
+        [cite_start]padding-left: 10px !important; [cite: 26]
     }
 }
 
 /* ===== แท็บเล็ต ===== */
 @media (min-width: 769px) and (max-width: 1024px) {
     #page-users #user-table th {
-        padding: 8px 8px; /* ลด padding */
-        font-size: 0.95em;
+        [cite_start]padding: 10px 8px; [cite: 27]
+        [cite_start]font-size: 0.95em; [cite: 27]
     }
 }
 
+/* === END: ปรับปรุงตารางจัดการผู้ใช้ === */
 /* ===== จอใหญ่ ===== */
 @media (min-width: 1200px) {
     #page-users #user-table th {
