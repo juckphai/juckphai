@@ -1,0 +1,42 @@
+import js from "@eslint/js";
+import prettier from "eslint-plugin-prettier";
+import configPrettier from "eslint-config-prettier";
+
+export default [
+  js.configs.recommended,
+  {
+    plugins: {
+      prettier: prettier,
+    },
+    languageOptions: {
+      globals: {
+        window: "readonly",
+        document: "readonly",
+        localStorage: "readonly",
+        sessionStorage: "readonly",
+        console: "readonly",
+        navigator: "readonly",
+        confirm: "readonly",
+        alert: "readonly",
+        XLSX: "readonly",
+        html2canvas: "readonly",
+        setTimeout: "readonly",
+        setInterval: "readonly",
+        location: "readonly",
+        FileReader: "readonly",
+        Blob: "readonly",
+        URL: "readonly",
+        Uint8Array: "readonly",
+        ArrayBuffer: "readonly",
+      },
+    },
+    rules: {
+      "prettier/prettier": "error",
+      "no-unused-vars": "warn",
+      "no-console": "off",
+      "no-redeclare": "error",
+      "no-inner-declarations": "off"
+    },
+  },
+  configPrettier,
+];
